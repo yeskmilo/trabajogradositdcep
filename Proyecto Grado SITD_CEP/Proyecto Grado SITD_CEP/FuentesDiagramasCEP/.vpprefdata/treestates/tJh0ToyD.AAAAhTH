@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ProjectTreeState projectID="YaDnDoyD.AAAAgAi" projectPath="/home/kmilo/Documents/Practica y Proyecto de Grado/FuentesDiagramasCEP/FuentesSistemaCEP.vpp">
+	<TreeState name="ModelRepository" viewX="4" viewY="0">
+		<ExpandedPath>ModelRepository</ExpandedPath>
+	</TreeState>
+	<TreeState name="DiagramNavigator" viewX="0" viewY="694">
+		<ExpandedPath>DiagramNavigator</ExpandedPath>
+		<ExpandedPath>DiagramNavigator,UML Diagrams</ExpandedPath>
+		<ExpandedPath>UseCaseDiagram</ExpandedPath>
+		<ExpandedPath>ClassDiagram</ExpandedPath>
+		<ExpandedPath>InteractionDiagram</ExpandedPath>
+		<ExpandedPath>DiagramNavigator,Requirements Capturing</ExpandedPath>
+		<ExpandedPath>DiagramNavigator,Database Modeling</ExpandedPath>
+		<ExpandedPath>DiagramNavigator,Business Process Modeling</ExpandedPath>
+		<ExpandedPath>BusinessProcessDiagram</ExpandedPath>
+		<ExpandedPath>DiagramNavigator,Enterprise Modeling</ExpandedPath>
+		<ExpandedPath>DiagramNavigator,Impact Analysis</ExpandedPath>
+		<ExpandedPath>DiagramNavigator,Others</ExpandedPath>
+		<SelectedPath>BusinessProcessDiagram,VQkDjoyD.AAAAg2o</SelectedPath>
+	</TreeState>
+	<TreeState name="ClassBrowser" viewX="24" viewY="0">
+		<ExpandedPath>ClassBrowser</ExpandedPath>
+		<ExpandedPath>ClassBrowser,ClassBrowser</ExpandedPath>
+	</TreeState>
+	<TreeState name="LogicalView" viewX="0" viewY="0"/>
+</ProjectTreeState>
