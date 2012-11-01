@@ -21,10 +21,10 @@ public class GUIAdicionarModulo extends javax.swing.JFrame {
     /**
      * Creates new form GUIAdicionarModulo
      */
-    public GUIAdicionarModulo(IServicioProfesoral servicioProfesoral, ControlModulo controlModulo) {
+    public GUIAdicionarModulo(IServicioProfesoral servicioProfesoral) {
         initComponents();
         this.servicioProfesoral = servicioProfesoral;
-        this.controlModulo = controlModulo;
+        controlModulo = new ControlModulo(servicioProfesoral);
     }
 
     /**
@@ -36,57 +36,79 @@ public class GUIAdicionarModulo extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jMenuBar1 = new javax.swing.JMenuBar();
+        panelAddModulo = new javax.swing.JPanel();
+        lblTitulo = new javax.swing.JLabel();
+        lblIcono = new javax.swing.JLabel();
+        barraMenu = new javax.swing.JMenuBar();
         menuArchivo = new javax.swing.JMenu();
         menuAyuda = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Adicionar MOdulo Programa");
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        panelAddModulo.setBackground(new java.awt.Color(255, 255, 255));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 732, Short.MAX_VALUE)
+        lblTitulo.setFont(new java.awt.Font("Calibri", 3, 24)); // NOI18N
+        lblTitulo.setText("Adición de nuevo Modulo");
+
+        lblIcono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/addModuleGrande.png"))); // NOI18N
+
+        javax.swing.GroupLayout panelAddModuloLayout = new javax.swing.GroupLayout(panelAddModulo);
+        panelAddModulo.setLayout(panelAddModuloLayout);
+        panelAddModuloLayout.setHorizontalGroup(
+            panelAddModuloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelAddModuloLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblTitulo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblIcono)
+                .addContainerGap(408, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 426, Short.MAX_VALUE)
+        panelAddModuloLayout.setVerticalGroup(
+            panelAddModuloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelAddModuloLayout.createSequentialGroup()
+                .addGroup(panelAddModuloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelAddModuloLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(lblIcono))
+                    .addGroup(panelAddModuloLayout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addComponent(lblTitulo)))
+                .addContainerGap(365, Short.MAX_VALUE))
         );
 
         menuArchivo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/menuArchivo.png"))); // NOI18N
         menuArchivo.setText("Archivo");
         menuArchivo.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
-        jMenuBar1.add(menuArchivo);
+        barraMenu.add(menuArchivo);
 
         menuAyuda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/menuAyuda.png"))); // NOI18N
         menuAyuda.setText("Ayuda?");
         menuAyuda.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
-        jMenuBar1.add(menuAyuda);
+        barraMenu.add(menuAyuda);
 
-        setJMenuBar(jMenuBar1);
+        setJMenuBar(barraMenu);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panelAddModulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panelAddModulo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JMenuBar barraMenu;
+    private javax.swing.JLabel lblIcono;
+    private javax.swing.JLabel lblTitulo;
     private javax.swing.JMenu menuArchivo;
     private javax.swing.JMenu menuAyuda;
+    private javax.swing.JPanel panelAddModulo;
     // End of variables declaration//GEN-END:variables
 }

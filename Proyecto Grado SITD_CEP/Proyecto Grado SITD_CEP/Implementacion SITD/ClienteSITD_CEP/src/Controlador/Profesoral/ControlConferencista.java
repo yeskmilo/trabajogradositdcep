@@ -12,16 +12,15 @@ import Modelo.IServicioProfesoral;
  *
  * @author juanpanlo
  */
-public class ControlModulo {
-    
+public class ControlConferencista {
+
     private IServicioProfesoral servicioProfesoral;
     
     /**
-     * Constructor del controlador para modulo ControlModulo
+     * Constructor del controlador para Conferencista ControlConferencista
      * @param servicioProfesoral 
      */
-    public ControlModulo(IServicioProfesoral servicioProfesoral){
+    public ControlConferencista(IServicioProfesoral servicioProfesoral) {
         this.servicioProfesoral = servicioProfesoral;
     }
-    
 }
