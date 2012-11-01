@@ -8,6 +8,7 @@ package Vista.Profesoral;
 
 import Controlador.Profesoral.ControlConferencista;
 import Modelo.IServicioProfesoral;
+import java.util.Date;
 
 /**
  *
@@ -289,6 +290,11 @@ public class GUIAdicionarConferencista extends javax.swing.JFrame {
         btnGuardarConferencista.setFont(new java.awt.Font("Calibri", 3, 13)); // NOI18N
         btnGuardarConferencista.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/addConferencista.png"))); // NOI18N
         btnGuardarConferencista.setText("Guardar Conferencista");
+        btnGuardarConferencista.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarConferencistaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelAddConferencistaLayout = new javax.swing.GroupLayout(panelAddConferencista);
         panelAddConferencista.setLayout(panelAddConferencistaLayout);
@@ -325,7 +331,7 @@ public class GUIAdicionarConferencista extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(panelDatosBancarios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelAddConferencistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(panelAddConferencistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnSalir)
                     .addComponent(btnGuardarConferencista))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -362,6 +368,15 @@ public class GUIAdicionarConferencista extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnSalirActionPerformed
 
+    private void btnGuardarConferencistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarConferencistaActionPerformed
+        // TODO add your handling code here:
+        int cedula = 0;
+        String nombres = "";
+        String apellidos = "";
+        Date fecha = null;
+        String genero = "";
+        String direccion = "";
+    }//GEN-LAST:event_btnGuardarConferencistaActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuBar barraMenu;
     private javax.swing.JButton btnGuardarConferencista;
