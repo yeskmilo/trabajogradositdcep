@@ -44,7 +44,7 @@ public class ConexionBD {
 
         try {
             url = "jdbc:mysql://" + ipAdress + ":" + portNumber + "/" + nombreBD;
-            con = DriverManager.getConnection(url, user, password);
+            con = DriverManager.getConnection(url, user, password);            
             System.out.println("Succes Conection...");
         } catch (Exception e) {
             System.out.println("Error in Conection: " + e);
