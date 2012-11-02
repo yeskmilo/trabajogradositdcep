@@ -143,4 +143,59 @@ public class ServicioProfesoral extends UnicastRemoteObject implements IServicio
         }
         return programa;
     }
+
+    /**
+     * Edicion de datos de conferencista
+     *
+     * @param conferencista
+     * @return
+     * @throws RemoteException
+     */
+    @Override
+    public boolean EditarConferencista(Conferencista conferencista) throws RemoteException {
+        boolean controlActualizacion = false;
+        String cadenaBD = "UPDATE CONFERENCISTA SET nombres_conferencista='" + conferencista.getNombres_conferencista() + "', "
+                + "apellidos_conferencista='" + conferencista.getApellidos_conferencista() + "', fecha_nacimiento='" + formatoFecha.format(conferencista.getFecha_nacimiento()) + "', "
+                + "genero_conferencista='" + conferencista.getGenero_conferencista() + "', direccion_conferencista='" + conferencista.getDireccion_conferencista() + "', "
+                + "telefono_conferencista='" + conferencista.getTelefono_conferencista() + "', celular_conferencista='" + conferencista.getCelular_conferencista() + "', "
+                + "correo_electronico_conferencista='" + conferencista.getCorreo_electronico_conferencista() + "', "
+                + "numero_cuenta_conferencista='" + conferencista.getNumero_cuenta_conferencista() + "', tipo_cuenta_conferencista='" + conferencista.getTipo_cuenta_conferencista() + "',"
+                + "banco_conferencista='" + conferencista.getBanco_conferencista() + "', estado_conferencista='" + conferencista.getEstado_conferencista() + "";
+        try {
+            conexion.conectar();
+            controlActualizacion = conexion.executeUpdateStatement(cadenaBD);
+            conexion.closeConecction();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return controlActualizacion;
+    }
+
+    /**
+     * Busqueda de conferencista dada la cedula del mismo
+     *
+     * @param cedula
+     * @return
+     * @throws RemoteException
+     */
+    @Override
+    public Conferencista BuscarConferencistaCedula(int cedula) throws RemoteException {
+        Conferencista conferencista = null;
+        ResultSet resultadoBusqueda = null;
+        String cadenaBD = "SELECT * FROM conferencista WHERE cedula_conferencista = " + cedula;
+        try {
+            conexion.conectar();
+            resultadoBusqueda = conexion.executeQueryStatement(cadenaBD);
+            conexion.closeConecction();
+            while (resultadoBusqueda.next()) {
+                conferencista = new Conferencista(resultadoBusqueda.getInt(1), resultadoBusqueda.getInt(2), resultadoBusqueda.getString(3),
+                        resultadoBusqueda.getString(4), resultadoBusqueda.getDate(5), resultadoBusqueda.getString(6), resultadoBusqueda.getString(7),
+                        resultadoBusqueda.getString(8), resultadoBusqueda.getString(9), resultadoBusqueda.getString(10), resultadoBusqueda.getString(11),
+                        resultadoBusqueda.getString(12), resultadoBusqueda.getString(13), resultadoBusqueda.getString(14));
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return conferencista;
+    }
 }

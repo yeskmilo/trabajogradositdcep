@@ -1,8 +1,20 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * Sistema de Información para la toma de Decisiones
+ * Centro de Educación Permanente
+ * Autor: 
+ * Yesid Camilo Ortiz Castillo 
  */
 package Vista.Profesoral;
+
+import Controlador.Profesoral.ControlConferencista;
+import Estructural.Conferencista;
+import Modelo.IServicioProfesoral;
+import java.rmi.RemoteException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -10,11 +22,17 @@ package Vista.Profesoral;
  */
 public class GUIEditarConferencista extends javax.swing.JFrame {
 
+    private IServicioProfesoral servicioProfesoral;
+    private ControlConferencista controlConferencista;
+    private DateFormat formatoFecha = new SimpleDateFormat("dd/MM/yy");
+
     /**
      * Creates new form GUIEditarConferencista
      */
-    public GUIEditarConferencista() {
+    public GUIEditarConferencista(IServicioProfesoral servicioProfesoral) {
         initComponents();
+        this.servicioProfesoral = servicioProfesoral;
+        controlConferencista = new ControlConferencista(servicioProfesoral);
     }
 
     /**
@@ -386,7 +404,7 @@ public class GUIEditarConferencista extends javax.swing.JFrame {
                 cedula = Integer.parseInt(txtCedula.getText().trim());
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(rootPane, "Debe digitar un valor para la cedula que\n"
-                    + "contenga digitos entre 0 y 9", "Valor invalido", 0);
+                        + "contenga digitos entre 0 y 9", "Valor invalido", 0);
                 controlDatos = false;
             }
         }
@@ -455,41 +473,6 @@ public class GUIEditarConferencista extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_btnGuardarConferencistaActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(GUIEditarConferencista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(GUIEditarConferencista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(GUIEditarConferencista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GUIEditarConferencista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new GUIEditarConferencista().setVisible(true);
-            }
-        });
-    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuBar barraMenu;
     private javax.swing.JButton btnBuscarConferencista;
@@ -527,4 +510,16 @@ public class GUIEditarConferencista extends javax.swing.JFrame {
     private javax.swing.JTextField txtNumeroCuenta;
     private javax.swing.JTextField txtTelefono;
     // End of variables declaration//GEN-END:variables
+
+    private void limpiarFormulario() {
+        txtCedula.setText("");;
+        txtNombres.setText("");
+        txtApellidos.setText("");
+        txtCelular.setText("");
+        txtCorreo.setText("");
+        txtDireccion.setText("");
+        txtNumeroCuenta.setText("");
+        txtBanco.setText("");
+        txtTelefono.setText("");
+    }
 }

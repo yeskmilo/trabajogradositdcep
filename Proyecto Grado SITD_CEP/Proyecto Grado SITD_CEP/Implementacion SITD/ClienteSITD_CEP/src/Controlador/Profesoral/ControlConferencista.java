@@ -26,14 +26,37 @@ public class ControlConferencista {
     public ControlConferencista(IServicioProfesoral servicioProfesoral) {
         this.servicioProfesoral = servicioProfesoral;
     }
-    
+
     /**
      * Metodo para adicionar un nuevo conferencista en el sistema
+     *
      * @param conferencista
      * @return
-     * @throws RemoteException 
+     * @throws RemoteException
      */
     public boolean IngresarConferencista(Conferencista conferencista) throws RemoteException {
         return servicioProfesoral.IngresarConferencista(conferencista);
+    }
+
+    /**
+     * Edicion de datos de conferencista
+     *
+     * @param conferencista
+     * @return
+     * @throws RemoteException
+     */
+    public boolean EditarConferencista(Conferencista conferencista) throws RemoteException {
+        return servicioProfesoral.EditarConferencista(conferencista);
+    }
+
+    /**
+     * Busqueda de conferencista dada la cedula del mismo
+     *
+     * @param cedula
+     * @return
+     * @throws RemoteException
+     */
+    public Conferencista BuscarConferencistaCedula(int cedula) throws RemoteException {
+        return servicioProfesoral.BuscarConferencistaCedula(cedula);
     }
 }
