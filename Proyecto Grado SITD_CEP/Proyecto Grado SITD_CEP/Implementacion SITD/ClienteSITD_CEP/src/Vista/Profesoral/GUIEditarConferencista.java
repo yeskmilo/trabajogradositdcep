@@ -1,40 +1,20 @@
 /*
- * Sistema de Información para la toma de Decisiones
- * Centro de Educación Permanente
- * Autor: 
- * Yesid Camilo Ortiz Castillo 
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
  */
 package Vista.Profesoral;
-
-import Controlador.Profesoral.ControlConferencista;
-import Estructural.Conferencista;
-import Modelo.IServicioProfesoral;
-import java.rmi.RemoteException;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 
 /**
  *
  * @author juanpanlo
  */
-public class GUIAdicionarConferencista extends javax.swing.JFrame {
-
-    private IServicioProfesoral servicioProfesoral;
-    private ControlConferencista controlConferencista;
-    private DateFormat formatoFecha = new SimpleDateFormat("dd/MM/yy");
+public class GUIEditarConferencista extends javax.swing.JFrame {
 
     /**
-     * Creates new form GUIAdicionarConferencista
+     * Creates new form GUIEditarConferencista
      */
-    public GUIAdicionarConferencista(IServicioProfesoral servicioProfesoral) {
+    public GUIEditarConferencista() {
         initComponents();
-        this.servicioProfesoral = servicioProfesoral;
-        controlConferencista = new ControlConferencista(servicioProfesoral);
     }
 
     /**
@@ -46,18 +26,16 @@ public class GUIAdicionarConferencista extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        panelAddConferencista = new javax.swing.JPanel();
+        panelEditConferencista = new javax.swing.JPanel();
         lblTitulo = new javax.swing.JLabel();
         lblImagen = new javax.swing.JLabel();
         panelDatosBasicos = new javax.swing.JPanel();
-        lblCedula = new javax.swing.JLabel();
         lblNombres = new javax.swing.JLabel();
         lblApellidos = new javax.swing.JLabel();
         lblFecha = new javax.swing.JLabel();
         comboFecha = new datechooser.beans.DateChooserCombo();
         lblGenero = new javax.swing.JLabel();
         comboGenero = new javax.swing.JComboBox();
-        txtCedula = new javax.swing.JTextField();
         txtNombres = new javax.swing.JTextField();
         txtApellidos = new javax.swing.JTextField();
         lblCorreo = new javax.swing.JLabel();
@@ -77,25 +55,25 @@ public class GUIAdicionarConferencista extends javax.swing.JFrame {
         txtBanco = new javax.swing.JTextField();
         btnSalir = new javax.swing.JButton();
         btnGuardarConferencista = new javax.swing.JButton();
+        txtCedula = new javax.swing.JTextField();
+        lblCedula = new javax.swing.JLabel();
+        btnBuscarConferencista = new javax.swing.JButton();
         barraMenu = new javax.swing.JMenuBar();
         menuArchivo = new javax.swing.JMenu();
         menuAyuda = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Adicionar Conferencista");
+        setTitle("Editar Conferencista");
 
-        panelAddConferencista.setBackground(new java.awt.Color(255, 255, 255));
+        panelEditConferencista.setBackground(new java.awt.Color(255, 255, 255));
 
         lblTitulo.setFont(new java.awt.Font("Calibri", 3, 24)); // NOI18N
-        lblTitulo.setText("Adicion de Conferencista");
+        lblTitulo.setText("Editar Conferencista");
 
-        lblImagen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/addConferencistaGrande.png"))); // NOI18N
+        lblImagen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/editarConferencistaGrande.png"))); // NOI18N
 
         panelDatosBasicos.setBackground(new java.awt.Color(255, 255, 255));
-        panelDatosBasicos.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(""), "Datos Personales", 0, 0, new java.awt.Font("Calibri", 2, 13))); // NOI18N
-
-        lblCedula.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
-        lblCedula.setText("Cedula");
+        panelDatosBasicos.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(""), "Datos Personales", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Calibri", 2, 13))); // NOI18N
 
         lblNombres.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
         lblNombres.setText("Nombres");
@@ -111,38 +89,35 @@ public class GUIAdicionarConferencista extends javax.swing.JFrame {
 
         comboGenero.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
         comboGenero.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Masculino", "Femenino" }));
-        comboGenero.setBorder(new javax.swing.border.SoftBevelBorder(1));
-
-        txtCedula.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
-        txtCedula.setBorder(new javax.swing.border.SoftBevelBorder(1));
+        comboGenero.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
         txtNombres.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
-        txtNombres.setBorder(new javax.swing.border.SoftBevelBorder(1));
+        txtNombres.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
         txtApellidos.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
-        txtApellidos.setBorder(new javax.swing.border.SoftBevelBorder(1));
+        txtApellidos.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
         lblCorreo.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
         lblCorreo.setText("Correo Electrónico");
 
-        txtCorreo.setBorder(new javax.swing.border.SoftBevelBorder(1));
+        txtCorreo.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
         lblDireccion.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
         lblDireccion.setText("Dirección Vivienda");
 
         txtDireccion.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
-        txtDireccion.setBorder(new javax.swing.border.SoftBevelBorder(1));
+        txtDireccion.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
         lblTelefono.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
         lblTelefono.setText("Telefono");
 
-        txtTelefono.setBorder(new javax.swing.border.SoftBevelBorder(1));
+        txtTelefono.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
         lblCelular.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
         lblCelular.setText("Celular");
 
         txtCelular.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
-        txtCelular.setBorder(new javax.swing.border.SoftBevelBorder(1));
+        txtCelular.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
         javax.swing.GroupLayout panelDatosBasicosLayout = new javax.swing.GroupLayout(panelDatosBasicos);
         panelDatosBasicos.setLayout(panelDatosBasicosLayout);
@@ -152,49 +127,40 @@ public class GUIAdicionarConferencista extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(panelDatosBasicosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelDatosBasicosLayout.createSequentialGroup()
-                        .addGroup(panelDatosBasicosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panelDatosBasicosLayout.createSequentialGroup()
-                                .addComponent(lblCedula)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(lblNombres))
-                            .addGroup(panelDatosBasicosLayout.createSequentialGroup()
-                                .addComponent(lblFecha)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(comboFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(lblGenero)))
-                        .addGroup(panelDatosBasicosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panelDatosBasicosLayout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(txtNombres, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(lblApellidos))
-                            .addGroup(panelDatosBasicosLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(comboGenero, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(lblCorreo)))
+                        .addComponent(lblNombres)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtNombres, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addGroup(panelDatosBasicosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtCorreo, javax.swing.GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE)
-                            .addComponent(txtApellidos)))
+                        .addComponent(lblApellidos)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtApellidos, javax.swing.GroupLayout.DEFAULT_SIZE, 265, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lblFecha)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(comboFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelDatosBasicosLayout.createSequentialGroup()
                         .addGroup(panelDatosBasicosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblDireccion)
-                            .addComponent(lblCelular))
+                            .addGroup(panelDatosBasicosLayout.createSequentialGroup()
+                                .addComponent(lblGenero)
+                                .addGap(18, 18, 18)
+                                .addComponent(comboGenero, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(lblCorreo)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(29, 29, 29)
+                                .addComponent(lblTelefono))
+                            .addGroup(panelDatosBasicosLayout.createSequentialGroup()
+                                .addComponent(lblDireccion)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 465, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(lblCelular)))
                         .addGap(18, 18, 18)
                         .addGroup(panelDatosBasicosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panelDatosBasicosLayout.createSequentialGroup()
-                                .addComponent(txtCelular, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(panelDatosBasicosLayout.createSequentialGroup()
-                                .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 465, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(25, 25, 25)
-                                .addComponent(lblTelefono)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
-                                .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addComponent(txtCelular, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         panelDatosBasicosLayout.setVerticalGroup(
@@ -203,37 +169,31 @@ public class GUIAdicionarConferencista extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(panelDatosBasicosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(panelDatosBasicosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(lblGenero)
-                        .addComponent(comboGenero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lblCorreo)
-                        .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panelDatosBasicosLayout.createSequentialGroup()
-                        .addGroup(panelDatosBasicosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblCedula)
-                            .addComponent(lblNombres)
-                            .addComponent(lblApellidos)
-                            .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtNombres, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(23, 23, 23)
-                        .addGroup(panelDatosBasicosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblFecha)
-                            .addComponent(comboFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(lblNombres)
+                        .addComponent(txtNombres, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblApellidos)
+                        .addComponent(txtApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblFecha))
+                    .addComponent(comboFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(panelDatosBasicosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblGenero)
+                    .addComponent(comboGenero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblCorreo)
+                    .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblTelefono)
+                    .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(panelDatosBasicosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblTelefono)
-                    .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblDireccion))
-                .addGap(18, 18, 18)
-                .addGroup(panelDatosBasicosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblCelular)
-                    .addComponent(txtCelular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblDireccion)
+                    .addComponent(txtCelular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblCelular))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         panelDatosBancarios.setBackground(new java.awt.Color(255, 255, 255));
-        panelDatosBancarios.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos Bancarios", 0, 0, new java.awt.Font("Calibri", 2, 13))); // NOI18N
+        panelDatosBancarios.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos Bancarios", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Calibri", 2, 13))); // NOI18N
 
         lblNumeroCuenta.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
         lblNumeroCuenta.setText("Número de Cuenta");
@@ -245,14 +205,14 @@ public class GUIAdicionarConferencista extends javax.swing.JFrame {
         lblBanco.setText("Banco");
 
         txtNumeroCuenta.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
-        txtNumeroCuenta.setBorder(new javax.swing.border.SoftBevelBorder(1));
+        txtNumeroCuenta.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
         comboTipoCuenta.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
         comboTipoCuenta.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Ahorros", "Corriente" }));
-        comboTipoCuenta.setBorder(new javax.swing.border.SoftBevelBorder(1));
+        comboTipoCuenta.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
         txtBanco.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
-        txtBanco.setBorder(new javax.swing.border.SoftBevelBorder(1));
+        txtBanco.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
         javax.swing.GroupLayout panelDatosBancariosLayout = new javax.swing.GroupLayout(panelDatosBancarios);
         panelDatosBancarios.setLayout(panelDatosBancariosLayout);
@@ -305,45 +265,68 @@ public class GUIAdicionarConferencista extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout panelAddConferencistaLayout = new javax.swing.GroupLayout(panelAddConferencista);
-        panelAddConferencista.setLayout(panelAddConferencistaLayout);
-        panelAddConferencistaLayout.setHorizontalGroup(
-            panelAddConferencistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelAddConferencistaLayout.createSequentialGroup()
+        txtCedula.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
+        txtCedula.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+
+        lblCedula.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
+        lblCedula.setText("Cedula");
+
+        btnBuscarConferencista.setFont(new java.awt.Font("Calibri", 3, 13)); // NOI18N
+        btnBuscarConferencista.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/buscarConvenio.png"))); // NOI18N
+        btnBuscarConferencista.setText("Buscar");
+
+        javax.swing.GroupLayout panelEditConferencistaLayout = new javax.swing.GroupLayout(panelEditConferencista);
+        panelEditConferencista.setLayout(panelEditConferencistaLayout);
+        panelEditConferencistaLayout.setHorizontalGroup(
+            panelEditConferencistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelEditConferencistaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(panelAddConferencistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelEditConferencistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(panelDatosBancarios, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(panelDatosBasicos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(panelAddConferencistaLayout.createSequentialGroup()
+                    .addGroup(panelEditConferencistaLayout.createSequentialGroup()
                         .addComponent(lblTitulo)
                         .addGap(10, 10, 10)
                         .addComponent(lblImagen)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelAddConferencistaLayout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelEditConferencistaLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btnSalir)
                         .addGap(32, 32, 32)
                         .addComponent(btnGuardarConferencista)))
                 .addContainerGap())
+            .addGroup(panelEditConferencistaLayout.createSequentialGroup()
+                .addGap(359, 359, 359)
+                .addComponent(lblCedula)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addComponent(btnBuscarConferencista)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        panelAddConferencistaLayout.setVerticalGroup(
-            panelAddConferencistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelAddConferencistaLayout.createSequentialGroup()
+        panelEditConferencistaLayout.setVerticalGroup(
+            panelEditConferencistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelEditConferencistaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(panelAddConferencistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelEditConferencistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblImagen)
-                    .addGroup(panelAddConferencistaLayout.createSequentialGroup()
+                    .addGroup(panelEditConferencistaLayout.createSequentialGroup()
                         .addGap(6, 6, 6)
                         .addComponent(lblTitulo)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(panelEditConferencistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblCedula)
+                    .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBuscarConferencista))
                 .addGap(18, 18, 18)
                 .addComponent(panelDatosBasicos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(panelDatosBancarios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelAddConferencistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(18, 18, 18)
+                .addGroup(panelEditConferencistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnSalir)
                     .addComponent(btnGuardarConferencista))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(64, 64, 64))
         );
 
         menuArchivo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/menuArchivo.png"))); // NOI18N
@@ -352,7 +335,7 @@ public class GUIAdicionarConferencista extends javax.swing.JFrame {
         barraMenu.add(menuArchivo);
 
         menuAyuda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/menuAyuda.png"))); // NOI18N
-        menuAyuda.setText("Ayuda?");
+        menuAyuda.setText("Ayuda");
         menuAyuda.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
         barraMenu.add(menuAyuda);
 
@@ -362,11 +345,13 @@ public class GUIAdicionarConferencista extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelAddConferencista, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panelEditConferencista, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelAddConferencista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(panelEditConferencista, javax.swing.GroupLayout.PREFERRED_SIZE, 438, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -401,7 +386,7 @@ public class GUIAdicionarConferencista extends javax.swing.JFrame {
                 cedula = Integer.parseInt(txtCedula.getText().trim());
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(rootPane, "Debe digitar un valor para la cedula que\n"
-                        + "contenga digitos entre 0 y 9", "Valor invalido", 0);
+                    + "contenga digitos entre 0 y 9", "Valor invalido", 0);
                 controlDatos = false;
             }
         }
@@ -470,8 +455,44 @@ public class GUIAdicionarConferencista extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_btnGuardarConferencistaActionPerformed
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(GUIEditarConferencista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(GUIEditarConferencista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(GUIEditarConferencista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(GUIEditarConferencista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new GUIEditarConferencista().setVisible(true);
+            }
+        });
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuBar barraMenu;
+    private javax.swing.JButton btnBuscarConferencista;
     private javax.swing.JButton btnGuardarConferencista;
     private javax.swing.JButton btnSalir;
     private datechooser.beans.DateChooserCombo comboFecha;
@@ -493,9 +514,9 @@ public class GUIAdicionarConferencista extends javax.swing.JFrame {
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JMenu menuArchivo;
     private javax.swing.JMenu menuAyuda;
-    private javax.swing.JPanel panelAddConferencista;
     private javax.swing.JPanel panelDatosBancarios;
     private javax.swing.JPanel panelDatosBasicos;
+    private javax.swing.JPanel panelEditConferencista;
     private javax.swing.JTextField txtApellidos;
     private javax.swing.JTextField txtBanco;
     private javax.swing.JTextField txtCedula;
@@ -506,16 +527,4 @@ public class GUIAdicionarConferencista extends javax.swing.JFrame {
     private javax.swing.JTextField txtNumeroCuenta;
     private javax.swing.JTextField txtTelefono;
     // End of variables declaration//GEN-END:variables
-
-    private void limpiarFormulario() {
-        txtCedula.setText("");;
-        txtNombres.setText("");
-        txtApellidos.setText("");
-        txtCelular.setText("");
-        txtCorreo.setText("");
-        txtDireccion.setText("");
-        txtNumeroCuenta.setText("");
-        txtBanco.setText("");
-        txtTelefono.setText("");
-    }
 }
