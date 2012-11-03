@@ -1,0 +1,8 @@
+"jload" memory usage, pruebas de multiple instancia
+
+Crear un tmp file y revisar al arranque, si existe, para no lanzar una nueva instancia
+
+Pruebas de concurrencia en la base de datos, crear dos cliente un loop que genere multiples conexiones a la bd.
+
+En general para las pruebas, descripcion, pasos, y conclusion.
+
