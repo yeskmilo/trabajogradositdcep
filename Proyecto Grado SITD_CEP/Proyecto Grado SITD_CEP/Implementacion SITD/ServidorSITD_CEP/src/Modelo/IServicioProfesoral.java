@@ -20,64 +20,72 @@ import java.rmi.RemoteException;
  */
 public interface IServicioProfesoral extends Remote {
 
-    /**
-     * Metodo para adicionar un nuevo conferencista en el sistema
-     *
-     * @param conferencista
-     * @return
-     * @throws RemoteException
-     */
-    public boolean IngresarConferencista(Conferencista conferencista) throws RemoteException;
+  /**
+   * Metodo para adicionar un nuevo conferencista en el sistema
+   *
+   * @param conferencista
+   * @return
+   * @throws RemoteException
+   */
+  public boolean IngresarConferencista(Conferencista conferencista) throws RemoteException;
 
-    /**
-     * Consulta de convenio por numero de convenio para vincular a un programa
-     *
-     * @param numeroConvenio
-     * @return
-     * @throws RemoteException
-     */
-    public Convenio ConsultaConvenio(int numeroConvenio) throws RemoteException;
+  /**
+   * Consulta de convenio por numero de convenio para vincular a un programa
+   *
+   * @param numeroConvenio
+   * @return
+   * @throws RemoteException
+   */
+  public Convenio ConsultaConvenio(int numeroConvenio) throws RemoteException;
 
-    /**
-     * Metodo para adicionar un nuevo programa con relacion o no a un convenio
-     *
-     * @param programa
-     * @return
-     * @throws RemoteException
-     */
-    public boolean AdicionPrograma(Programa programa) throws RemoteException;
+  /**
+   * Metodo para adicionar un nuevo programa con relacion o no a un convenio
+   *
+   * @param programa
+   * @return
+   * @throws RemoteException
+   */
+  public boolean AdicionPrograma(Programa programa) throws RemoteException;
 
-    /**
-     * Adicion de una referencia a vista para ser actualizada ante un cambio
-     *
-     * @param vista
-     * @throws RemoteException
-     */
-    public void AgregarVista(ICambioVista vista) throws RemoteException;
+  /**
+   * Adicion de una referencia a vista para ser actualizada ante un cambio
+   *
+   * @param vista
+   * @throws RemoteException
+   */
+  public void AgregarVista(ICambioVista vista) throws RemoteException;
 
-    /**
-     * Busqueda de programas dada la cohorte del mismo
-     *
-     * @param cohorte
-     * @return
-     * @throws RemoteException
-     */
-    public Programa ConsultarPrograma(String cohorte) throws RemoteException;
+  /**
+   * Busqueda de programas dada la cohorte del mismo
+   *
+   * @param cohorte
+   * @return
+   * @throws RemoteException
+   */
+  public Programa ConsultarPrograma(String cohorte) throws RemoteException;
 
-    /**
-     * Edicion de datos de conferencista
-     *
-     * @param conferencista
-     * @return
-     * @throws RemoteException
-     */
-    public boolean EditarConferencista(Conferencista conferencista) throws RemoteException;
+  /**
+   * Edicion de datos de conferencista
+   *
+   * @param conferencista
+   * @return
+   * @throws RemoteException
+   */
+  public boolean EditarConferencista(Conferencista conferencista) throws RemoteException;
 
-    /**
-     * Busqueda de conferencista dada la cedula del mismo
-     * @param cedula
-     * @return
-     * @throws RemoteException
-     */
-    public Conferencista BuscarConferencistaCedula(int cedula) throws RemoteException;
+  /**
+   * Busqueda de conferencista dada la cedula del mismo
+   * @param cedula
+   * @return
+   * @throws RemoteException
+   */
+  public Conferencista BuscarConferencistaCedula(int cedula) throws RemoteException;
+
+  /**
+   * Adicion de un nuevo modulo vinculado a un programa y asignadole un conferencista
+   * @param modulo
+   * @return
+   * @throws RemoteException 
+   */
+  public boolean AgregarModuloPrograma(Modulo modulo) throws RemoteException;
 }

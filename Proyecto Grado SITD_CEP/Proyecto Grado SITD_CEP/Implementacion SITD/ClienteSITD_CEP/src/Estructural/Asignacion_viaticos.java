@@ -19,24 +19,24 @@ public class Asignacion_viaticos implements Serializable {
     private int id_viaticos;
     private Date fecha_pago;
     private double monto_viaticos;
-    private int cedula_conferencista;
+    private int id_modulo;
 
     /**
      * Constructor de la clase Asignacion_viaticos
      * @param id_viaticos
      * @param fecha_pago
      * @param monto_viaticos
-     * @param cedula_conferencista 
+     * @param id_modulo 
      */
-    public Asignacion_viaticos(int id_viaticos, Date fecha_pago, double monto_viaticos, int cedula_conferencista) {
+    public Asignacion_viaticos(int id_viaticos, Date fecha_pago, double monto_viaticos, int id_modulo) {
         this.id_viaticos = id_viaticos;
         this.fecha_pago = fecha_pago;
         this.monto_viaticos = monto_viaticos;
-        this.cedula_conferencista = cedula_conferencista;
+        this.id_modulo = id_modulo;
     }
 
-    public int getCedula_conferencista() {
-        return cedula_conferencista;
+    public int getid_modulo() {
+        return id_modulo;
     }
 
     public Date getFecha_pago() {
@@ -51,8 +51,8 @@ public class Asignacion_viaticos implements Serializable {
         return monto_viaticos;
     }
 
-    public void setCedula_conferencista(int cedula_conferencista) {
-        this.cedula_conferencista = cedula_conferencista;
+    public void setid_modulo(int id_modulo) {
+        this.id_modulo = id_modulo;
     }
 
     public void setFecha_pago(Date fecha_pago) {

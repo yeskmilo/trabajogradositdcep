@@ -30,7 +30,7 @@ public class ConexionBD {
     }
 
     public ConexionBD() {
-        this("127.0.0.1", "root", "", "3306");
+        this("127.0.0.1", "root", "123", "3306");
     }
 
     //Metodo pra conectarce a una base de datos Access

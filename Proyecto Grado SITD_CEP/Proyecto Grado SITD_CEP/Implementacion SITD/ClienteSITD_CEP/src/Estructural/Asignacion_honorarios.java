@@ -19,24 +19,24 @@ public class Asignacion_honorarios implements Serializable {
     private int id_honorarios;
     private Date fecha_pago;
     private double monto_honorarios;
-    private int cedula_conferencista;
+    private int id_modulo;
 
     /**
      * Constructor de la clase Asignacion_honorarios
      * @param id_honorarios
      * @param fecha_pago
      * @param monto_honorarios
-     * @param cedula_conferencista 
+     * @param id_modulo 
      */
-    public Asignacion_honorarios(int id_honorarios, Date fecha_pago, double monto_honorarios, int cedula_conferencista) {
+    public Asignacion_honorarios(int id_honorarios, Date fecha_pago, double monto_honorarios, int id_modulo) {
         this.id_honorarios = id_honorarios;
         this.fecha_pago = fecha_pago;
         this.monto_honorarios = monto_honorarios;
-        this.cedula_conferencista = cedula_conferencista;
+        this.id_modulo = id_modulo;
     }
 
-    public int getCedula_conferencista() {
-        return cedula_conferencista;
+    public int getid_modulo() {
+        return id_modulo;
     }
 
     public Date getFecha_pago() {
@@ -51,8 +51,8 @@ public class Asignacion_honorarios implements Serializable {
         return monto_honorarios;
     }
 
-    public void setCedula_conferencista(int cedula_conferencista) {
-        this.cedula_conferencista = cedula_conferencista;
+    public void setid_modulo(int id_modulo) {
+        this.id_modulo = id_modulo;
     }
 
     public void setFecha_pago(Date fecha_pago) {

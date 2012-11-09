@@ -23,7 +23,7 @@ public class Asignacion_tiquete implements Serializable {
     private String ciudad_origen;
     private String ciudad_destino;
     private String aerolinea;
-    private String cedula_conferencista;
+    private String id_modulo;
 
     /**
      * Constructor de la clase Asignacion_tiquete
@@ -34,9 +34,9 @@ public class Asignacion_tiquete implements Serializable {
      * @param ciudad_origen
      * @param ciudad_destino
      * @param aerolinea
-     * @param cedula_conferencista 
+     * @param id_modulo 
      */
-    public Asignacion_tiquete(int id_tiquete, Date fecha_solicitud, Date fecha_salida, Date fecha_regreso, String ciudad_origen, String ciudad_destino, String aerolinea, String cedula_conferencista) {
+    public Asignacion_tiquete(int id_tiquete, Date fecha_solicitud, Date fecha_salida, Date fecha_regreso, String ciudad_origen, String ciudad_destino, String aerolinea, String id_modulo) {
         this.id_tiquete = id_tiquete;
         this.fecha_solicitud = fecha_solicitud;
         this.fecha_salida = fecha_salida;
@@ -44,15 +44,15 @@ public class Asignacion_tiquete implements Serializable {
         this.ciudad_origen = ciudad_origen;
         this.ciudad_destino = ciudad_destino;
         this.aerolinea = aerolinea;
-        this.cedula_conferencista = cedula_conferencista;
+        this.id_modulo = id_modulo;
     }
 
     public String getAerolinea() {
         return aerolinea;
     }
 
-    public String getCedula_conferencista() {
-        return cedula_conferencista;
+    public String getid_modulo() {
+        return id_modulo;
     }
 
     public String getCiudad_destino() {
@@ -83,8 +83,8 @@ public class Asignacion_tiquete implements Serializable {
         this.aerolinea = aerolinea;
     }
 
-    public void setCedula_conferencista(String cedula_conferencista) {
-        this.cedula_conferencista = cedula_conferencista;
+    public void setid_modulo(String id_modulo) {
+        this.id_modulo = id_modulo;
     }
 
     public void setCiudad_destino(String ciudad_destino) {
