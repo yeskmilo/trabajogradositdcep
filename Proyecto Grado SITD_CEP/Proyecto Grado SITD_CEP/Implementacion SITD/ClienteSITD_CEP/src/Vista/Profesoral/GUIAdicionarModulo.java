@@ -10,8 +10,11 @@ import Controlador.Profesoral.ControlConferencista;
 import Controlador.Profesoral.ControlModulo;
 import Controlador.Profesoral.ControlPrograma;
 import Estructural.Conferencista;
+import Estructural.Modulo;
 import Estructural.Programa;
 import Modelo.IServicioProfesoral;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
 
@@ -27,6 +30,7 @@ public class GUIAdicionarModulo extends javax.swing.JFrame {
   private ControlPrograma controlPrograma;
   private Programa programa = null;
   private Conferencista conferencista = null;
+  private DateFormat formatoFecha = new SimpleDateFormat("dd/MM/yy");
 
   /**
    * Creates new form GUIAdicionarModulo
@@ -524,11 +528,9 @@ private void btnActualizarConferencistaActionPerformed(java.awt.event.ActionEven
   // TODO add your handling code here:      
   boolean controlDatos = true;
   String nombreModulo = "";
-  int duracionHoras = 0;
+  int duracionHoras = Integer.parseInt(spinDuracion.getValue().toString());
   Date fecha = null;
-  double valorHora = 0;
-  String cohortePrograma = "";
-  int cedulaConferencista = 0;
+  double valorHora = 0;  
   if (conferencista == null || programa == null) {
     JOptionPane.showMessageDialog(rootPane, "Debe consultar un conferencista y un programa", "Consulte Conferencista y programa", 0);
     controlDatos = false;
@@ -538,6 +540,34 @@ private void btnActualizarConferencistaActionPerformed(java.awt.event.ActionEven
     controlDatos = false;
   } else {
     nombreModulo = txtNombreModulo.getText().trim();
+  }
+  if (txtValorHora.getText().trim().equals("")) {
+    JOptionPane.showMessageDialog(rootPane, "Debe digitar un valor por hora del Modulo", "Valor Hora Modulo", 0);
+    controlDatos = false;
+  } else {
+    try {
+      valorHora = Integer.parseInt(txtValorHora.getText().trim());
+    } catch (Exception e) {
+      JOptionPane.showMessageDialog(rootPane, "Debe Digitar un valor de hora que solo contenga\n"
+              + "digitos entre 0 y 9, sin signos ni espacios Ej: 2000", "Error valor hora Modulo", 0);
+      controlDatos = false;
+      System.out.println(e.getMessage());
+    }
+  }
+  if (controlDatos) {
+    try {
+      fecha = formatoFecha.parse(comboFechaInicio.getText());
+      Modulo modulo = new Modulo(0, nombreModulo, duracionHoras, fecha, valorHora, programa.getCohorte_programa(), conferencista.getCedula_conferencista());
+      boolean controlAdicion = controlModulo.AgregarModuloPrograma(modulo);
+      if (controlAdicion) {
+        JOptionPane.showMessageDialog(rootPane, "Modulo Registrado Exitosamente", "Modulo Registrado", 1);
+        limpiarFormulario();
+      }else{
+        JOptionPane.showMessageDialog(rootPane, "No se puede crear el Modulo en este momento", "Creación fallida", 0);
+      }
+    } catch (Exception e) {
+      JOptionPane.showMessageDialog(rootPane, "No se puede crear el Modulo en este momento", "Creación fallida", 0);
+    }
   }
 }//GEN-LAST:event_btnActualizarConferencistaActionPerformed
   // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -593,7 +623,7 @@ private void btnActualizarConferencistaActionPerformed(java.awt.event.ActionEven
 
   private void llenarFormulario() {
     txtNombrePrograma.setText(programa.getNombre_programa());
-    txtValorHora.setText(String.valueOf(programa.getValor()));
+    txtValorPrograma.setText(String.valueOf(programa.getValor()));
     comboEstado.setSelectedItem(programa.getEstado());
     spinParticipantes.setValue(programa.getParticipantes());
   }
@@ -607,5 +637,23 @@ private void btnActualizarConferencistaActionPerformed(java.awt.event.ActionEven
     txtValorPrograma.setEditable(false);
     comboEstado.setEditable(false);
     spinParticipantes.setEnabled(false);
+  }
+
+  private void limpiarFormulario() {
+    txtNombreModulo.setText("");
+    spinDuracion.setValue(1);
+    txtCedula.setText("");
+    txtCohorteBuscar.setText("");
+    txtValorPrograma.setText("");
+    txtNombres.setText("");
+    txtApellidos.setText("");
+    txtCelular.setText("");
+    txtCorreo.setText("");
+    txtNombrePrograma.setText("");
+    txtValorHora.setText("");
+    comboEstado.setSelectedItem("Vendido");
+    spinParticipantes.setValue(1);
+    programa = null;
+    conferencista = null;
   }
 }

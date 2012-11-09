@@ -204,7 +204,7 @@ public class ServicioProfesoral extends UnicastRemoteObject implements IServicio
   public boolean AgregarModuloPrograma(Modulo modulo) throws RemoteException {
     boolean controlAdicion = false;
     String cadenaBD = "INSERT INTO modulo VALUES(" + modulo.getId_modulo() + ", '" + modulo.getNombre_modulo() + "', "
-            + "" + modulo.getDuracion_modulo_horas() + "'" + formatoFecha.format(modulo.getFecha_inicio_modulo()) + "', "
+            + "" + modulo.getDuracion_modulo_horas() + ",'" + formatoFecha.format(modulo.getFecha_inicio_modulo()) + "', "
             + "" + modulo.getValor_hora() + ", '" + modulo.getCohorte_programa() + "', " + modulo.getCedula_conferencista() + ")";
     try {
       conexion.conectar();
