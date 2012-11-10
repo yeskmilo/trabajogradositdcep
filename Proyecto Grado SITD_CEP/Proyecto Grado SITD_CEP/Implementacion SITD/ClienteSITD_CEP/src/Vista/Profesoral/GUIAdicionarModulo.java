@@ -23,7 +23,7 @@ import javax.swing.JOptionPane;
  * @author juanpanlo
  */
 public class GUIAdicionarModulo extends javax.swing.JFrame {
-
+  
   private IServicioProfesoral servicioProfesoral;
   private ControlModulo controlModulo;
   private ControlConferencista controlConferencista;
@@ -91,6 +91,9 @@ public class GUIAdicionarModulo extends javax.swing.JFrame {
     spinParticipantes = new javax.swing.JSpinner();
     btnSalir = new javax.swing.JButton();
     btnActualizarConferencista = new javax.swing.JButton();
+    btnAsignarViaticos = new javax.swing.JButton();
+    btnAsignarTiquetes = new javax.swing.JButton();
+    btnAsignarHonorarios = new javax.swing.JButton();
     barraMenu = new javax.swing.JMenuBar();
     menuArchivo = new javax.swing.JMenu();
     menuAyuda = new javax.swing.JMenu();
@@ -108,38 +111,38 @@ public class GUIAdicionarModulo extends javax.swing.JFrame {
     panelAdicionModulo.setBackground(new java.awt.Color(255, 255, 255));
     panelAdicionModulo.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos Generales Modulo", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Calibri", 2, 13))); // NOI18N
 
-    lblNombreModulo.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
+    lblNombreModulo.setFont(new java.awt.Font("Calibri", 2, 13));
     lblNombreModulo.setText("Nombre");
 
-    txtNombreModulo.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
+    txtNombreModulo.setFont(new java.awt.Font("Calibri", 2, 13));
     txtNombreModulo.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
-    lblDuracionModulo.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
+    lblDuracionModulo.setFont(new java.awt.Font("Calibri", 2, 13));
     lblDuracionModulo.setText("Duración en horas");
 
-    spinDuracion.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
+    spinDuracion.setFont(new java.awt.Font("Calibri", 2, 13));
     spinDuracion.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(1), Integer.valueOf(1), null, Integer.valueOf(1)));
     spinDuracion.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
-    lblFechaInicio.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
+    lblFechaInicio.setFont(new java.awt.Font("Calibri", 2, 13));
     lblFechaInicio.setText("Fecha de Inicio");
 
-    lblValor.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
+    lblValor.setFont(new java.awt.Font("Calibri", 2, 13));
     lblValor.setText("Valor Hora");
 
-    txtValorHora.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
+    txtValorHora.setFont(new java.awt.Font("Calibri", 2, 13));
     txtValorHora.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
     panelDatosConferencista.setBackground(new java.awt.Color(255, 255, 255));
     panelDatosConferencista.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos del Conferencista", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Calibri", 2, 13))); // NOI18N
 
-    lblCedula.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
+    lblCedula.setFont(new java.awt.Font("Calibri", 2, 13));
     lblCedula.setText("Cedula");
 
-    txtCedula.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
+    txtCedula.setFont(new java.awt.Font("Calibri", 2, 13));
     txtCedula.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
-    btnBuscarConferencista.setFont(new java.awt.Font("Calibri", 3, 13)); // NOI18N
+    btnBuscarConferencista.setFont(new java.awt.Font("Calibri", 3, 13));
     btnBuscarConferencista.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/buscarConvenio.png"))); // NOI18N
     btnBuscarConferencista.setText("Buscar");
     btnBuscarConferencista.addActionListener(new java.awt.event.ActionListener() {
@@ -148,27 +151,27 @@ public class GUIAdicionarModulo extends javax.swing.JFrame {
       }
     });
 
-    lblNombres.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
+    lblNombres.setFont(new java.awt.Font("Calibri", 2, 13));
     lblNombres.setText("Nombres");
 
-    txtNombres.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
+    txtNombres.setFont(new java.awt.Font("Calibri", 2, 13));
     txtNombres.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
-    txtApellidos.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
+    txtApellidos.setFont(new java.awt.Font("Calibri", 2, 13));
     txtApellidos.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
-    lblApellidos.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
+    lblApellidos.setFont(new java.awt.Font("Calibri", 2, 13));
     lblApellidos.setText("Apellidos");
 
-    lblCorreo.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
+    lblCorreo.setFont(new java.awt.Font("Calibri", 2, 13));
     lblCorreo.setText("Correo Electrónico");
 
     txtCorreo.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
-    lblCelular.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
+    lblCelular.setFont(new java.awt.Font("Calibri", 2, 13));
     lblCelular.setText("Celular");
 
-    txtCelular.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
+    txtCelular.setFont(new java.awt.Font("Calibri", 2, 13));
     txtCelular.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
     javax.swing.GroupLayout panelDatosConferencistaLayout = new javax.swing.GroupLayout(panelDatosConferencista);
@@ -199,12 +202,12 @@ public class GUIAdicionarModulo extends javax.swing.JFrame {
               .addGroup(panelDatosConferencistaLayout.createSequentialGroup()
                 .addComponent(lblApellidos)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtApellidos, javax.swing.GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE))
+                .addComponent(txtApellidos, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE))
               .addGroup(panelDatosConferencistaLayout.createSequentialGroup()
                 .addGap(10, 10, 10)
                 .addComponent(lblCelular)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtCelular, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)))))
+                .addComponent(txtCelular, javax.swing.GroupLayout.DEFAULT_SIZE, 261, Short.MAX_VALUE)))))
         .addContainerGap())
     );
     panelDatosConferencistaLayout.setVerticalGroup(
@@ -232,13 +235,13 @@ public class GUIAdicionarModulo extends javax.swing.JFrame {
     panelDatosPrograma.setBackground(new java.awt.Color(255, 255, 255));
     panelDatosPrograma.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos del programa", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Calibri", 2, 13))); // NOI18N
 
-    lblCohorteBuscar.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
+    lblCohorteBuscar.setFont(new java.awt.Font("Calibri", 2, 13));
     lblCohorteBuscar.setText("Cohorte del Programa");
 
-    txtCohorteBuscar.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
+    txtCohorteBuscar.setFont(new java.awt.Font("Calibri", 2, 13));
     txtCohorteBuscar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
-    btnBuscarPrograma.setFont(new java.awt.Font("Calibri", 3, 13)); // NOI18N
+    btnBuscarPrograma.setFont(new java.awt.Font("Calibri", 3, 13));
     btnBuscarPrograma.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/editarRubro.png"))); // NOI18N
     btnBuscarPrograma.setText("Buscar Programa");
     btnBuscarPrograma.addActionListener(new java.awt.event.ActionListener() {
@@ -247,29 +250,29 @@ public class GUIAdicionarModulo extends javax.swing.JFrame {
       }
     });
 
-    lblNombrePrograma.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
+    lblNombrePrograma.setFont(new java.awt.Font("Calibri", 2, 13));
     lblNombrePrograma.setText("Nombre del Programa");
 
-    txtNombrePrograma.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
+    txtNombrePrograma.setFont(new java.awt.Font("Calibri", 2, 13));
     txtNombrePrograma.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
-    lblEstado.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
+    lblEstado.setFont(new java.awt.Font("Calibri", 2, 13));
     lblEstado.setText("Estado del Programa");
 
-    comboEstado.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
+    comboEstado.setFont(new java.awt.Font("Calibri", 2, 13));
     comboEstado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Vendido", "No Vendido" }));
     comboEstado.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
-    lblValor1.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
+    lblValor1.setFont(new java.awt.Font("Calibri", 2, 13));
     lblValor1.setText("Valor Programa");
 
-    txtValorPrograma.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
+    txtValorPrograma.setFont(new java.awt.Font("Calibri", 2, 13));
     txtValorPrograma.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
-    lblParticipantes.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
+    lblParticipantes.setFont(new java.awt.Font("Calibri", 2, 13));
     lblParticipantes.setText("Número de Participantes");
 
-    spinParticipantes.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
+    spinParticipantes.setFont(new java.awt.Font("Calibri", 2, 13));
     spinParticipantes.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
     spinParticipantes.setMinimumSize(new java.awt.Dimension(31, 20));
 
@@ -304,7 +307,7 @@ public class GUIAdicionarModulo extends javax.swing.JFrame {
             .addComponent(lblParticipantes)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
             .addComponent(spinParticipantes, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)))
-        .addContainerGap(18, Short.MAX_VALUE))
+        .addContainerGap(20, Short.MAX_VALUE))
     );
     panelDatosProgramaLayout.setVerticalGroup(
       panelDatosProgramaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -351,37 +354,58 @@ public class GUIAdicionarModulo extends javax.swing.JFrame {
       }
     });
 
+    btnAsignarViaticos.setFont(new java.awt.Font("Calibri", 3, 13)); // NOI18N
+    btnAsignarViaticos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/addViatico.png"))); // NOI18N
+    btnAsignarViaticos.setText("Asignar Viaticos");
+
+    btnAsignarTiquetes.setFont(new java.awt.Font("Calibri", 3, 13)); // NOI18N
+    btnAsignarTiquetes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/addTicket.png"))); // NOI18N
+    btnAsignarTiquetes.setText("Asignar Tiquetes");
+
+    btnAsignarHonorarios.setFont(new java.awt.Font("Calibri", 3, 13)); // NOI18N
+    btnAsignarHonorarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/addHonorarios.png"))); // NOI18N
+    btnAsignarHonorarios.setText("Asignar Honorarios");
+
     javax.swing.GroupLayout panelAdicionModuloLayout = new javax.swing.GroupLayout(panelAdicionModulo);
     panelAdicionModulo.setLayout(panelAdicionModuloLayout);
     panelAdicionModuloLayout.setHorizontalGroup(
       panelAdicionModuloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(panelAdicionModuloLayout.createSequentialGroup()
-        .addContainerGap()
         .addGroup(panelAdicionModuloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-          .addComponent(panelDatosPrograma, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-          .addComponent(panelDatosConferencista, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
           .addGroup(panelAdicionModuloLayout.createSequentialGroup()
+            .addContainerGap()
             .addGroup(panelAdicionModuloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-              .addComponent(lblNombreModulo)
-              .addComponent(lblFechaInicio))
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-            .addGroup(panelAdicionModuloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+              .addComponent(panelDatosPrograma, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+              .addComponent(panelDatosConferencista, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
               .addGroup(panelAdicionModuloLayout.createSequentialGroup()
-                .addComponent(comboFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(lblValor)
-                .addGap(18, 18, 18)
-                .addComponent(txtValorHora, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
-              .addGroup(panelAdicionModuloLayout.createSequentialGroup()
-                .addComponent(txtNombreModulo, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(lblDuracionModulo)
+                .addGroup(panelAdicionModuloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                  .addComponent(lblNombreModulo)
+                  .addComponent(lblFechaInicio))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(spinDuracion, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))))
-          .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelAdicionModuloLayout.createSequentialGroup()
-            .addComponent(btnSalir)
-            .addGap(32, 32, 32)
-            .addComponent(btnActualizarConferencista)))
+                .addGroup(panelAdicionModuloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                  .addGroup(panelAdicionModuloLayout.createSequentialGroup()
+                    .addComponent(comboFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(18, 18, 18)
+                    .addComponent(lblValor)
+                    .addGap(18, 18, 18)
+                    .addComponent(txtValorHora, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
+                  .addGroup(panelAdicionModuloLayout.createSequentialGroup()
+                    .addComponent(txtNombreModulo, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(18, 18, 18)
+                    .addComponent(lblDuracionModulo)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(spinDuracion, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))))
+              .addGroup(panelAdicionModuloLayout.createSequentialGroup()
+                .addComponent(btnAsignarViaticos, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnAsignarTiquetes)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 115, Short.MAX_VALUE)
+                .addComponent(btnSalir)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnActualizarConferencista))))
+          .addGroup(panelAdicionModuloLayout.createSequentialGroup()
+            .addGap(91, 91, 91)
+            .addComponent(btnAsignarHonorarios)))
         .addContainerGap())
     );
     panelAdicionModuloLayout.setVerticalGroup(
@@ -404,11 +428,24 @@ public class GUIAdicionarModulo extends javax.swing.JFrame {
         .addComponent(panelDatosConferencista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
         .addComponent(panelDatosPrograma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
         .addGroup(panelAdicionModuloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-          .addComponent(btnSalir)
-          .addComponent(btnActualizarConferencista))
-        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+          .addGroup(panelAdicionModuloLayout.createSequentialGroup()
+            .addGroup(panelAdicionModuloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+              .addGroup(panelAdicionModuloLayout.createSequentialGroup()
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnAsignarViaticos))
+              .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelAdicionModuloLayout.createSequentialGroup()
+                .addGap(11, 11, 11)
+                .addComponent(btnAsignarTiquetes)
+                .addGap(11, 11, 11)))
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+            .addComponent(btnAsignarHonorarios))
+          .addGroup(panelAdicionModuloLayout.createSequentialGroup()
+            .addGap(36, 36, 36)
+            .addGroup(panelAdicionModuloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+              .addComponent(btnActualizarConferencista)
+              .addComponent(btnSalir))))
+        .addContainerGap(14, Short.MAX_VALUE))
     );
 
     javax.swing.GroupLayout panelAddModuloLayout = new javax.swing.GroupLayout(panelAddModulo);
@@ -494,7 +531,7 @@ private void btnBuscarConferencistaActionPerformed(java.awt.event.ActionEvent ev
   }
   //Conferencista conferencista = controlConferencista.BuscarConferencistaCedula(WIDTH);
 }//GEN-LAST:event_btnBuscarConferencistaActionPerformed
-
+  
 private void btnBuscarProgramaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarProgramaActionPerformed
 // TODO add your handling code here:
   String cohorte = "";
@@ -518,12 +555,12 @@ private void btnBuscarProgramaActionPerformed(java.awt.event.ActionEvent evt) {/
     }
   }
 }//GEN-LAST:event_btnBuscarProgramaActionPerformed
-
+  
 private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
   // TODO add your handling code here:
   this.dispose();
 }//GEN-LAST:event_btnSalirActionPerformed
-
+  
 private void btnActualizarConferencistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarConferencistaActionPerformed
   // TODO add your handling code here:      
   boolean controlDatos = true;
@@ -562,7 +599,7 @@ private void btnActualizarConferencistaActionPerformed(java.awt.event.ActionEven
       if (controlAdicion) {
         JOptionPane.showMessageDialog(rootPane, "Modulo Registrado Exitosamente", "Modulo Registrado", 1);
         limpiarFormulario();
-      }else{
+      } else {
         JOptionPane.showMessageDialog(rootPane, "No se puede crear el Modulo en este momento", "Creación fallida", 0);
       }
     } catch (Exception e) {
@@ -573,6 +610,9 @@ private void btnActualizarConferencistaActionPerformed(java.awt.event.ActionEven
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.JMenuBar barraMenu;
   private javax.swing.JButton btnActualizarConferencista;
+  private javax.swing.JButton btnAsignarHonorarios;
+  private javax.swing.JButton btnAsignarTiquetes;
+  private javax.swing.JButton btnAsignarViaticos;
   private javax.swing.JButton btnBuscarConferencista;
   private javax.swing.JButton btnBuscarPrograma;
   private javax.swing.JButton btnSalir;
@@ -620,14 +660,14 @@ private void btnActualizarConferencistaActionPerformed(java.awt.event.ActionEven
     txtCelular.setText(conferencista.getCelular_conferencista());
     txtCorreo.setText(conferencista.getCorreo_electronico_conferencista());
   }
-
+  
   private void llenarFormulario() {
     txtNombrePrograma.setText(programa.getNombre_programa());
     txtValorPrograma.setText(String.valueOf(programa.getValor()));
     comboEstado.setSelectedItem(programa.getEstado());
     spinParticipantes.setValue(programa.getParticipantes());
   }
-
+  
   private void deshabilitarCampos() {
     txtNombres.setEditable(false);
     txtApellidos.setEditable(false);
@@ -637,8 +677,11 @@ private void btnActualizarConferencistaActionPerformed(java.awt.event.ActionEven
     txtValorPrograma.setEditable(false);
     comboEstado.setEditable(false);
     spinParticipantes.setEnabled(false);
+    btnAsignarHonorarios.setVisible(false);
+    btnAsignarTiquetes.setVisible(false);
+    btnAsignarViaticos.setVisible(false);
   }
-
+  
   private void limpiarFormulario() {
     txtNombreModulo.setText("");
     spinDuracion.setValue(1);
@@ -655,5 +698,8 @@ private void btnActualizarConferencistaActionPerformed(java.awt.event.ActionEven
     spinParticipantes.setValue(1);
     programa = null;
     conferencista = null;
+    btnAsignarHonorarios.setVisible(true);
+    btnAsignarTiquetes.setVisible(true);
+    btnAsignarViaticos.setVisible(true);
   }
 }
