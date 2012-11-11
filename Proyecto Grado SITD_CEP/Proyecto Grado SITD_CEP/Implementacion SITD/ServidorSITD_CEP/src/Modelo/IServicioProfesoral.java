@@ -88,4 +88,12 @@ public interface IServicioProfesoral extends Remote {
    * @throws RemoteException 
    */
   public boolean AgregarModuloPrograma(Modulo modulo) throws RemoteException;
+
+  /**
+   * Adicion de una nueva asignacion de Viaticos
+   * @param modulo
+   * @return
+   * @throws RemoteException 
+   */
+  public boolean AgregarAsignacionViaticos(Asignacion_viaticos asignacionViaticos) throws RemoteException;
 }

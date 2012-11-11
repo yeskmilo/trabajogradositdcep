@@ -12,14 +12,19 @@
  */
 package Vista.Profesoral;
 
+import Controlador.Profesoral.ControlAsignaciones;
 import Controlador.Profesoral.ControlConferencista;
 import Controlador.Profesoral.ControlModulo;
 import Controlador.Profesoral.ControlPrograma;
+import Estructural.Asignacion_viaticos;
 import Estructural.Conferencista;
+import Estructural.Modulo;
 import Estructural.Programa;
 import Modelo.IServicioProfesoral;
+import java.rmi.RemoteException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.JOptionPane;
 
 /**
@@ -32,18 +37,24 @@ public class GUIAsignarViaticos extends javax.swing.JFrame {
   private ControlModulo controlModulo;
   private ControlConferencista controlConferencista;
   private ControlPrograma controlPrograma;
+  private ControlAsignaciones controlAsignaciones;
   private Programa programa = null;
   private Conferencista conferencista = null;
+  private Modulo modulo;
   private DateFormat formatoFecha = new SimpleDateFormat("dd/MM/yy");
 
   /** Creates new form GUIAsignarViaticos */
-  public GUIAsignarViaticos(IServicioProfesoral servicioProfesoral) {
+  public GUIAsignarViaticos(IServicioProfesoral servicioProfesoral, Conferencista conferencista, Modulo modulo) throws RemoteException {
     initComponents();
     this.servicioProfesoral = servicioProfesoral;
     controlConferencista = new ControlConferencista(servicioProfesoral);
     controlPrograma = new ControlPrograma(servicioProfesoral);
+    controlAsignaciones = new ControlAsignaciones(servicioProfesoral);
     controlModulo = new ControlModulo(servicioProfesoral);
+    this.conferencista = conferencista;
+    this.modulo = modulo;
     deshabilitarCampos();
+    cargarModulo();
   }
 
   /** This method is called from within the constructor to
@@ -93,6 +104,12 @@ public class GUIAsignarViaticos extends javax.swing.JFrame {
     spinParticipantes = new javax.swing.JSpinner();
     lblEstado = new javax.swing.JLabel();
     comboEstado = new javax.swing.JComboBox();
+    panelDatosAsignacion = new javax.swing.JPanel();
+    lblFechaPago = new javax.swing.JLabel();
+    comboFechaPago = new datechooser.beans.DateChooserCombo();
+    lblMonto = new javax.swing.JLabel();
+    txtMonto = new javax.swing.JTextField();
+    btnAsignar = new javax.swing.JButton();
     barraMenu = new javax.swing.JMenuBar();
     menuArchivo = new javax.swing.JMenu();
     menuAyuda = new javax.swing.JMenu();
@@ -116,7 +133,7 @@ public class GUIAsignarViaticos extends javax.swing.JFrame {
     txtCedula.setFont(new java.awt.Font("Calibri", 2, 13));
     txtCedula.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
-    btnBuscarConferencista.setFont(new java.awt.Font("Calibri", 3, 13));
+    btnBuscarConferencista.setFont(new java.awt.Font("Calibri", 3, 13)); // NOI18N
     btnBuscarConferencista.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/buscarConvenio.png"))); // NOI18N
     btnBuscarConferencista.setText("Buscar");
     btnBuscarConferencista.addActionListener(new java.awt.event.ActionListener() {
@@ -295,7 +312,7 @@ public class GUIAsignarViaticos extends javax.swing.JFrame {
     lblNombrePrograma.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
     lblNombrePrograma.setText("Nombre del Programa");
 
-    txtNombre.setFont(new java.awt.Font("Calibri", 2, 13));
+    txtNombre.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
     txtNombre.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
     lblFecha.setFont(new java.awt.Font("Calibri", 2, 13));
@@ -304,13 +321,13 @@ public class GUIAsignarViaticos extends javax.swing.JFrame {
     lblValor1.setFont(new java.awt.Font("Calibri", 2, 13));
     lblValor1.setText("Valor Programa");
 
-    txtValor.setFont(new java.awt.Font("Calibri", 2, 13));
+    txtValor.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
     txtValor.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
     lblParticipantes.setFont(new java.awt.Font("Calibri", 2, 13));
     lblParticipantes.setText("Número de Participantes");
 
-    spinParticipantes.setFont(new java.awt.Font("Calibri", 2, 13));
+    spinParticipantes.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
     spinParticipantes.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
     spinParticipantes.setMinimumSize(new java.awt.Dimension(31, 20));
 
@@ -398,6 +415,57 @@ public class GUIAsignarViaticos extends javax.swing.JFrame {
         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
     );
 
+    panelDatosAsignacion.setBackground(new java.awt.Color(255, 255, 255));
+    panelDatosAsignacion.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos Asignación", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Calibri", 2, 13))); // NOI18N
+
+    lblFechaPago.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
+    lblFechaPago.setText("Fecha de Pago");
+
+    lblMonto.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
+    lblMonto.setText("Monto de los Viaticos");
+
+    txtMonto.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
+
+    btnAsignar.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
+    btnAsignar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/addViatico.png"))); // NOI18N
+    btnAsignar.setText("Asignar");
+    btnAsignar.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnAsignarActionPerformed(evt);
+      }
+    });
+
+    javax.swing.GroupLayout panelDatosAsignacionLayout = new javax.swing.GroupLayout(panelDatosAsignacion);
+    panelDatosAsignacion.setLayout(panelDatosAsignacionLayout);
+    panelDatosAsignacionLayout.setHorizontalGroup(
+      panelDatosAsignacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(panelDatosAsignacionLayout.createSequentialGroup()
+        .addContainerGap()
+        .addComponent(lblFechaPago)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+        .addComponent(comboFechaPago, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addGap(40, 40, 40)
+        .addComponent(lblMonto)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+        .addComponent(txtMonto, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+        .addComponent(btnAsignar)
+        .addGap(49, 49, 49))
+    );
+    panelDatosAsignacionLayout.setVerticalGroup(
+      panelDatosAsignacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(panelDatosAsignacionLayout.createSequentialGroup()
+        .addContainerGap()
+        .addGroup(panelDatosAsignacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+          .addGroup(panelDatosAsignacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+            .addComponent(btnAsignar)
+            .addComponent(lblMonto)
+            .addComponent(txtMonto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+          .addComponent(comboFechaPago, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addComponent(lblFechaPago))
+        .addContainerGap(14, Short.MAX_VALUE))
+    );
+
     javax.swing.GroupLayout panelAsignarViaticosLayout = new javax.swing.GroupLayout(panelAsignarViaticos);
     panelAsignarViaticos.setLayout(panelAsignarViaticosLayout);
     panelAsignarViaticosLayout.setHorizontalGroup(
@@ -405,32 +473,37 @@ public class GUIAsignarViaticos extends javax.swing.JFrame {
       .addGroup(panelAsignarViaticosLayout.createSequentialGroup()
         .addContainerGap()
         .addGroup(panelAsignarViaticosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-          .addComponent(panelDatosModulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
           .addGroup(panelAsignarViaticosLayout.createSequentialGroup()
             .addComponent(lblTitulo)
             .addGap(18, 18, 18)
             .addComponent(lblIcono))
-          .addComponent(panelDatosConferencista, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-          .addComponent(panelInfoPrograma, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        .addContainerGap())
+          .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelAsignarViaticosLayout.createSequentialGroup()
+            .addGroup(panelAsignarViaticosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+              .addComponent(panelDatosAsignacion, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+              .addComponent(panelDatosModulo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+              .addComponent(panelDatosConferencista, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+              .addComponent(panelInfoPrograma, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addContainerGap())))
     );
     panelAsignarViaticosLayout.setVerticalGroup(
       panelAsignarViaticosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(panelAsignarViaticosLayout.createSequentialGroup()
         .addGroup(panelAsignarViaticosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
           .addGroup(panelAsignarViaticosLayout.createSequentialGroup()
-            .addContainerGap()
-            .addComponent(lblIcono))
-          .addGroup(panelAsignarViaticosLayout.createSequentialGroup()
             .addGap(20, 20, 20)
-            .addComponent(lblTitulo)))
-        .addGap(18, 18, 18)
+            .addComponent(lblTitulo))
+          .addGroup(panelAsignarViaticosLayout.createSequentialGroup()
+            .addContainerGap()
+            .addComponent(lblIcono)))
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        .addComponent(panelDatosAsignacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
         .addComponent(panelDatosConferencista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
         .addComponent(panelDatosModulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
         .addComponent(panelInfoPrograma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        .addContainerGap())
     );
 
     menuArchivo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/menuArchivo.png"))); // NOI18N
@@ -487,13 +560,60 @@ private void btnBuscarConferencistaActionPerformed(java.awt.event.ActionEvent ev
   }
   //Conferencista conferencista = controlConferencista.BuscarConferencistaCedula(WIDTH);
 }//GEN-LAST:event_btnBuscarConferencistaActionPerformed
+
+private void btnAsignarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsignarActionPerformed
+// TODO add your handling code here:
+  boolean controlDatos = true;
+  double monto = 0;
+  Date fechaPago = null;
+  if (conferencista == null || modulo == null || programa == null) {
+    JOptionPane.showMessageDialog(rootPane, "Debe buscar un conferencista y un modulo\npara Crear la asignación", "Error", 2);
+    controlDatos = false;
+  }
+  if (txtMonto.getText().trim().equals("")) {
+    JOptionPane.showMessageDialog(rootPane, "Debe Digitar un valor para el Monto que solo contenga\n"
+            + "digitos entre 0 y 9, sin signos ni espacios Ej: 2000", "Error valor Monto Viaticos", 0);
+    controlDatos = false;
+  } else {
+    try {
+      monto = Double.parseDouble(txtMonto.getText().trim());
+    } catch (Exception e) {
+      JOptionPane.showMessageDialog(rootPane, "Debe Digitar un valor para el Monto que solo contenga\n"
+              + "digitos entre 0 y 9, sin signos ni espacios Ej: 2000", "Error valor Monto Viaticos", 0);
+      controlDatos = false;
+      System.out.println(e.getMessage());
+    }
+  }
+  if (controlDatos) {
+    try {
+      fechaPago = formatoFecha.parse(comboFechaInicio.getText());
+      Asignacion_viaticos asignacionViaticos = new Asignacion_viaticos(0, fechaPago, monto, modulo.getId_modulo());
+      boolean controlAsignacion = controlAsignaciones.AgregarAsignacionViaticos(asignacionViaticos);
+      if (controlAsignacion) {
+        int opcion = JOptionPane.showConfirmDialog(rootPane, "Se han asignado los viaticos de manera correcta\n"
+                + "¿Desea generar el imprimible de los mismos?", "Asignación creada", 1);
+        if(opcion == 0){
+          //Codigo para generar archivo y muestra notificacion
+        }else{
+          limpiarDatos();
+        }
+      } else {
+        JOptionPane.showMessageDialog(rootPane, "No se puede crear la asignación de viaticos", "Creación fallida", 0);
+      }
+    } catch (Exception e) {
+      System.out.println(e.getMessage());
+    }
+  }
+}//GEN-LAST:event_btnAsignarActionPerformed
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.JMenuBar barraMenu;
+  private javax.swing.JButton btnAsignar;
   private javax.swing.JButton btnBuscarConferencista;
   private javax.swing.JButton btnBuscarModulo;
   private javax.swing.JComboBox comboEstado;
   private datechooser.beans.DateChooserCombo comboFecha;
   private datechooser.beans.DateChooserCombo comboFechaInicio;
+  private datechooser.beans.DateChooserCombo comboFechaPago;
   private javax.swing.JLabel lblApellidos;
   private javax.swing.JLabel lblCedula;
   private javax.swing.JLabel lblCelular;
@@ -503,7 +623,9 @@ private void btnBuscarConferencistaActionPerformed(java.awt.event.ActionEvent ev
   private javax.swing.JLabel lblEstado;
   private javax.swing.JLabel lblFecha;
   private javax.swing.JLabel lblFechaInicio;
+  private javax.swing.JLabel lblFechaPago;
   private javax.swing.JLabel lblIcono;
+  private javax.swing.JLabel lblMonto;
   private javax.swing.JLabel lblNombreModulo;
   private javax.swing.JLabel lblNombrePrograma;
   private javax.swing.JLabel lblNombres;
@@ -514,6 +636,7 @@ private void btnBuscarConferencistaActionPerformed(java.awt.event.ActionEvent ev
   private javax.swing.JMenu menuArchivo;
   private javax.swing.JMenu menuAyuda;
   private javax.swing.JPanel panelAsignarViaticos;
+  private javax.swing.JPanel panelDatosAsignacion;
   private javax.swing.JPanel panelDatosConferencista;
   private javax.swing.JPanel panelDatosModulo;
   private javax.swing.JPanel panelInfoPrograma;
@@ -524,6 +647,7 @@ private void btnBuscarConferencistaActionPerformed(java.awt.event.ActionEvent ev
   private javax.swing.JTextField txtCelular;
   private javax.swing.JTextField txtCohorte;
   private javax.swing.JTextField txtCorreo;
+  private javax.swing.JTextField txtMonto;
   private javax.swing.JTextField txtNombre;
   private javax.swing.JTextField txtNombreModulo;
   private javax.swing.JTextField txtNombres;
@@ -543,5 +667,25 @@ private void btnBuscarConferencistaActionPerformed(java.awt.event.ActionEvent ev
     txtApellidos.setEditable(false);
     txtCorreo.setEditable(false);
     txtCelular.setEditable(false);
+  }
+
+  private void cargarModulo() throws RemoteException {
+    if (modulo != null) {
+      programa = controlPrograma.ConsultarPrograma(modulo.getCohorte_programa());
+      if (programa != null) {
+        txtCohorte.setText(programa.getCohorte_programa());
+        txtNombre.setText(programa.getNombre_programa());
+        comboFecha.setText(formatoFecha.format(programa.getFecha_inicio_programa()));
+        txtValor.setText(String.valueOf(programa.getValor()));
+        spinDuracion.setValue(programa.getParticipantes());
+        comboEstado.setSelectedItem(programa.getEstado());
+      } else {
+        JOptionPane.showMessageDialog(rootPane, "No se Encontro el Programa para esta asignación", "No existe Programa", 2);
+      }
+    }
+  }
+
+  private void limpiarDatos() {
+    throw new UnsupportedOperationException("Not yet implemented");
   }
 }

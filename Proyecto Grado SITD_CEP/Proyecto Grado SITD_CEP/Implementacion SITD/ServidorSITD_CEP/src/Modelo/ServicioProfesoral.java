@@ -11,6 +11,7 @@
 package Modelo;
 
 import ConexionBD.ConexionBD;
+import Estructural.Asignacion_viaticos;
 import Estructural.Conferencista;
 import Estructural.Convenio;
 import Estructural.Modulo;
@@ -206,6 +207,22 @@ public class ServicioProfesoral extends UnicastRemoteObject implements IServicio
     String cadenaBD = "INSERT INTO modulo VALUES(" + modulo.getId_modulo() + ", '" + modulo.getNombre_modulo() + "', "
             + "" + modulo.getDuracion_modulo_horas() + ",'" + formatoFecha.format(modulo.getFecha_inicio_modulo()) + "', "
             + "" + modulo.getValor_hora() + ", '" + modulo.getCohorte_programa() + "', " + modulo.getCedula_conferencista() + ")";
+    try {
+      conexion.conectar();
+      controlAdicion = conexion.executeUpdateStatement(cadenaBD);
+      conexion.closeConecction();
+    } catch (Exception e) {
+      System.out.println(e.getMessage());
+    }
+    return controlAdicion;
+  }
+
+  @Override
+  public boolean AgregarAsignacionViaticos(Asignacion_viaticos asignacionViaticos) throws RemoteException {
+    boolean controlAdicion = false;
+    String cadenaBD = "INSERT INTO asignacion_viaticos VALUES(" + asignacionViaticos.getId_viaticos() + ", "
+            + "'" + asignacionViaticos.getFecha_pago() + "', " + asignacionViaticos.getMonto_viaticos() + ", "
+            + "" + asignacionViaticos.getid_modulo() + ")";
     try {
       conexion.conectar();
       controlAdicion = conexion.executeUpdateStatement(cadenaBD);
