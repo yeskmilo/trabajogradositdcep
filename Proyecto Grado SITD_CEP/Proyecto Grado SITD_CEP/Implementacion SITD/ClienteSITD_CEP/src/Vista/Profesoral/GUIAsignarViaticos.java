@@ -55,6 +55,7 @@ public class GUIAsignarViaticos extends javax.swing.JFrame {
     this.modulo = modulo;
     deshabilitarCampos();
     cargarModulo();
+    cargarDatosConferencista(conferencista);
   }
 
   /** This method is called from within the constructor to
@@ -592,9 +593,9 @@ private void btnAsignarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
       if (controlAsignacion) {
         int opcion = JOptionPane.showConfirmDialog(rootPane, "Se han asignado los viaticos de manera correcta\n"
                 + "¿Desea generar el imprimible de los mismos?", "Asignación creada", 1);
-        if(opcion == 0){
+        if (opcion == 0) {
           //Codigo para generar archivo y muestra notificacion
-        }else{
+        } else {
           limpiarDatos();
         }
       } else {
@@ -656,10 +657,13 @@ private void btnAsignarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
   // End of variables declaration//GEN-END:variables
 
   private void cargarDatosConferencista(Conferencista conferencista) {
-    txtNombres.setText(conferencista.getNombres_conferencista());
-    txtApellidos.setText(conferencista.getApellidos_conferencista());
-    txtCelular.setText(conferencista.getCelular_conferencista());
-    txtCorreo.setText(conferencista.getCorreo_electronico_conferencista());
+    if (conferencista != null) {
+      txtCedula.setText(String.valueOf(conferencista.getCedula_conferencista()));
+      txtNombres.setText(conferencista.getNombres_conferencista());
+      txtApellidos.setText(conferencista.getApellidos_conferencista());
+      txtCelular.setText(conferencista.getCelular_conferencista());
+      txtCorreo.setText(conferencista.getCorreo_electronico_conferencista());
+    }
   }
 
   private void deshabilitarCampos() {
@@ -682,10 +686,30 @@ private void btnAsignarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
       } else {
         JOptionPane.showMessageDialog(rootPane, "No se Encontro el Programa para esta asignación", "No existe Programa", 2);
       }
+      txtNombreModulo.setText(modulo.getNombre_modulo());
+      spinDuracion.setValue(modulo.getDuracion_modulo_horas());
+      comboFechaInicio.setText(formatoFecha.format(modulo.getFecha_inicio_modulo()));
+      txtValorHora.setText(String.valueOf(modulo.getValor_hora()));
     }
   }
 
   private void limpiarDatos() {
-    throw new UnsupportedOperationException("Not yet implemented");
+    programa = null;
+    conferencista = null;
+    modulo = null;
+    txtCohorte.setText("");
+    txtNombre.setText("");
+    comboFecha.setText("");
+    txtValor.setText("");
+    spinDuracion.setValue("");
+    comboEstado.setSelectedItem("");
+    txtNombres.setText("");
+    txtApellidos.setText("");
+    txtCorreo.setText("");
+    txtCelular.setText("");
+    txtNombreModulo.setText("");
+    spinDuracion.setValue("");
+    comboFechaInicio.setText("");
+    txtValorHora.setText("");
   }
 }

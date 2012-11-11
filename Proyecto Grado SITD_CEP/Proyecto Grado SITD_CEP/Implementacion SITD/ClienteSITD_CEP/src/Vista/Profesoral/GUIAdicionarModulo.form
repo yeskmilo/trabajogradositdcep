@@ -768,6 +768,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Asignar Viaticos"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAsignarViaticosActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnAsignarTiquetes">
               <Properties>

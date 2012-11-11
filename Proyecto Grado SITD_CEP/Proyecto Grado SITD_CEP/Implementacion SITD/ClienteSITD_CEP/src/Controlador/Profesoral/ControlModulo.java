@@ -32,7 +32,7 @@ public class ControlModulo {
    * @return
    * @throws RemoteException 
    */
-  public boolean AgregarModuloPrograma(Modulo modulo) throws RemoteException {
+  public int AgregarModuloPrograma(Modulo modulo) throws RemoteException {
     return servicioProfesoral.AgregarModuloPrograma(modulo);
   }
 }

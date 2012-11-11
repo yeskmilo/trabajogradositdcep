@@ -37,7 +37,7 @@ import javax.swing.table.TableColumn;
  * @author Kmilo
  */
 public class GUIAdicionConvenio extends javax.swing.JFrame implements ICambioVista {
-
+  
   private IServicioConvenios servicioConvenios;
   private ControlConvenio controlConvenio;
   private ControlEntidad controlEntidad;
@@ -210,7 +210,7 @@ public class GUIAdicionConvenio extends javax.swing.JFrame implements ICambioVis
       .addContainerGap())
   );
 
-  btnSiguiente.setFont(new java.awt.Font("Calibri", 3, 13));
+  btnSiguiente.setFont(new java.awt.Font("Calibri", 3, 13)); // NOI18N
   btnSiguiente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/siguiente.png"))); // NOI18N
   btnSiguiente.setText("Siguiente");
   btnSiguiente.addActionListener(new java.awt.event.ActionListener() {
@@ -722,12 +722,12 @@ private void btnSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
     }
   }
 }//GEN-LAST:event_btnSiguienteActionPerformed
-
+  
 private void itemSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemSalirActionPerformed
 // TODO add your handling code here:
   this.dispose();
 }//GEN-LAST:event_itemSalirActionPerformed
-
+  
 private void btn_agregar_entidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_agregar_entidadActionPerformed
   try {
     GUIAdicionEntidad guiAdicionEntidad = new GUIAdicionEntidad(servicioConvenios, numero_convenio);
@@ -736,7 +736,7 @@ private void btn_agregar_entidadActionPerformed(java.awt.event.ActionEvent evt) 
     Logger.getLogger(GUIAdicionConvenio.class.getName()).log(Level.SEVERE, null, ex);
   }
 }//GEN-LAST:event_btn_agregar_entidadActionPerformed
-
+  
 private void btnSiguienteEntidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiguienteEntidadActionPerformed
 // TODO add your handling code here:
   if (tablaEntidades.getRowCount() > 1) {
@@ -747,7 +747,7 @@ private void btnSiguienteEntidadActionPerformed(java.awt.event.ActionEvent evt) 
     JOptionPane.showMessageDialog(rootPane, "Debe ingresar al menos dos (2) entidades", "Seleccion de entidades", 2);
   }
 }//GEN-LAST:event_btnSiguienteEntidadActionPerformed
-
+  
 private void btn_buscar_entidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscar_entidadActionPerformed
 // TODO add your handling code here:
   try {
@@ -757,7 +757,7 @@ private void btn_buscar_entidadActionPerformed(java.awt.event.ActionEvent evt) {
     System.err.println(e.getMessage());
   }
 }//GEN-LAST:event_btn_buscar_entidadActionPerformed
-
+  
 private void btnEliminarEntidadSeleccActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarEntidadSeleccActionPerformed
 // TODO add your handling code here:
   int filaSeleccionada = tablaEntidades.getSelectedRow();
@@ -770,6 +770,7 @@ private void btnEliminarEntidadSeleccActionPerformed(java.awt.event.ActionEvent 
       controlEliminacion = controlConvenio_entidad.EliminarConvenio_entidad(convenio_entidad);
       if (controlEliminacion) {
         JOptionPane.showMessageDialog(rootPane, "Se ha desvinculado la entidad del convenio", "Desvinculacion exitosa", 1);
+        tablaEntidades.remove(filaSeleccionada);
       } else {
         JOptionPane.showMessageDialog(rootPane, "No se ha podido desvincular la entidad del convenio", "Error en la desvinculacion", 2);
       }
@@ -780,7 +781,7 @@ private void btnEliminarEntidadSeleccActionPerformed(java.awt.event.ActionEvent 
     JOptionPane.showMessageDialog(rootPane, "Debe seleccionar una entidad para eliminar", "Seleccione una entidad", 2);
   }
 }//GEN-LAST:event_btnEliminarEntidadSeleccActionPerformed
-
+  
 private void btnAddAporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddAporteActionPerformed
 // TODO add your handling code here:
   int filaSeleccionada = tablaEntidades.getSelectedRow();
@@ -797,7 +798,7 @@ private void btnAddAporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
     JOptionPane.showMessageDialog(rootPane, "Debe seleccionar una entidad", "Seleccione una entidad", 2);
   }
 }//GEN-LAST:event_btnAddAporteActionPerformed
-
+  
 private void btnAgregarRubroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarRubroActionPerformed
 // TODO add your handling code here:
   int id_presupuesto = 0;
@@ -830,7 +831,7 @@ private void btnAgregarRubroActionPerformed(java.awt.event.ActionEvent evt) {//G
     }
   }
 }//GEN-LAST:event_btnAgregarRubroActionPerformed
-
+  
 private void btnFinalizarConvenioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarConvenioActionPerformed
 // TODO add your handling code here:
   Presupuesto presupuesto = null;
@@ -900,7 +901,7 @@ private void btnFinalizarConvenioActionPerformed(java.awt.event.ActionEvent evt)
     txtObjeto.setText("");
     spinDuracion.setValue(1);
   }
-
+  
   private void siguientePestaña() {
     if (panelPestañasDatos.isEnabledAt(0) && !panelPestañasDatos.isEnabledAt(1) && !panelPestañasDatos.isEnabledAt(2)) {
       panelPestañasDatos.setEnabledAt(0, false);
@@ -917,13 +918,13 @@ private void btnFinalizarConvenioActionPerformed(java.awt.event.ActionEvent evt)
       panelPestañasDatos.setEnabledAt(2, false);
     }
   }
-
+  
   public void mostrarEntidades() throws RemoteException {
     ArrayList entidades = new ArrayList<Entidad_convenio>();
     entidades = controlEntidad.ConsultaEntidades(numero_convenio);
     cargarDatosEntidades(entidades);
   }
-
+  
   private void cargarDatosEntidades(ArrayList<Entidad_convenio> entidades) {
     int fila = 0;
     for (int i = 0; i < entidades.size(); i++) {
@@ -942,13 +943,13 @@ private void btnFinalizarConvenioActionPerformed(java.awt.event.ActionEvent evt)
       tablaTemp.removeRow(fila);
     }
   }
-
+  
   @Override
   public void CambioVista() throws RemoteException {
     mostrarEntidades();
     mostrarValoresPresupuesto();
   }
-
+  
   private void agregarColumnas() {
     //Crando Columnas
     int numeroFilas = tablaEntidades.getRowCount();
@@ -962,7 +963,7 @@ private void btnFinalizarConvenioActionPerformed(java.awt.event.ActionEvent evt)
       tablaTemp.addColumn(header);
     }
   }
-
+  
   private void mostrarValoresPresupuesto() {
     limpiarDatosPresupuesto();
     Presupuesto presupuesto = null;
@@ -1006,7 +1007,7 @@ private void btnFinalizarConvenioActionPerformed(java.awt.event.ActionEvent evt)
           for (int i = 0; i < numeroFilas; i++) {
             totalPresupuesto = totalPresupuesto + Double.parseDouble(tablaDatosRubros.getValueAt(i, 3).toString());
           }
-
+          
           lblTotalvalor.setText(String.valueOf(totalPresupuesto));
         }
       }

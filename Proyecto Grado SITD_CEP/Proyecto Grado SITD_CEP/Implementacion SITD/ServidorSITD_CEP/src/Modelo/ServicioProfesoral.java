@@ -202,19 +202,28 @@ public class ServicioProfesoral extends UnicastRemoteObject implements IServicio
   }
 
   @Override
-  public boolean AgregarModuloPrograma(Modulo modulo) throws RemoteException {
+  public int AgregarModuloPrograma(Modulo modulo) throws RemoteException {
     boolean controlAdicion = false;
+    int id_modulo = 0;
     String cadenaBD = "INSERT INTO modulo VALUES(" + modulo.getId_modulo() + ", '" + modulo.getNombre_modulo() + "', "
             + "" + modulo.getDuracion_modulo_horas() + ",'" + formatoFecha.format(modulo.getFecha_inicio_modulo()) + "', "
             + "" + modulo.getValor_hora() + ", '" + modulo.getCohorte_programa() + "', " + modulo.getCedula_conferencista() + ")";
     try {
       conexion.conectar();
       controlAdicion = conexion.executeUpdateStatement(cadenaBD);
+      if (controlAdicion) {
+        ResultSet consulta_id = null;
+        cadenaBD = "SELECT LAST_INSERT_ID()";
+        consulta_id = conexion.executeQueryStatement(cadenaBD);
+        while (consulta_id.next()) {
+          id_modulo = consulta_id.getInt(1);
+        }
+      }
       conexion.closeConecction();
     } catch (Exception e) {
       System.out.println(e.getMessage());
     }
-    return controlAdicion;
+    return id_modulo;
   }
 
   @Override

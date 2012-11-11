@@ -23,13 +23,14 @@ import javax.swing.JOptionPane;
  * @author juanpanlo
  */
 public class GUIAdicionarModulo extends javax.swing.JFrame {
-  
+
   private IServicioProfesoral servicioProfesoral;
   private ControlModulo controlModulo;
   private ControlConferencista controlConferencista;
   private ControlPrograma controlPrograma;
   private Programa programa = null;
   private Conferencista conferencista = null;
+  private Modulo moduloGeneral = null;
   private DateFormat formatoFecha = new SimpleDateFormat("dd/MM/yy");
 
   /**
@@ -103,7 +104,7 @@ public class GUIAdicionarModulo extends javax.swing.JFrame {
 
     panelAddModulo.setBackground(new java.awt.Color(255, 255, 255));
 
-    lblTitulo.setFont(new java.awt.Font("Calibri", 3, 24));
+    lblTitulo.setFont(new java.awt.Font("Calibri", 3, 24)); // NOI18N
     lblTitulo.setText("Adición de nuevo Modulo");
 
     lblIcono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/addModuleGrande.png"))); // NOI18N
@@ -111,7 +112,7 @@ public class GUIAdicionarModulo extends javax.swing.JFrame {
     panelAdicionModulo.setBackground(new java.awt.Color(255, 255, 255));
     panelAdicionModulo.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos Generales Modulo", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Calibri", 2, 13))); // NOI18N
 
-    lblNombreModulo.setFont(new java.awt.Font("Calibri", 2, 13));
+    lblNombreModulo.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
     lblNombreModulo.setText("Nombre");
 
     txtNombreModulo.setFont(new java.awt.Font("Calibri", 2, 13));
@@ -120,7 +121,7 @@ public class GUIAdicionarModulo extends javax.swing.JFrame {
     lblDuracionModulo.setFont(new java.awt.Font("Calibri", 2, 13));
     lblDuracionModulo.setText("Duración en horas");
 
-    spinDuracion.setFont(new java.awt.Font("Calibri", 2, 13));
+    spinDuracion.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
     spinDuracion.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(1), Integer.valueOf(1), null, Integer.valueOf(1)));
     spinDuracion.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
@@ -357,6 +358,11 @@ public class GUIAdicionarModulo extends javax.swing.JFrame {
     btnAsignarViaticos.setFont(new java.awt.Font("Calibri", 3, 13)); // NOI18N
     btnAsignarViaticos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/addViatico.png"))); // NOI18N
     btnAsignarViaticos.setText("Asignar Viaticos");
+    btnAsignarViaticos.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnAsignarViaticosActionPerformed(evt);
+      }
+    });
 
     btnAsignarTiquetes.setFont(new java.awt.Font("Calibri", 3, 13)); // NOI18N
     btnAsignarTiquetes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/addTicket.png"))); // NOI18N
@@ -531,7 +537,7 @@ private void btnBuscarConferencistaActionPerformed(java.awt.event.ActionEvent ev
   }
   //Conferencista conferencista = controlConferencista.BuscarConferencistaCedula(WIDTH);
 }//GEN-LAST:event_btnBuscarConferencistaActionPerformed
-  
+
 private void btnBuscarProgramaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarProgramaActionPerformed
 // TODO add your handling code here:
   String cohorte = "";
@@ -555,19 +561,19 @@ private void btnBuscarProgramaActionPerformed(java.awt.event.ActionEvent evt) {/
     }
   }
 }//GEN-LAST:event_btnBuscarProgramaActionPerformed
-  
+
 private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
   // TODO add your handling code here:
   this.dispose();
 }//GEN-LAST:event_btnSalirActionPerformed
-  
+
 private void btnActualizarConferencistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarConferencistaActionPerformed
   // TODO add your handling code here:      
   boolean controlDatos = true;
   String nombreModulo = "";
   int duracionHoras = Integer.parseInt(spinDuracion.getValue().toString());
   Date fecha = null;
-  double valorHora = 0;  
+  double valorHora = 0;
   if (conferencista == null || programa == null) {
     JOptionPane.showMessageDialog(rootPane, "Debe consultar un conferencista y un programa", "Consulte Conferencista y programa", 0);
     controlDatos = false;
@@ -595,9 +601,14 @@ private void btnActualizarConferencistaActionPerformed(java.awt.event.ActionEven
     try {
       fecha = formatoFecha.parse(comboFechaInicio.getText());
       Modulo modulo = new Modulo(0, nombreModulo, duracionHoras, fecha, valorHora, programa.getCohorte_programa(), conferencista.getCedula_conferencista());
-      boolean controlAdicion = controlModulo.AgregarModuloPrograma(modulo);
-      if (controlAdicion) {
-        JOptionPane.showMessageDialog(rootPane, "Modulo Registrado Exitosamente", "Modulo Registrado", 1);
+      int controlAdicion = controlModulo.AgregarModuloPrograma(modulo);
+      if (controlAdicion != 0) {
+        int opcion = JOptionPane.showConfirmDialog(rootPane, "Modulo Registrado Exitosamente,\n¿Desea realizar asignaciones?", "Modulo Registrado", 1);
+        if (opcion == 1) {
+          habilitarBotones();
+        }
+        modulo.setId_modulo(controlAdicion);
+        moduloGeneral = modulo;
         limpiarFormulario();
       } else {
         JOptionPane.showMessageDialog(rootPane, "No se puede crear el Modulo en este momento", "Creación fallida", 0);
@@ -607,6 +618,16 @@ private void btnActualizarConferencistaActionPerformed(java.awt.event.ActionEven
     }
   }
 }//GEN-LAST:event_btnActualizarConferencistaActionPerformed
+
+private void btnAsignarViaticosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsignarViaticosActionPerformed
+// TODO add your handling code here:
+  try {
+    GUIAsignarViaticos guiAsignarViaticos = new GUIAsignarViaticos(servicioProfesoral, conferencista, moduloGeneral);
+    guiAsignarViaticos.show();
+  } catch (Exception e) {
+    System.out.println(e.getMessage());
+  }
+}//GEN-LAST:event_btnAsignarViaticosActionPerformed
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.JMenuBar barraMenu;
   private javax.swing.JButton btnActualizarConferencista;
@@ -660,14 +681,14 @@ private void btnActualizarConferencistaActionPerformed(java.awt.event.ActionEven
     txtCelular.setText(conferencista.getCelular_conferencista());
     txtCorreo.setText(conferencista.getCorreo_electronico_conferencista());
   }
-  
+
   private void llenarFormulario() {
     txtNombrePrograma.setText(programa.getNombre_programa());
     txtValorPrograma.setText(String.valueOf(programa.getValor()));
     comboEstado.setSelectedItem(programa.getEstado());
     spinParticipantes.setValue(programa.getParticipantes());
   }
-  
+
   private void deshabilitarCampos() {
     txtNombres.setEditable(false);
     txtApellidos.setEditable(false);
@@ -681,7 +702,7 @@ private void btnActualizarConferencistaActionPerformed(java.awt.event.ActionEven
     btnAsignarTiquetes.setVisible(false);
     btnAsignarViaticos.setVisible(false);
   }
-  
+
   private void limpiarFormulario() {
     txtNombreModulo.setText("");
     spinDuracion.setValue(1);
@@ -698,6 +719,12 @@ private void btnActualizarConferencistaActionPerformed(java.awt.event.ActionEven
     spinParticipantes.setValue(1);
     programa = null;
     conferencista = null;
+    btnAsignarHonorarios.setVisible(true);
+    btnAsignarTiquetes.setVisible(true);
+    btnAsignarViaticos.setVisible(true);
+  }
+
+  private void habilitarBotones() {
     btnAsignarHonorarios.setVisible(true);
     btnAsignarTiquetes.setVisible(true);
     btnAsignarViaticos.setVisible(true);
