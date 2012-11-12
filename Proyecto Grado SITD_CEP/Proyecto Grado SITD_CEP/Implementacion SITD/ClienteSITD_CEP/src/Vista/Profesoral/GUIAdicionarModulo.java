@@ -38,6 +38,7 @@ public class GUIAdicionarModulo extends javax.swing.JFrame {
    */
   public GUIAdicionarModulo(IServicioProfesoral servicioProfesoral) {
     initComponents();
+    this.setLocationRelativeTo(null);
     this.servicioProfesoral = servicioProfesoral;
     controlConferencista = new ControlConferencista(servicioProfesoral);
     controlPrograma = new ControlPrograma(servicioProfesoral);
@@ -718,7 +719,7 @@ private void btnAsignarViaticosActionPerformed(java.awt.event.ActionEvent evt) {
     comboEstado.setSelectedItem("Vendido");
     spinParticipantes.setValue(1);
     programa = null;
-    conferencista = null;
+    //conferencista = null;
     btnAsignarHonorarios.setVisible(true);
     btnAsignarTiquetes.setVisible(true);
     btnAsignarViaticos.setVisible(true);

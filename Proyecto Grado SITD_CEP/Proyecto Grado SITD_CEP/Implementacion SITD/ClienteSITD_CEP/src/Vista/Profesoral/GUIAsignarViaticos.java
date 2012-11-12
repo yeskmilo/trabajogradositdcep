@@ -46,6 +46,7 @@ public class GUIAsignarViaticos extends javax.swing.JFrame {
   /** Creates new form GUIAsignarViaticos */
   public GUIAsignarViaticos(IServicioProfesoral servicioProfesoral, Conferencista conferencista, Modulo modulo) throws RemoteException {
     initComponents();
+    this.setLocationRelativeTo(null);
     this.servicioProfesoral = servicioProfesoral;
     controlConferencista = new ControlConferencista(servicioProfesoral);
     controlPrograma = new ControlPrograma(servicioProfesoral);

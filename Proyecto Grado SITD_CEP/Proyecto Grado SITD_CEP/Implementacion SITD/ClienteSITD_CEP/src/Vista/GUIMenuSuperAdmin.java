@@ -79,6 +79,9 @@ public class GUIMenuSuperAdmin extends javax.swing.JFrame {
     itemInformePrograma = new javax.swing.JMenuItem();
     subMenuModulo = new javax.swing.JMenu();
     itemNuevoModulo = new javax.swing.JMenuItem();
+    itemAsignaViaticos = new javax.swing.JMenuItem();
+    itemAsignarTiquetes = new javax.swing.JMenuItem();
+    itemAsignarHonorarios = new javax.swing.JMenuItem();
     subMenuConferencista = new javax.swing.JMenu();
     itemNuevoConferencista = new javax.swing.JMenuItem();
     itemEditarConferencista = new javax.swing.JMenuItem();
@@ -241,13 +244,28 @@ public class GUIMenuSuperAdmin extends javax.swing.JFrame {
     });
     subMenuModulo.add(itemNuevoModulo);
 
+    itemAsignaViaticos.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
+    itemAsignaViaticos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/addViatico.png"))); // NOI18N
+    itemAsignaViaticos.setText("Asignar Viaticos");
+    subMenuModulo.add(itemAsignaViaticos);
+
+    itemAsignarTiquetes.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
+    itemAsignarTiquetes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/addTicket.png"))); // NOI18N
+    itemAsignarTiquetes.setText("Asignar Tiquetes");
+    subMenuModulo.add(itemAsignarTiquetes);
+
+    itemAsignarHonorarios.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
+    itemAsignarHonorarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/addHonorarios.png"))); // NOI18N
+    itemAsignarHonorarios.setText("Asignar Honorarios");
+    subMenuModulo.add(itemAsignarHonorarios);
+
     menuProfesoral.add(subMenuModulo);
 
     subMenuConferencista.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/menuConferen.png"))); // NOI18N
     subMenuConferencista.setText("Conferencista");
     subMenuConferencista.setFont(new java.awt.Font("Calibri", 2, 13));
 
-    itemNuevoConferencista.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
+    itemNuevoConferencista.setFont(new java.awt.Font("Calibri", 2, 13));
     itemNuevoConferencista.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/addConferencista.png"))); // NOI18N
     itemNuevoConferencista.setText("Agregar Conferencista");
     itemNuevoConferencista.addActionListener(new java.awt.event.ActionListener() {
@@ -416,6 +434,9 @@ private void itemNuevoModuloActionPerformed(java.awt.event.ActionEvent evt) {//G
   }
 }//GEN-LAST:event_itemNuevoModuloActionPerformed
   // Variables declaration - do not modify//GEN-BEGIN:variables
+  private javax.swing.JMenuItem itemAsignaViaticos;
+  private javax.swing.JMenuItem itemAsignarHonorarios;
+  private javax.swing.JMenuItem itemAsignarTiquetes;
   private javax.swing.JMenuItem itemConsultaConvNumero;
   private javax.swing.JMenu itemConsultaConvenio;
   private javax.swing.JMenuItem itemEditarConferencista;
