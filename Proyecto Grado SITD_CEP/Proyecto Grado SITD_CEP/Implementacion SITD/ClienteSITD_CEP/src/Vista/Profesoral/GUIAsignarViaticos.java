@@ -32,7 +32,7 @@ import javax.swing.JOptionPane;
  * @author Kmilo
  */
 public class GUIAsignarViaticos extends javax.swing.JFrame {
-
+  
   private IServicioProfesoral servicioProfesoral;
   private ControlModulo controlModulo;
   private ControlConferencista controlConferencista;
@@ -40,11 +40,13 @@ public class GUIAsignarViaticos extends javax.swing.JFrame {
   private ControlAsignaciones controlAsignaciones;
   private Programa programa = null;
   private Conferencista conferencista = null;
-  private Modulo modulo;
+  public Modulo modulo;
   private DateFormat formatoFecha = new SimpleDateFormat("dd/MM/yy");
+  private GUIBuscarModulo guiBuscarModulo = null;
 
   /** Creates new form GUIAsignarViaticos */
-  public GUIAsignarViaticos(IServicioProfesoral servicioProfesoral, Conferencista conferencista, Modulo modulo) throws RemoteException {
+  public GUIAsignarViaticos(IServicioProfesoral servicioProfesoral, Conferencista conferencista,
+          Modulo modulo, GUIBuscarModulo guiBuscarModulo) throws RemoteException {
     initComponents();
     this.setLocationRelativeTo(null);
     this.servicioProfesoral = servicioProfesoral;
@@ -57,6 +59,10 @@ public class GUIAsignarViaticos extends javax.swing.JFrame {
     deshabilitarCampos();
     cargarModulo();
     cargarDatosConferencista(conferencista);
+    this.guiBuscarModulo = guiBuscarModulo;
+    if (this.guiBuscarModulo != null) {
+      this.guiBuscarModulo.dispose();
+    }
   }
 
   /** This method is called from within the constructor to
@@ -121,7 +127,7 @@ public class GUIAsignarViaticos extends javax.swing.JFrame {
 
     panelAsignarViaticos.setBackground(new java.awt.Color(255, 255, 255));
 
-    lblTitulo.setFont(new java.awt.Font("Calibri", 3, 24)); // NOI18N
+    lblTitulo.setFont(new java.awt.Font("Calibri", 3, 24));
     lblTitulo.setText("Asignación de Viaticos");
 
     lblIcono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/addViaticosGrande .png"))); // NOI18N
@@ -135,7 +141,7 @@ public class GUIAsignarViaticos extends javax.swing.JFrame {
     txtCedula.setFont(new java.awt.Font("Calibri", 2, 13));
     txtCedula.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
-    btnBuscarConferencista.setFont(new java.awt.Font("Calibri", 3, 13)); // NOI18N
+    btnBuscarConferencista.setFont(new java.awt.Font("Calibri", 3, 13));
     btnBuscarConferencista.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/buscarConvenio.png"))); // NOI18N
     btnBuscarConferencista.setText("Buscar");
     btnBuscarConferencista.addActionListener(new java.awt.event.ActionListener() {
@@ -228,16 +234,16 @@ public class GUIAsignarViaticos extends javax.swing.JFrame {
     panelDatosModulo.setBackground(new java.awt.Color(255, 255, 255));
     panelDatosModulo.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos del Modulo", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Calibri", 2, 13))); // NOI18N
 
-    lblNombreModulo.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
+    lblNombreModulo.setFont(new java.awt.Font("Calibri", 2, 13));
     lblNombreModulo.setText("Nombre");
 
-    txtNombreModulo.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
+    txtNombreModulo.setFont(new java.awt.Font("Calibri", 2, 13));
     txtNombreModulo.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
     lblDuracionModulo.setFont(new java.awt.Font("Calibri", 2, 13));
     lblDuracionModulo.setText("Duración en horas");
 
-    spinDuracion.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
+    spinDuracion.setFont(new java.awt.Font("Calibri", 2, 13));
     spinDuracion.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
     lblFechaInicio.setFont(new java.awt.Font("Calibri", 2, 13));
@@ -252,6 +258,11 @@ public class GUIAsignarViaticos extends javax.swing.JFrame {
     btnBuscarModulo.setFont(new java.awt.Font("Calibri", 3, 13)); // NOI18N
     btnBuscarModulo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/buscarConvenio.png"))); // NOI18N
     btnBuscarModulo.setText("Buscar Modulo");
+    btnBuscarModulo.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnBuscarModuloActionPerformed(evt);
+      }
+    });
 
     javax.swing.GroupLayout panelDatosModuloLayout = new javax.swing.GroupLayout(panelDatosModulo);
     panelDatosModulo.setLayout(panelDatosModuloLayout);
@@ -305,16 +316,16 @@ public class GUIAsignarViaticos extends javax.swing.JFrame {
     panelInfoPrograma.setBackground(new java.awt.Color(255, 255, 255));
     panelInfoPrograma.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Información Programa", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Calibri", 2, 13))); // NOI18N
 
-    lblCohorte.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
+    lblCohorte.setFont(new java.awt.Font("Calibri", 2, 13));
     lblCohorte.setText("Cohorte del Programa");
 
-    txtCohorte.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
+    txtCohorte.setFont(new java.awt.Font("Calibri", 2, 13));
     txtCohorte.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
-    lblNombrePrograma.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
+    lblNombrePrograma.setFont(new java.awt.Font("Calibri", 2, 13));
     lblNombrePrograma.setText("Nombre del Programa");
 
-    txtNombre.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
+    txtNombre.setFont(new java.awt.Font("Calibri", 2, 13));
     txtNombre.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
     lblFecha.setFont(new java.awt.Font("Calibri", 2, 13));
@@ -323,13 +334,13 @@ public class GUIAsignarViaticos extends javax.swing.JFrame {
     lblValor1.setFont(new java.awt.Font("Calibri", 2, 13));
     lblValor1.setText("Valor Programa");
 
-    txtValor.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
+    txtValor.setFont(new java.awt.Font("Calibri", 2, 13));
     txtValor.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
     lblParticipantes.setFont(new java.awt.Font("Calibri", 2, 13));
     lblParticipantes.setText("Número de Participantes");
 
-    spinParticipantes.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
+    spinParticipantes.setFont(new java.awt.Font("Calibri", 2, 13));
     spinParticipantes.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
     spinParticipantes.setMinimumSize(new java.awt.Dimension(31, 20));
 
@@ -346,7 +357,6 @@ public class GUIAsignarViaticos extends javax.swing.JFrame {
     panelInfoPrograma.setLayout(panelInfoProgramaLayout);
     panelInfoProgramaLayout.setHorizontalGroup(
       panelInfoProgramaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGap(0, 719, Short.MAX_VALUE)
       .addGroup(panelInfoProgramaLayout.createSequentialGroup()
         .addGroup(panelInfoProgramaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
           .addGroup(panelInfoProgramaLayout.createSequentialGroup()
@@ -389,7 +399,6 @@ public class GUIAsignarViaticos extends javax.swing.JFrame {
     );
     panelInfoProgramaLayout.setVerticalGroup(
       panelInfoProgramaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGap(0, 128, Short.MAX_VALUE)
       .addGroup(panelInfoProgramaLayout.createSequentialGroup()
         .addContainerGap()
         .addGroup(panelInfoProgramaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -420,15 +429,15 @@ public class GUIAsignarViaticos extends javax.swing.JFrame {
     panelDatosAsignacion.setBackground(new java.awt.Color(255, 255, 255));
     panelDatosAsignacion.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos Asignación", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Calibri", 2, 13))); // NOI18N
 
-    lblFechaPago.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
+    lblFechaPago.setFont(new java.awt.Font("Calibri", 2, 13));
     lblFechaPago.setText("Fecha de Pago");
 
-    lblMonto.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
+    lblMonto.setFont(new java.awt.Font("Calibri", 2, 13));
     lblMonto.setText("Monto de los Viaticos");
 
-    txtMonto.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
+    txtMonto.setFont(new java.awt.Font("Calibri", 2, 13));
 
-    btnAsignar.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
+    btnAsignar.setFont(new java.awt.Font("Calibri", 2, 13));
     btnAsignar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/addViatico.png"))); // NOI18N
     btnAsignar.setText("Asignar");
     btnAsignar.addActionListener(new java.awt.event.ActionListener() {
@@ -510,12 +519,12 @@ public class GUIAsignarViaticos extends javax.swing.JFrame {
 
     menuArchivo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/menuArchivo.png"))); // NOI18N
     menuArchivo.setText("Archivo");
-    menuArchivo.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
+    menuArchivo.setFont(new java.awt.Font("Calibri", 2, 13));
     barraMenu.add(menuArchivo);
 
     menuAyuda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/menuAyuda.png"))); // NOI18N
     menuAyuda.setText("Ayuda");
-    menuAyuda.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
+    menuAyuda.setFont(new java.awt.Font("Calibri", 2, 13));
     barraMenu.add(menuAyuda);
 
     setJMenuBar(barraMenu);
@@ -562,7 +571,7 @@ private void btnBuscarConferencistaActionPerformed(java.awt.event.ActionEvent ev
   }
   //Conferencista conferencista = controlConferencista.BuscarConferencistaCedula(WIDTH);
 }//GEN-LAST:event_btnBuscarConferencistaActionPerformed
-
+  
 private void btnAsignarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsignarActionPerformed
 // TODO add your handling code here:
   boolean controlDatos = true;
@@ -607,6 +616,16 @@ private void btnAsignarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     }
   }
 }//GEN-LAST:event_btnAsignarActionPerformed
+  
+private void btnBuscarModuloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarModuloActionPerformed
+// TODO add your handling code here:
+  try {
+    GUIBuscarModulo guiBuscarModuloBtn = new GUIBuscarModulo(servicioProfesoral, this);
+    guiBuscarModuloBtn.show();
+  } catch (Exception e) {
+    System.out.println(e.getMessage());
+  }
+}//GEN-LAST:event_btnBuscarModuloActionPerformed
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.JMenuBar barraMenu;
   private javax.swing.JButton btnAsignar;
@@ -666,15 +685,15 @@ private void btnAsignarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
       txtCorreo.setText(conferencista.getCorreo_electronico_conferencista());
     }
   }
-
+  
   private void deshabilitarCampos() {
     txtNombres.setEditable(false);
     txtApellidos.setEditable(false);
     txtCorreo.setEditable(false);
     txtCelular.setEditable(false);
   }
-
-  private void cargarModulo() throws RemoteException {
+  
+  public void cargarModulo() throws RemoteException {
     if (modulo != null) {
       programa = controlPrograma.ConsultarPrograma(modulo.getCohorte_programa());
       if (programa != null) {
@@ -691,9 +710,10 @@ private void btnAsignarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
       spinDuracion.setValue(modulo.getDuracion_modulo_horas());
       comboFechaInicio.setText(formatoFecha.format(modulo.getFecha_inicio_modulo()));
       txtValorHora.setText(String.valueOf(modulo.getValor_hora()));
+      btnBuscarModulo.setEnabled(false);
     }
   }
-
+  
   private void limpiarDatos() {
     programa = null;
     conferencista = null;

@@ -231,6 +231,9 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="Asignar Viaticos"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="itemAsignaViaticosActionPerformed"/>
+                  </Events>
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="itemAsignarTiquetes">
                   <Properties>
@@ -253,6 +256,20 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="Asignar Honorarios"/>
                   </Properties>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="itemBuscarModulo">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Calibri" size="13" style="2"/>
+                    </Property>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/Imagenes/buscarModulo.png"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Busqueda de Modulo"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="itemBuscarModuloActionPerformed"/>
+                  </Events>
                 </MenuItem>
               </SubComponents>
             </Menu>

@@ -13,6 +13,7 @@ package Modelo;
 import Estructural.*;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 /**
  *
@@ -96,4 +97,12 @@ public interface IServicioProfesoral extends Remote {
    * @throws RemoteException 
    */
   public boolean AgregarAsignacionViaticos(Asignacion_viaticos asignacionViaticos) throws RemoteException;
+
+  /**
+   * Busqueda de modulos dada la cohorte del programa al que pertenecen
+   * @param cohorte
+   * @return un arreglo con los modulos encontrados
+   * @throws RemoteException 
+   */
+  public ArrayList<Modulo> BuscarModuloPrograma(String cohorte) throws RemoteException;
 }

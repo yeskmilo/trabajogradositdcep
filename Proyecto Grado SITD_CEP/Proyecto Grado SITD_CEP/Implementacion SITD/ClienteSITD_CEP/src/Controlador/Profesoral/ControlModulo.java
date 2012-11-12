@@ -9,6 +9,7 @@ package Controlador.Profesoral;
 import Estructural.Modulo;
 import Modelo.IServicioProfesoral;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 /**
  *
@@ -34,5 +35,9 @@ public class ControlModulo {
    */
   public int AgregarModuloPrograma(Modulo modulo) throws RemoteException {
     return servicioProfesoral.AgregarModuloPrograma(modulo);
+  }
+
+  public ArrayList<Modulo> BuscarModuloPrograma(String cohorte) throws RemoteException {
+    return servicioProfesoral.BuscarModuloPrograma(cohorte);
   }
 }

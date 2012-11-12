@@ -241,4 +241,26 @@ public class ServicioProfesoral extends UnicastRemoteObject implements IServicio
     }
     return controlAdicion;
   }
+
+  @Override
+  public ArrayList<Modulo> BuscarModuloPrograma(String cohorte) throws RemoteException {
+    ArrayList<Modulo> modulos = new ArrayList<Modulo>();
+    Modulo modulo = null;
+    ResultSet resultadoConsulta = null;
+    String cadenaBD = "SELECT * FROM modulo WHERE cohorte_programa = '" + cohorte + "'";
+    try {
+      conexion.conectar();
+      resultadoConsulta = conexion.executeQueryStatement(cadenaBD);
+      while (resultadoConsulta.next()) {
+        modulo = new Modulo(resultadoConsulta.getInt(1), resultadoConsulta.getString(2),
+                resultadoConsulta.getInt(3), resultadoConsulta.getDate(4), resultadoConsulta.getDouble(5),
+                resultadoConsulta.getString(6), resultadoConsulta.getInt(7));
+        modulos.add(modulo);
+      }
+      conexion.closeConecction();
+    } catch (Exception e) {
+      System.out.println(e.getMessage());
+    }
+    return modulos;
+  }
 }

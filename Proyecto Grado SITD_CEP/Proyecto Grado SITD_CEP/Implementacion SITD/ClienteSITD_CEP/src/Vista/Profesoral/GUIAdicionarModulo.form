@@ -170,10 +170,10 @@
                                       </Group>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Component id="btnAsignarViaticos" min="-2" pref="149" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="btnAsignarTiquetes" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace pref="115" max="32767" attributes="0"/>
+                                      <Component id="btnAsignarViaticos" min="-2" pref="183" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="btnAsignarTiquetes" min="-2" pref="167" max="-2" attributes="0"/>
+                                      <EmptySpace pref="73" max="32767" attributes="0"/>
                                       <Component id="btnSalir" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                       <Component id="btnActualizarConferencista" min="-2" max="-2" attributes="0"/>
@@ -214,16 +214,10 @@
                       <Component id="panelDatosPrograma" min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="btnAsignarViaticos" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
-                                      <Component id="btnAsignarTiquetes" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
-                                  </Group>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="btnAsignarViaticos" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnAsignarTiquetes" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="btnAsignarHonorarios" min="-2" max="-2" attributes="0"/>

@@ -105,7 +105,7 @@ public class GUIAdicionarModulo extends javax.swing.JFrame {
 
     panelAddModulo.setBackground(new java.awt.Color(255, 255, 255));
 
-    lblTitulo.setFont(new java.awt.Font("Calibri", 3, 24)); // NOI18N
+    lblTitulo.setFont(new java.awt.Font("Calibri", 3, 24));
     lblTitulo.setText("Adición de nuevo Modulo");
 
     lblIcono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/addModuleGrande.png"))); // NOI18N
@@ -113,7 +113,7 @@ public class GUIAdicionarModulo extends javax.swing.JFrame {
     panelAdicionModulo.setBackground(new java.awt.Color(255, 255, 255));
     panelAdicionModulo.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos Generales Modulo", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Calibri", 2, 13))); // NOI18N
 
-    lblNombreModulo.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
+    lblNombreModulo.setFont(new java.awt.Font("Calibri", 2, 13));
     lblNombreModulo.setText("Nombre");
 
     txtNombreModulo.setFont(new java.awt.Font("Calibri", 2, 13));
@@ -122,7 +122,7 @@ public class GUIAdicionarModulo extends javax.swing.JFrame {
     lblDuracionModulo.setFont(new java.awt.Font("Calibri", 2, 13));
     lblDuracionModulo.setText("Duración en horas");
 
-    spinDuracion.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
+    spinDuracion.setFont(new java.awt.Font("Calibri", 2, 13));
     spinDuracion.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(1), Integer.valueOf(1), null, Integer.valueOf(1)));
     spinDuracion.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
@@ -144,7 +144,7 @@ public class GUIAdicionarModulo extends javax.swing.JFrame {
     txtCedula.setFont(new java.awt.Font("Calibri", 2, 13));
     txtCedula.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
-    btnBuscarConferencista.setFont(new java.awt.Font("Calibri", 3, 13));
+    btnBuscarConferencista.setFont(new java.awt.Font("Calibri", 3, 13)); // NOI18N
     btnBuscarConferencista.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/buscarConvenio.png"))); // NOI18N
     btnBuscarConferencista.setText("Buscar");
     btnBuscarConferencista.addActionListener(new java.awt.event.ActionListener() {
@@ -338,7 +338,7 @@ public class GUIAdicionarModulo extends javax.swing.JFrame {
         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
     );
 
-    btnSalir.setFont(new java.awt.Font("Calibri", 3, 13)); // NOI18N
+    btnSalir.setFont(new java.awt.Font("Calibri", 3, 13));
     btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/salir.png"))); // NOI18N
     btnSalir.setText("Salir");
     btnSalir.addActionListener(new java.awt.event.ActionListener() {
@@ -369,7 +369,7 @@ public class GUIAdicionarModulo extends javax.swing.JFrame {
     btnAsignarTiquetes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/addTicket.png"))); // NOI18N
     btnAsignarTiquetes.setText("Asignar Tiquetes");
 
-    btnAsignarHonorarios.setFont(new java.awt.Font("Calibri", 3, 13)); // NOI18N
+    btnAsignarHonorarios.setFont(new java.awt.Font("Calibri", 3, 13));
     btnAsignarHonorarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/addHonorarios.png"))); // NOI18N
     btnAsignarHonorarios.setText("Asignar Honorarios");
 
@@ -403,10 +403,10 @@ public class GUIAdicionarModulo extends javax.swing.JFrame {
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                     .addComponent(spinDuracion, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))))
               .addGroup(panelAdicionModuloLayout.createSequentialGroup()
-                .addComponent(btnAsignarViaticos, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnAsignarTiquetes)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 115, Short.MAX_VALUE)
+                .addComponent(btnAsignarViaticos, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnAsignarTiquetes, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
                 .addComponent(btnSalir)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnActualizarConferencista))))
@@ -437,14 +437,10 @@ public class GUIAdicionarModulo extends javax.swing.JFrame {
         .addComponent(panelDatosPrograma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addGroup(panelAdicionModuloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
           .addGroup(panelAdicionModuloLayout.createSequentialGroup()
-            .addGroup(panelAdicionModuloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-              .addGroup(panelAdicionModuloLayout.createSequentialGroup()
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnAsignarViaticos))
-              .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelAdicionModuloLayout.createSequentialGroup()
-                .addGap(11, 11, 11)
-                .addComponent(btnAsignarTiquetes)
-                .addGap(11, 11, 11)))
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+            .addGroup(panelAdicionModuloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+              .addComponent(btnAsignarViaticos)
+              .addComponent(btnAsignarTiquetes))
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
             .addComponent(btnAsignarHonorarios))
           .addGroup(panelAdicionModuloLayout.createSequentialGroup()
@@ -623,7 +619,7 @@ private void btnActualizarConferencistaActionPerformed(java.awt.event.ActionEven
 private void btnAsignarViaticosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsignarViaticosActionPerformed
 // TODO add your handling code here:
   try {
-    GUIAsignarViaticos guiAsignarViaticos = new GUIAsignarViaticos(servicioProfesoral, conferencista, moduloGeneral);
+    GUIAsignarViaticos guiAsignarViaticos = new GUIAsignarViaticos(servicioProfesoral, conferencista, moduloGeneral, null);
     guiAsignarViaticos.show();
   } catch (Exception e) {
     System.out.println(e.getMessage());
