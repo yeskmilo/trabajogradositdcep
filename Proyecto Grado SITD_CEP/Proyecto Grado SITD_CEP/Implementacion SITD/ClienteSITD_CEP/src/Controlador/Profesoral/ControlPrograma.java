@@ -55,4 +55,14 @@ public class ControlPrograma {
   public Programa ConsultarPrograma(String cohorte) throws RemoteException {
     return servicioProfesoral.ConsultarPrograma(cohorte);
   }
+
+  /**
+   * Edicion de un programa
+   * @param programa
+   * @return boolean true or false
+   * @throws RemoteException 
+   */
+  public boolean EditarPrograma(Programa programa) throws RemoteException {
+    return servicioProfesoral.EditarPrograma(programa);
+  }
 }

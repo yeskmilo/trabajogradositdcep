@@ -105,4 +105,12 @@ public interface IServicioProfesoral extends Remote {
    * @throws RemoteException 
    */
   public ArrayList<Modulo> BuscarModuloPrograma(String cohorte) throws RemoteException;
+
+  /**
+   * Edicion de un programa
+   * @param programa
+   * @return boolean true or false
+   * @throws RemoteException 
+   */
+  public boolean EditarPrograma(Programa programa) throws RemoteException;
 }

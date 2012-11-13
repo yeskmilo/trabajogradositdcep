@@ -162,7 +162,8 @@ public class ServicioProfesoral extends UnicastRemoteObject implements IServicio
             + "telefono_conferencista='" + conferencista.getTelefono_conferencista() + "', celular_conferencista='" + conferencista.getCelular_conferencista() + "', "
             + "correo_electronico_conferencista='" + conferencista.getCorreo_electronico_conferencista() + "', "
             + "numero_cuenta_conferencista='" + conferencista.getNumero_cuenta_conferencista() + "', tipo_cuenta_conferencista='" + conferencista.getTipo_cuenta_conferencista() + "',"
-            + "banco_conferencista='" + conferencista.getBanco_conferencista() + "', estado_conferencista='" + conferencista.getEstado_conferencista() + "";
+            + "banco_conferencista='" + conferencista.getBanco_conferencista() + "', estado_conferencista='" + conferencista.getEstado_conferencista() + " "
+            + "WHERE cedula_conferencista=" + conferencista.getCedula_conferencista();
     try {
       conexion.conectar();
       controlActualizacion = conexion.executeUpdateStatement(cadenaBD);
@@ -262,5 +263,23 @@ public class ServicioProfesoral extends UnicastRemoteObject implements IServicio
       System.out.println(e.getMessage());
     }
     return modulos;
+  }
+
+  @Override
+  public boolean EditarPrograma(Programa programa) throws RemoteException {
+    boolean controlActualizacion = false;
+    String cadenaBD = "UPDATE programa SET nombre_programa='" + programa.getNombre_programa() + "', "
+            + "fecha_inicio_programa='" + formatoFecha.format(programa.getFecha_inicio_programa()) + "',"
+            + "valor=" + programa.getValor() + ", participantes=" + programa.getParticipantes() + ", "
+            + "estado='" + programa.getEstado() + "', numero_convenio=" + programa.getNumero_convenio() + " "
+            + "WHERE cohorte_programa='" + programa.getCohorte_programa() + "'";
+    try {
+      conexion.conectar();
+      controlActualizacion = conexion.executeUpdateStatement(cadenaBD);
+      conexion.closeConecction();
+    } catch (Exception e) {
+      System.out.println(e.getMessage());
+    }
+    return controlActualizacion;
   }
 }

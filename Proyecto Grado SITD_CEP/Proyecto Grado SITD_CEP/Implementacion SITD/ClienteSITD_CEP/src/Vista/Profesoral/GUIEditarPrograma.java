@@ -26,8 +26,8 @@ public class GUIEditarPrograma extends javax.swing.JFrame {
 
   private IServicioProfesoral servicioProfesoral;
   private ControlPrograma controlPrograma;
-  private Programa programa;
-  private Convenio convenio;
+  private Programa programa = null;
+  private Convenio convenio = null;
 
   /** Creates new form GUIEditarPrograma */
   public GUIEditarPrograma(IServicioProfesoral servicioProfesoral) {
@@ -75,6 +75,8 @@ public class GUIEditarPrograma extends javax.swing.JFrame {
     btnBuscarConvenio = new javax.swing.JButton();
     lblEstadoConvenio = new javax.swing.JLabel();
     lblEstadoConvenioValor = new javax.swing.JLabel();
+    btnEditarPrograma = new javax.swing.JButton();
+    btnSalir = new javax.swing.JButton();
     barraMenu = new javax.swing.JMenuBar();
     menuArchivo = new javax.swing.JMenu();
     menuAyuda = new javax.swing.JMenu();
@@ -92,7 +94,7 @@ public class GUIEditarPrograma extends javax.swing.JFrame {
     panelDatosIniciales.setBackground(new java.awt.Color(255, 255, 255));
     panelDatosIniciales.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos Iniciales", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Calibri", 2, 13))); // NOI18N
 
-    lblCohorteBuscar.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
+    lblCohorteBuscar.setFont(new java.awt.Font("Calibri", 2, 13));
     lblCohorteBuscar.setText("Cohorte del Programa");
 
     btnBuscarPrograma.setFont(new java.awt.Font("Calibri", 3, 13)); // NOI18N
@@ -104,10 +106,10 @@ public class GUIEditarPrograma extends javax.swing.JFrame {
       }
     });
 
-    txtCohorteBuscar.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
+    txtCohorteBuscar.setFont(new java.awt.Font("Calibri", 2, 13));
     txtCohorteBuscar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
-    btnSeleccionarPrograma.setFont(new java.awt.Font("Calibri", 3, 13)); // NOI18N
+    btnSeleccionarPrograma.setFont(new java.awt.Font("Calibri", 3, 13));
     btnSeleccionarPrograma.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/informe.png"))); // NOI18N
     btnSeleccionarPrograma.setText("Seleccionar de un Listado");
 
@@ -143,7 +145,7 @@ public class GUIEditarPrograma extends javax.swing.JFrame {
     panelDatosPrograma.setBackground(new java.awt.Color(255, 255, 255));
     panelDatosPrograma.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos del Programa", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Calibri", 2, 13))); // NOI18N
 
-    lblCohorte.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
+    lblCohorte.setFont(new java.awt.Font("Calibri", 2, 13));
     lblCohorte.setText("Cohorte del Programa");
 
     lblNombrePrograma.setFont(new java.awt.Font("Calibri", 2, 13));
@@ -161,13 +163,14 @@ public class GUIEditarPrograma extends javax.swing.JFrame {
     lblEstado.setFont(new java.awt.Font("Calibri", 2, 13));
     lblEstado.setText("Estado del Programa");
 
+    txtCohorte.setEditable(false);
     txtCohorte.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
     txtCohorte.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
-    txtNombre.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
+    txtNombre.setFont(new java.awt.Font("Calibri", 2, 13));
     txtNombre.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
-    txtValor.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
+    txtValor.setFont(new java.awt.Font("Calibri", 2, 13));
     txtValor.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
     spinParticipantes.setFont(new java.awt.Font("Calibri", 2, 13));
@@ -257,7 +260,7 @@ public class GUIEditarPrograma extends javax.swing.JFrame {
     panelDatosConvenio.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos Convenio", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Calibri", 2, 13))); // NOI18N
 
     radioConvenioSi.setBackground(new java.awt.Color(255, 255, 255));
-    radioConvenioSi.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
+    radioConvenioSi.setFont(new java.awt.Font("Calibri", 2, 13));
     radioConvenioSi.setText("Programa en Convenio");
     radioConvenioSi.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -266,7 +269,7 @@ public class GUIEditarPrograma extends javax.swing.JFrame {
     });
 
     radioConvenioNo.setBackground(new java.awt.Color(255, 255, 255));
-    radioConvenioNo.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
+    radioConvenioNo.setFont(new java.awt.Font("Calibri", 2, 13));
     radioConvenioNo.setText("Programa sin Convenio");
     radioConvenioNo.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -277,7 +280,7 @@ public class GUIEditarPrograma extends javax.swing.JFrame {
     lblNumeroConvenio.setFont(new java.awt.Font("Calibri", 2, 13));
     lblNumeroConvenio.setText("Número Convenio");
 
-    txtNumeroConvenio.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
+    txtNumeroConvenio.setFont(new java.awt.Font("Calibri", 2, 13));
     txtNumeroConvenio.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
     btnBuscarConvenio.setFont(new java.awt.Font("Calibri", 3, 13)); // NOI18N
@@ -334,6 +337,24 @@ public class GUIEditarPrograma extends javax.swing.JFrame {
         .addContainerGap())
     );
 
+    btnEditarPrograma.setFont(new java.awt.Font("Calibri", 3, 13)); // NOI18N
+    btnEditarPrograma.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/editar.png"))); // NOI18N
+    btnEditarPrograma.setText("Editar Programa");
+    btnEditarPrograma.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnEditarProgramaActionPerformed(evt);
+      }
+    });
+
+    btnSalir.setFont(new java.awt.Font("Calibri", 3, 13)); // NOI18N
+    btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/salir.png"))); // NOI18N
+    btnSalir.setText("Salir");
+    btnSalir.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnSalirActionPerformed(evt);
+      }
+    });
+
     javax.swing.GroupLayout panelEditarProgramaLayout = new javax.swing.GroupLayout(panelEditarPrograma);
     panelEditarPrograma.setLayout(panelEditarProgramaLayout);
     panelEditarProgramaLayout.setHorizontalGroup(
@@ -351,9 +372,14 @@ public class GUIEditarPrograma extends javax.swing.JFrame {
             .addGap(7, 7, 7)
             .addComponent(panelDatosPrograma, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         .addContainerGap())
-      .addGroup(panelEditarProgramaLayout.createSequentialGroup()
+      .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelEditarProgramaLayout.createSequentialGroup()
         .addContainerGap()
-        .addComponent(panelDatosConvenio, javax.swing.GroupLayout.DEFAULT_SIZE, 731, Short.MAX_VALUE)
+        .addGroup(panelEditarProgramaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+          .addGroup(panelEditarProgramaLayout.createSequentialGroup()
+            .addComponent(btnSalir)
+            .addGap(31, 31, 31)
+            .addComponent(btnEditarPrograma))
+          .addComponent(panelDatosConvenio, javax.swing.GroupLayout.DEFAULT_SIZE, 731, Short.MAX_VALUE))
         .addGap(14, 14, 14))
     );
     panelEditarProgramaLayout.setVerticalGroup(
@@ -366,9 +392,7 @@ public class GUIEditarPrograma extends javax.swing.JFrame {
               .addGroup(panelEditarProgramaLayout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addComponent(lblTitulo))
-              .addGroup(panelEditarProgramaLayout.createSequentialGroup()
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblIcono)))
+              .addComponent(lblIcono))
             .addGap(86, 86, 86))
           .addGroup(panelEditarProgramaLayout.createSequentialGroup()
             .addComponent(panelDatosIniciales, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -376,17 +400,21 @@ public class GUIEditarPrograma extends javax.swing.JFrame {
         .addComponent(panelDatosPrograma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
         .addComponent(panelDatosConvenio, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addContainerGap(61, Short.MAX_VALUE))
+        .addGap(18, 18, 18)
+        .addGroup(panelEditarProgramaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+          .addComponent(btnEditarPrograma)
+          .addComponent(btnSalir))
+        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
     );
 
     menuArchivo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/menuArchivo.png"))); // NOI18N
     menuArchivo.setText("Archivo");
-    menuArchivo.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
+    menuArchivo.setFont(new java.awt.Font("Calibri", 2, 13));
     barraMenu.add(menuArchivo);
 
     menuAyuda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/menuAyuda.png"))); // NOI18N
     menuAyuda.setText("Ayuda");
-    menuAyuda.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
+    menuAyuda.setFont(new java.awt.Font("Calibri", 2, 13));
     barraMenu.add(menuAyuda);
 
     setJMenuBar(barraMenu);
@@ -465,11 +493,11 @@ private void btnBuscarProgramaActionPerformed(java.awt.event.ActionEvent evt) {/
 // TODO add your handling code here:
   String cohorte = "";
   boolean controlDatos = true;
-  if (txtCohorte.getText().trim().equals("")) {
+  if (txtCohorteBuscar.getText().trim().equals("")) {
     JOptionPane.showMessageDialog(rootPane, "Debe Digitar una cohorte para buscar Programa", "Digite Cohorte", 0);
     controlDatos = false;
   } else {
-    cohorte = txtCohorte.getText().trim();
+    cohorte = txtCohorteBuscar.getText().trim();
   }
   if (controlDatos) {
     try {
@@ -484,10 +512,67 @@ private void btnBuscarProgramaActionPerformed(java.awt.event.ActionEvent evt) {/
     }
   }
 }//GEN-LAST:event_btnBuscarProgramaActionPerformed
+
+private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+// TODO add your handling code here:
+  this.dispose();
+}//GEN-LAST:event_btnSalirActionPerformed
+
+private void btnEditarProgramaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarProgramaActionPerformed
+// TODO add your handling code here:
+  boolean controlDatos = true;
+  if (programa == null) {
+    JOptionPane.showMessageDialog(rootPane, "Debe buscar un Programa para Editar", "Busque Programa", 0);
+    controlDatos = false;
+  } else {
+    if (txtNombre.getText().trim().equals("")) {
+      JOptionPane.showMessageDialog(rootPane, "Debe Digitar un Nombre para el Programa", "Digite Nombre", 0);
+      controlDatos = false;
+    } else {
+      programa.setNombre_programa(txtNombre.getText().trim());
+    }
+    if (txtValor.getText().trim().equals("")) {
+      JOptionPane.showMessageDialog(rootPane, "Debe Digitar un valor para el programa", "Digite Valor", 0);
+      controlDatos = false;
+    } else {
+      try {
+        programa.setValor(Double.parseDouble(txtValor.getText().trim()));
+      } catch (Exception e) {
+        JOptionPane.showMessageDialog(rootPane, "Debe digitar un valor para el programa que\n"
+                + "contenga digitos entre 0 y 9", "Valor invalido", 0);
+        controlDatos = false;
+        System.out.println(e.getMessage());
+      }
+    }
+    if (convenio != null) {
+      if (convenio.getEstado_convenio().equals("SUSPENDIDO") || convenio.getEstado_convenio().equals("LIQUIDADO")) {
+        JOptionPane.showMessageDialog(rootPane, "El estado del convenio no permite que se\nvincule algun programa al mismo", "Estado de convenio", 0);
+        controlDatos = false;
+      } else {
+        programa.setNumero_convenio(convenio.getNumero_convenio());
+      }
+    }
+  }
+  if (controlDatos) {
+    try {
+      boolean controlActualizacion = controlPrograma.EditarPrograma(programa);
+      if (controlActualizacion) {
+        JOptionPane.showMessageDialog(rootPane, "El programa se creo correctamente", "Programa Creado", 1);
+        limpiarFormulario();
+      } else {
+        JOptionPane.showMessageDialog(rootPane, "No se pudo editar el programa", "Edición faliida", 2);
+      }
+    } catch (Exception e) {
+      System.out.println(e.getMessage());
+    }
+  }
+}//GEN-LAST:event_btnEditarProgramaActionPerformed
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.JMenuBar barraMenu;
   private javax.swing.JButton btnBuscarConvenio;
   private javax.swing.JButton btnBuscarPrograma;
+  private javax.swing.JButton btnEditarPrograma;
+  private javax.swing.JButton btnSalir;
   private javax.swing.JButton btnSeleccionarPrograma;
   private javax.swing.JComboBox comboEstado;
   private datechooser.beans.DateChooserCombo comboFecha;
@@ -565,5 +650,16 @@ private void btnBuscarProgramaActionPerformed(java.awt.event.ActionEvent evt) {/
     } else {
       panelDatosConvenio.setVisible(false);
     }
+  }
+
+  private void limpiarFormulario() {
+    txtCohorte.setText("");
+    txtNombre.setText("");
+    txtValor.setText("");
+    spinParticipantes.setValue(1);
+    txtNumeroConvenio.setText("");
+    lblEstadoConvenioValor.setText("");
+    programa = null;
+    ocultarBusquedaConvenio();
   }
 }
