@@ -1,0 +1,56 @@
+iniciar sesion _/
+agregar convenio _/
+
+modificar convenio Include
+
+liquidacion convenio _/
+
+consulta de convenios Include
+
+agregar entidad _/
+editar entidad _/
+agregar presupuesto _/
+agregar aporte entidad _/
+agregar rubro presupuestal _/
+editar rubro presupuestal _/
+eliminar rubro presupuestal _/
+Realizar ejecución presupuestal _/
+Agregar Variacion de tiempo convenio _/
+Agregar programa _/
+Editar programa _/
+
+informe programa Missing
+
+agregar modulo _/
+editar modulo _/
+agregar conferencista _/
+editar conferencista _/
+eliminar conferencista _/ 
+
+asignacion viaticos _/
+edicion asignacion viaticos Missing
+asignacion tiquetes _/
+edicion asignacion tiquetes Missing
+
+asignacion honorarios _/
+edicion honorarios Missing
+
+
+errores
+No remueve las entidades en agregar convenio
+dejando agregar el convenio sin las entidades
+
+al buscar el convenio con entidades
+y luego uno sin entidades, que no esta permitido, no refresca la tabla
+
+en algunos casos deja agregar un nuevo rubro en otros no
+depronto no hago la comprobacion bien
+
+vista liquidar convenios boton cancelar falta dispose
+
+faltan DSA
+Editar Módulo
+
+
+
+
