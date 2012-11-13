@@ -32,7 +32,7 @@ import javax.swing.JOptionPane;
  * @author Kmilo
  */
 public class GUIAsignarViaticos extends javax.swing.JFrame {
-  
+
   private IServicioProfesoral servicioProfesoral;
   private ControlModulo controlModulo;
   private ControlConferencista controlConferencista;
@@ -571,7 +571,7 @@ private void btnBuscarConferencistaActionPerformed(java.awt.event.ActionEvent ev
   }
   //Conferencista conferencista = controlConferencista.BuscarConferencistaCedula(WIDTH);
 }//GEN-LAST:event_btnBuscarConferencistaActionPerformed
-  
+
 private void btnAsignarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsignarActionPerformed
 // TODO add your handling code here:
   boolean controlDatos = true;
@@ -597,7 +597,7 @@ private void btnAsignarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
   }
   if (controlDatos) {
     try {
-      fechaPago = formatoFecha.parse(comboFechaInicio.getText());
+      fechaPago = formatoFecha.parse(comboFechaPago.getText());
       Asignacion_viaticos asignacionViaticos = new Asignacion_viaticos(0, fechaPago, monto, modulo.getId_modulo());
       boolean controlAsignacion = controlAsignaciones.AgregarAsignacionViaticos(asignacionViaticos);
       if (controlAsignacion) {
@@ -616,11 +616,11 @@ private void btnAsignarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     }
   }
 }//GEN-LAST:event_btnAsignarActionPerformed
-  
+
 private void btnBuscarModuloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarModuloActionPerformed
 // TODO add your handling code here:
   try {
-    GUIBuscarModulo guiBuscarModuloBtn = new GUIBuscarModulo(servicioProfesoral, this);
+    GUIBuscarModulo guiBuscarModuloBtn = new GUIBuscarModulo(servicioProfesoral, this, null);
     guiBuscarModuloBtn.show();
   } catch (Exception e) {
     System.out.println(e.getMessage());
@@ -685,14 +685,14 @@ private void btnBuscarModuloActionPerformed(java.awt.event.ActionEvent evt) {//G
       txtCorreo.setText(conferencista.getCorreo_electronico_conferencista());
     }
   }
-  
+
   private void deshabilitarCampos() {
     txtNombres.setEditable(false);
     txtApellidos.setEditable(false);
     txtCorreo.setEditable(false);
     txtCelular.setEditable(false);
   }
-  
+
   public void cargarModulo() throws RemoteException {
     if (modulo != null) {
       programa = controlPrograma.ConsultarPrograma(modulo.getCohorte_programa());
@@ -713,7 +713,7 @@ private void btnBuscarModuloActionPerformed(java.awt.event.ActionEvent evt) {//G
       btnBuscarModulo.setEnabled(false);
     }
   }
-  
+
   private void limpiarDatos() {
     programa = null;
     conferencista = null;

@@ -547,7 +547,7 @@ private void btnEditarProgramaActionPerformed(java.awt.event.ActionEvent evt) {/
     try {
       boolean controlActualizacion = controlPrograma.EditarPrograma(programa);
       if (controlActualizacion) {
-        JOptionPane.showMessageDialog(rootPane, "El programa se creo correctamente", "Programa Creado", 1);
+        JOptionPane.showMessageDialog(rootPane, "El programa se edito correctamente", "Programa Editado", 1);
         limpiarFormulario();
       } else {
         JOptionPane.showMessageDialog(rootPane, "No se pudo editar el programa", "Edición faliida", 2);

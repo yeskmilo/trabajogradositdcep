@@ -453,7 +453,7 @@ private void itemNuevoModuloActionPerformed(java.awt.event.ActionEvent evt) {//G
 private void itemBuscarModuloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemBuscarModuloActionPerformed
 // TODO add your handling code here:
   try {
-    GUIBuscarModulo guiBuscarModulo = new GUIBuscarModulo(servicioProfesoral, null);
+    GUIBuscarModulo guiBuscarModulo = new GUIBuscarModulo(servicioProfesoral, null, null);
     guiBuscarModulo.show();
   } catch (Exception e) {
     System.out.println(e.getMessage());

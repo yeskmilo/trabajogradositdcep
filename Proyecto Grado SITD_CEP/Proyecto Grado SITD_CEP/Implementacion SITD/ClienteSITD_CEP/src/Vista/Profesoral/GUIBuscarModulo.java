@@ -31,15 +31,18 @@ public class GUIBuscarModulo extends javax.swing.JFrame {
   private IServicioProfesoral servicioProfesoral;
   private ControlModulo controlModulo;
   private GUIAsignarViaticos guiAsignarViaticos;
+  private GUIAsignarTiquetes guiAsignarTiquetes;
   private ArrayList<Modulo> modulos = null;
 
   /** Creates new form GUIBuscarModulo */
-  public GUIBuscarModulo(IServicioProfesoral servicioProfesoral, GUIAsignarViaticos guiAsignarViaticos) {
+  public GUIBuscarModulo(IServicioProfesoral servicioProfesoral, GUIAsignarViaticos guiAsignarViaticos,
+          GUIAsignarTiquetes guiAsignarTiquetes) {
     initComponents();
     this.setLocationRelativeTo(null);
     controlModulo = new ControlModulo(servicioProfesoral);
     this.servicioProfesoral = servicioProfesoral;
     this.guiAsignarViaticos = guiAsignarViaticos;
+    this.guiAsignarTiquetes = guiAsignarTiquetes;
   }
 
   /** This method is called from within the constructor to
