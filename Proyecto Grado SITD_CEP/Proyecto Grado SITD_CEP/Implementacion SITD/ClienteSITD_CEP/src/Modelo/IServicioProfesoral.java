@@ -129,4 +129,11 @@ public interface IServicioProfesoral extends Remote {
    * @throws RemoteException 
    */
   public boolean AgregarAsignacionHonorarios(Asignacion_honorarios asignacionHonorarios) throws RemoteException;
+
+  /**
+   * Busqueda General de Programas
+   * @return
+   * @throws RemoteException 
+   */
+  public ArrayList<Programa> BuscarProgramas() throws RemoteException;
 }

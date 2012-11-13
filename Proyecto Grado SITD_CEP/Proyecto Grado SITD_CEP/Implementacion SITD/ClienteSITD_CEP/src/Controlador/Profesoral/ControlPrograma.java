@@ -9,6 +9,7 @@ package Controlador.Profesoral;
 import Estructural.*;
 import Modelo.IServicioProfesoral;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 /**
  *
@@ -64,5 +65,14 @@ public class ControlPrograma {
    */
   public boolean EditarPrograma(Programa programa) throws RemoteException {
     return servicioProfesoral.EditarPrograma(programa);
+  }
+
+  /**
+   * Busqueda General de Programas
+   * @return
+   * @throws RemoteException 
+   */
+  public ArrayList<Programa> BuscarProgramas() throws RemoteException {
+    return servicioProfesoral.BuscarProgramas();
   }
 }

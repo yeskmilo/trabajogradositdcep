@@ -30,23 +30,23 @@ import java.util.ArrayList;
  * @author kmilo
  */
 public class ServicioProfesoral extends UnicastRemoteObject implements IServicioProfesoral, ICambioVista {
-
+  
   private ConexionBD conexion;
   private DateFormat formatoFecha = new SimpleDateFormat("yyyy/MM/dd");
   private ArrayList<ICambioVista> listaVistas;
-
+  
   public ServicioProfesoral() throws RemoteException {
     conexion = new ConexionBD();
     listaVistas = new ArrayList<ICambioVista>();
   }
-
+  
   @Override
   public void CambioVista() throws RemoteException {
     for (int i = 0; i < listaVistas.size(); i++) {
       listaVistas.get(i).CambioVista();
     }
   }
-
+  
   @Override
   public void AgregarVista(ICambioVista vista) throws RemoteException {
     listaVistas.add(vista);
@@ -109,7 +109,7 @@ public class ServicioProfesoral extends UnicastRemoteObject implements IServicio
     conexion.closeConecction();
     return convenio;
   }
-
+  
   @Override
   public boolean AdicionPrograma(Programa programa) throws RemoteException {
     boolean controlAdicion = false;
@@ -127,7 +127,7 @@ public class ServicioProfesoral extends UnicastRemoteObject implements IServicio
     CambioVista();
     return controlAdicion;
   }
-
+  
   @Override
   public Programa ConsultarPrograma(String cohorte) throws RemoteException {
     Programa programa = null;
@@ -203,7 +203,7 @@ public class ServicioProfesoral extends UnicastRemoteObject implements IServicio
     }
     return conferencista;
   }
-
+  
   @Override
   public int AgregarModuloPrograma(Modulo modulo) throws RemoteException {
     boolean controlAdicion = false;
@@ -228,7 +228,7 @@ public class ServicioProfesoral extends UnicastRemoteObject implements IServicio
     }
     return id_modulo;
   }
-
+  
   @Override
   public boolean AgregarAsignacionViaticos(Asignacion_viaticos asignacionViaticos) throws RemoteException {
     boolean controlAdicion = false;
@@ -244,7 +244,7 @@ public class ServicioProfesoral extends UnicastRemoteObject implements IServicio
     }
     return controlAdicion;
   }
-
+  
   @Override
   public ArrayList<Modulo> BuscarModuloPrograma(String cohorte) throws RemoteException {
     ArrayList<Modulo> modulos = new ArrayList<Modulo>();
@@ -266,7 +266,7 @@ public class ServicioProfesoral extends UnicastRemoteObject implements IServicio
     }
     return modulos;
   }
-
+  
   @Override
   public boolean EditarPrograma(Programa programa) throws RemoteException {
     boolean controlActualizacion = false;
@@ -284,7 +284,7 @@ public class ServicioProfesoral extends UnicastRemoteObject implements IServicio
     }
     return controlActualizacion;
   }
-
+  
   @Override
   public boolean AgregarAsignacionTiquete(Asignacion_tiquete asignacionTiquete) throws RemoteException {
     boolean controlAdicion = false;
@@ -302,7 +302,7 @@ public class ServicioProfesoral extends UnicastRemoteObject implements IServicio
     }
     return controlAdicion;
   }
-
+  
   @Override
   public boolean AgregarAsignacionHonorarios(Asignacion_honorarios asignacionHonorarios) throws RemoteException {
     boolean controlAdicion = false;
@@ -317,5 +317,28 @@ public class ServicioProfesoral extends UnicastRemoteObject implements IServicio
       System.out.println(e.getMessage());
     }
     return controlAdicion;
+  }
+  
+  @Override
+  public ArrayList<Programa> BuscarProgramas() throws RemoteException {
+    ArrayList<Programa> programas = new ArrayList<Programa>();
+    Programa programa = null;
+    ResultSet resultadoConsulta = null;
+    String cadenaBD = "SELECT * FROM programa";
+    try {
+      conexion.conectar();
+      resultadoConsulta = conexion.executeQueryStatement(cadenaBD);
+      while (resultadoConsulta.next()) {
+        programa = new Programa(resultadoConsulta.getInt(1), resultadoConsulta.getString(2),
+                resultadoConsulta.getString(3), resultadoConsulta.getDate(4),
+                resultadoConsulta.getDouble(5), resultadoConsulta.getInt(6), resultadoConsulta.getString(7),
+                resultadoConsulta.getInt(8));
+        programas.add(programa);
+      }
+      conexion.closeConecction();
+    } catch (Exception e) {
+      System.out.println(e.getMessage());
+    }
+    return programas;
   }
 }

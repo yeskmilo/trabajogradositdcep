@@ -412,9 +412,8 @@ private void itemNuevoProgramaActionPerformed(java.awt.event.ActionEvent evt) {/
 private void itemInformeProgramaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemInformeProgramaActionPerformed
 // TODO add your handling code here:
   try {
-    GUIEditarPrograma guiEditarPrograma = null;
-    GUIInformePrograma guiInformePrograma = new GUIInformePrograma(servicioProfesoral, guiEditarPrograma);
-    guiInformePrograma.show();
+    GUIBuscarPrograma guiBuscarPrograma = new GUIBuscarPrograma(servicioProfesoral);
+    guiBuscarPrograma.show();
   } catch (Exception e) {
     System.out.println(e.getMessage());
   }
