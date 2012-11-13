@@ -243,6 +243,7 @@ public class GUIBuscarPrograma extends javax.swing.JFrame {
     lblEstado.setFont(new java.awt.Font("Calibri", 2, 13));
     lblEstado.setText("Estado del Programa");
 
+    txtCohortePrograma.setEditable(false);
     txtCohortePrograma.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
     txtCohortePrograma.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
@@ -557,18 +558,15 @@ private void tablaListadoProgramasMouseClicked(java.awt.event.MouseEvent evt) {/
 private void btnGuardarProgramaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarProgramaActionPerformed
 // TODO add your handling code here:
   boolean controlDatos = true;
-  String cohorte = "";
   String nombre = "";
   Date fecha = null;
   double valor = 0;
   int participantes = 0;
   String estado = "";
   int numeroConvenio = 0;
-  if (txtCohorte.getText().trim().equals("")) {
-    JOptionPane.showMessageDialog(rootPane, "Debe Digitar una cohorte para el Programa", "Digite Cohorte", 0);
+  if (programa == null) {
+    JOptionPane.showMessageDialog(rootPane, "Debe Seleccionar un programa del listado\nÓ buscar uno ingresando la cohorte del Programa", "Realize la busqueda", 0);
     controlDatos = false;
-  } else {
-    cohorte = txtCohorte.getText().trim();
   }
   if (txtNombre.getText().trim().equals("")) {
     JOptionPane.showMessageDialog(rootPane, "Debe Digitar un Nombre para el Programa", "Digite Nombre", 0);
@@ -602,8 +600,8 @@ private void btnGuardarProgramaActionPerformed(java.awt.event.ActionEvent evt) {
       fecha = formatoFecha.parse(comboFecha.getText());
       participantes = Integer.parseInt(spinParticipantes.getValue().toString());
       estado = comboEstado.getSelectedItem().toString();
-      Programa programa = new Programa(0, cohorte, nombre, fecha, valor, participantes, estado, numeroConvenio);
-      boolean controlAdicion = controlPrograma.EditarPrograma(programa);
+      Programa programaAdd = new Programa(0, programa.getCohorte_programa(), nombre, fecha, valor, participantes, estado, numeroConvenio);
+      boolean controlAdicion = controlPrograma.EditarPrograma(programaAdd);
       if (controlAdicion) {
         JOptionPane.showMessageDialog(rootPane, "El programa se Edito correctamente", "Programa Editado", 1);
         limpiarFormularios();
