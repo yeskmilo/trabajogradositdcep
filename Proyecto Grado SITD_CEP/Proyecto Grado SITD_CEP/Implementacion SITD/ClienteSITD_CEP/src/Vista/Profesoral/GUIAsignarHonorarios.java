@@ -6,9 +6,9 @@
  */
 
 /*
- * GUIAsignarViaticos.java
+ * GUIAsignarHonorarios.java
  *
- * Created on 10/11/2012, 01:46:02 PM
+ * Created on 13/11/2012, 12:06:28 AM
  */
 package Vista.Profesoral;
 
@@ -16,7 +16,7 @@ import Controlador.Profesoral.ControlAsignaciones;
 import Controlador.Profesoral.ControlConferencista;
 import Controlador.Profesoral.ControlModulo;
 import Controlador.Profesoral.ControlPrograma;
-import Estructural.Asignacion_viaticos;
+import Estructural.Asignacion_honorarios;
 import Estructural.Conferencista;
 import Estructural.Modulo;
 import Estructural.Programa;
@@ -31,7 +31,7 @@ import javax.swing.JOptionPane;
  *
  * @author Kmilo
  */
-public class GUIAsignarViaticos extends javax.swing.JFrame {
+public class GUIAsignarHonorarios extends javax.swing.JFrame {
 
   private IServicioProfesoral servicioProfesoral;
   private ControlModulo controlModulo;
@@ -44,8 +44,8 @@ public class GUIAsignarViaticos extends javax.swing.JFrame {
   private DateFormat formatoFecha = new SimpleDateFormat("dd/MM/yy");
   private GUIBuscarModulo guiBuscarModulo = null;
 
-  /** Creates new form GUIAsignarViaticos */
-  public GUIAsignarViaticos(IServicioProfesoral servicioProfesoral, Conferencista conferencista,
+  /** Creates new form GUIAsignarHonorarios */
+  public GUIAsignarHonorarios(IServicioProfesoral servicioProfesoral, Conferencista conferencista,
           Modulo modulo, GUIBuscarModulo guiBuscarModulo) throws RemoteException {
     initComponents();
     this.setLocationRelativeTo(null);
@@ -74,7 +74,7 @@ public class GUIAsignarViaticos extends javax.swing.JFrame {
   // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
   private void initComponents() {
 
-    panelAsignarViaticos = new javax.swing.JPanel();
+    panelAsignarHonorarios = new javax.swing.JPanel();
     lblTitulo = new javax.swing.JLabel();
     lblIcono = new javax.swing.JLabel();
     panelDatosConferencista = new javax.swing.JPanel();
@@ -123,14 +123,14 @@ public class GUIAsignarViaticos extends javax.swing.JFrame {
     menuAyuda = new javax.swing.JMenu();
 
     setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-    setTitle("Asignaci[on de Viaticos");
+    setTitle("Asignación de Honorarios");
 
-    panelAsignarViaticos.setBackground(new java.awt.Color(255, 255, 255));
+    panelAsignarHonorarios.setBackground(new java.awt.Color(255, 255, 255));
 
     lblTitulo.setFont(new java.awt.Font("Calibri", 3, 24)); // NOI18N
     lblTitulo.setText("Asignación de Viaticos");
 
-    lblIcono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/addViaticosGrande .png"))); // NOI18N
+    lblIcono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/addHonorariosGrande.png"))); // NOI18N
 
     panelDatosConferencista.setBackground(new java.awt.Color(255, 255, 255));
     panelDatosConferencista.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos del Conferencista", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Calibri", 2, 13))); // NOI18N
@@ -138,7 +138,7 @@ public class GUIAsignarViaticos extends javax.swing.JFrame {
     lblCedula.setFont(new java.awt.Font("Calibri", 2, 13));
     lblCedula.setText("Cedula");
 
-    txtCedula.setFont(new java.awt.Font("Calibri", 2, 13));
+    txtCedula.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
     txtCedula.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
     btnBuscarConferencista.setFont(new java.awt.Font("Calibri", 3, 13));
@@ -205,12 +205,12 @@ public class GUIAsignarViaticos extends javax.swing.JFrame {
               .addGroup(panelDatosConferencistaLayout.createSequentialGroup()
                 .addComponent(lblApellidos)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtApellidos, javax.swing.GroupLayout.DEFAULT_SIZE, 311, Short.MAX_VALUE))
+                .addComponent(txtApellidos, javax.swing.GroupLayout.DEFAULT_SIZE, 322, Short.MAX_VALUE))
               .addGroup(panelDatosConferencistaLayout.createSequentialGroup()
                 .addGap(10, 10, 10)
                 .addComponent(lblCelular)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtCelular, javax.swing.GroupLayout.DEFAULT_SIZE, 313, Short.MAX_VALUE)))))
+                .addComponent(txtCelular, javax.swing.GroupLayout.DEFAULT_SIZE, 324, Short.MAX_VALUE)))))
         .addContainerGap())
     );
     panelDatosConferencistaLayout.setVerticalGroup(
@@ -299,7 +299,7 @@ public class GUIAsignarViaticos extends javax.swing.JFrame {
           .addGroup(panelDatosModuloLayout.createSequentialGroup()
             .addGap(297, 297, 297)
             .addComponent(btnBuscarModulo)))
-        .addContainerGap(61, Short.MAX_VALUE))
+        .addContainerGap(72, Short.MAX_VALUE))
     );
     panelDatosModuloLayout.setVerticalGroup(
       panelDatosModuloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -375,7 +375,7 @@ public class GUIAsignarViaticos extends javax.swing.JFrame {
             .addGroup(panelInfoProgramaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
               .addGroup(panelInfoProgramaLayout.createSequentialGroup()
                 .addComponent(lblCohorte)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addComponent(txtCohorte, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
               .addGroup(panelInfoProgramaLayout.createSequentialGroup()
                 .addComponent(lblFecha)
@@ -440,16 +440,16 @@ public class GUIAsignarViaticos extends javax.swing.JFrame {
     panelDatosAsignacion.setBackground(new java.awt.Color(255, 255, 255));
     panelDatosAsignacion.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos Asignación", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Calibri", 2, 13))); // NOI18N
 
-    lblFechaPago.setFont(new java.awt.Font("Calibri", 2, 13));
+    lblFechaPago.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
     lblFechaPago.setText("Fecha de Pago");
 
-    lblMonto.setFont(new java.awt.Font("Calibri", 2, 13));
-    lblMonto.setText("Monto de los Viaticos");
+    lblMonto.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
+    lblMonto.setText("Monto de los Honorarios");
 
-    txtMonto.setFont(new java.awt.Font("Calibri", 2, 13));
+    txtMonto.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
 
     btnAsignar.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
-    btnAsignar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/addViatico.png"))); // NOI18N
+    btnAsignar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/addHonorarios.png"))); // NOI18N
     btnAsignar.setText("Asignar");
     btnAsignar.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -470,7 +470,7 @@ public class GUIAsignarViaticos extends javax.swing.JFrame {
         .addComponent(lblMonto)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
         .addComponent(txtMonto, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         .addComponent(btnAsignar)
         .addGap(49, 49, 49))
     );
@@ -488,33 +488,33 @@ public class GUIAsignarViaticos extends javax.swing.JFrame {
         .addContainerGap(14, Short.MAX_VALUE))
     );
 
-    javax.swing.GroupLayout panelAsignarViaticosLayout = new javax.swing.GroupLayout(panelAsignarViaticos);
-    panelAsignarViaticos.setLayout(panelAsignarViaticosLayout);
-    panelAsignarViaticosLayout.setHorizontalGroup(
-      panelAsignarViaticosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGroup(panelAsignarViaticosLayout.createSequentialGroup()
+    javax.swing.GroupLayout panelAsignarHonorariosLayout = new javax.swing.GroupLayout(panelAsignarHonorarios);
+    panelAsignarHonorarios.setLayout(panelAsignarHonorariosLayout);
+    panelAsignarHonorariosLayout.setHorizontalGroup(
+      panelAsignarHonorariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(panelAsignarHonorariosLayout.createSequentialGroup()
         .addContainerGap()
-        .addGroup(panelAsignarViaticosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-          .addGroup(panelAsignarViaticosLayout.createSequentialGroup()
+        .addGroup(panelAsignarHonorariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+          .addGroup(panelAsignarHonorariosLayout.createSequentialGroup()
             .addComponent(lblTitulo)
             .addGap(18, 18, 18)
             .addComponent(lblIcono))
-          .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelAsignarViaticosLayout.createSequentialGroup()
-            .addGroup(panelAsignarViaticosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+          .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelAsignarHonorariosLayout.createSequentialGroup()
+            .addGroup(panelAsignarHonorariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
               .addComponent(panelDatosAsignacion, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
               .addComponent(panelDatosModulo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
               .addComponent(panelDatosConferencista, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
               .addComponent(panelInfoPrograma, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addContainerGap())))
     );
-    panelAsignarViaticosLayout.setVerticalGroup(
-      panelAsignarViaticosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGroup(panelAsignarViaticosLayout.createSequentialGroup()
-        .addGroup(panelAsignarViaticosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-          .addGroup(panelAsignarViaticosLayout.createSequentialGroup()
+    panelAsignarHonorariosLayout.setVerticalGroup(
+      panelAsignarHonorariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(panelAsignarHonorariosLayout.createSequentialGroup()
+        .addGroup(panelAsignarHonorariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+          .addGroup(panelAsignarHonorariosLayout.createSequentialGroup()
             .addGap(20, 20, 20)
             .addComponent(lblTitulo))
-          .addGroup(panelAsignarViaticosLayout.createSequentialGroup()
+          .addGroup(panelAsignarHonorariosLayout.createSequentialGroup()
             .addContainerGap()
             .addComponent(lblIcono)))
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -530,12 +530,12 @@ public class GUIAsignarViaticos extends javax.swing.JFrame {
 
     menuArchivo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/menuArchivo.png"))); // NOI18N
     menuArchivo.setText("Archivo");
-    menuArchivo.setFont(new java.awt.Font("Calibri", 2, 13));
+    menuArchivo.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
     barraMenu.add(menuArchivo);
 
     menuAyuda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/menuAyuda.png"))); // NOI18N
     menuAyuda.setText("Ayuda");
-    menuAyuda.setFont(new java.awt.Font("Calibri", 2, 13));
+    menuAyuda.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
     barraMenu.add(menuAyuda);
 
     setJMenuBar(barraMenu);
@@ -544,11 +544,13 @@ public class GUIAsignarViaticos extends javax.swing.JFrame {
     getContentPane().setLayout(layout);
     layout.setHorizontalGroup(
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addComponent(panelAsignarViaticos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+      .addGap(0, 762, Short.MAX_VALUE)
+      .addComponent(panelAsignarHonorarios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
     );
     layout.setVerticalGroup(
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addComponent(panelAsignarViaticos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+      .addGap(0, 618, Short.MAX_VALUE)
+      .addComponent(panelAsignarHonorarios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
     );
 
     pack();
@@ -577,11 +579,21 @@ private void btnBuscarConferencistaActionPerformed(java.awt.event.ActionEvent ev
         JOptionPane.showMessageDialog(rootPane, "No se encontraron conferencistas con la cedula indicada", "Consulta sin resultados", 2);
       }
     } catch (Exception ex) {
-      JOptionPane.showMessageDialog(rootPane, "No se pudo relizar la consulta de conferencista", "Consulta faliida", 2);
+      JOptionPane.showMessageDialog(rootPane, "No se pudo relizar la consulta de conferencista", "Consulta fallida", 2);
     }
   }
   //Conferencista conferencista = controlConferencista.BuscarConferencistaCedula(WIDTH);
 }//GEN-LAST:event_btnBuscarConferencistaActionPerformed
+
+private void btnBuscarModuloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarModuloActionPerformed
+// TODO add your handling code here:
+  try {
+    GUIBuscarModulo guiBuscarModuloBtn = new GUIBuscarModulo(servicioProfesoral, null, null, this);
+    guiBuscarModuloBtn.show();
+  } catch (Exception e) {
+    System.out.println(e.getMessage());
+  }
+}//GEN-LAST:event_btnBuscarModuloActionPerformed
 
 private void btnAsignarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsignarActionPerformed
 // TODO add your handling code here:
@@ -609,10 +621,10 @@ private void btnAsignarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
   if (controlDatos) {
     try {
       fechaPago = formatoFecha.parse(comboFechaPago.getText());
-      Asignacion_viaticos asignacionViaticos = new Asignacion_viaticos(0, fechaPago, monto, modulo.getId_modulo());
-      boolean controlAsignacion = controlAsignaciones.AgregarAsignacionViaticos(asignacionViaticos);
+      Asignacion_honorarios asignacionHonorarios = new Asignacion_honorarios(0, fechaPago, monto, modulo.getId_modulo());
+      boolean controlAsignacion = controlAsignaciones.AgregarAsignacionHonorarios(asignacionHonorarios);
       if (controlAsignacion) {
-        int opcion = JOptionPane.showConfirmDialog(rootPane, "Se han asignado los viaticos de manera correcta\n"
+        int opcion = JOptionPane.showConfirmDialog(rootPane, "Se han asignado los Honorarios de manera correcta\n"
                 + "¿Desea generar el imprimible de los mismos?", "Asignación creada", 0, 1);
         if (opcion == 0) {
           //Codigo para generar archivo y muestra notificacion
@@ -620,23 +632,13 @@ private void btnAsignarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
           limpiarDatos();
         }
       } else {
-        JOptionPane.showMessageDialog(rootPane, "No se puede crear la asignación de viaticos", "Creación fallida", 0);
+        JOptionPane.showMessageDialog(rootPane, "No se puede crear la asignación de honorarios", "Creación fallida", 0);
       }
     } catch (Exception e) {
       System.out.println(e.getMessage());
     }
   }
 }//GEN-LAST:event_btnAsignarActionPerformed
-
-private void btnBuscarModuloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarModuloActionPerformed
-// TODO add your handling code here:
-  try {
-    GUIBuscarModulo guiBuscarModuloBtn = new GUIBuscarModulo(servicioProfesoral, this, null, null);
-    guiBuscarModuloBtn.show();
-  } catch (Exception e) {
-    System.out.println(e.getMessage());
-  }
-}//GEN-LAST:event_btnBuscarModuloActionPerformed
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.JMenuBar barraMenu;
   private javax.swing.JButton btnAsignar;
@@ -667,7 +669,7 @@ private void btnBuscarModuloActionPerformed(java.awt.event.ActionEvent evt) {//G
   private javax.swing.JLabel lblValor1;
   private javax.swing.JMenu menuArchivo;
   private javax.swing.JMenu menuAyuda;
-  private javax.swing.JPanel panelAsignarViaticos;
+  private javax.swing.JPanel panelAsignarHonorarios;
   private javax.swing.JPanel panelDatosAsignacion;
   private javax.swing.JPanel panelDatosConferencista;
   private javax.swing.JPanel panelDatosModulo;

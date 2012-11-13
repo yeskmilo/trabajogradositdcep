@@ -6,6 +6,7 @@
  */
 package Controlador.Profesoral;
 
+import Estructural.Asignacion_honorarios;
 import Estructural.Asignacion_tiquete;
 import Estructural.Asignacion_viaticos;
 import Modelo.IServicioProfesoral;
@@ -45,5 +46,15 @@ public class ControlAsignaciones {
    */
   public boolean AgregarAsignacionTiquete(Asignacion_tiquete asignacionTiquete) throws RemoteException {
     return servicioProfesoral.AgregarAsignacionTiquete(asignacionTiquete);
+  }
+
+  /**
+   * Adición de una nueva asignación de Honorarios
+   * @param asignacionHonorarios
+   * @return
+   * @throws RemoteException 
+   */
+  public boolean AgregarAsignacionHonorarios(Asignacion_honorarios asignacionHonorarios) throws RemoteException {
+    return servicioProfesoral.AgregarAsignacionHonorarios(asignacionHonorarios);
   }
 }

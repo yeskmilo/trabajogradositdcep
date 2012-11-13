@@ -255,7 +255,7 @@ public class GUIMenuSuperAdmin extends javax.swing.JFrame {
     });
     subMenuModulo.add(itemAsignaViaticos);
 
-    itemAsignarTiquetes.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
+    itemAsignarTiquetes.setFont(new java.awt.Font("Calibri", 2, 13));
     itemAsignarTiquetes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/addTicket.png"))); // NOI18N
     itemAsignarTiquetes.setText("Asignar Tiquetes");
     itemAsignarTiquetes.addActionListener(new java.awt.event.ActionListener() {
@@ -265,9 +265,14 @@ public class GUIMenuSuperAdmin extends javax.swing.JFrame {
     });
     subMenuModulo.add(itemAsignarTiquetes);
 
-    itemAsignarHonorarios.setFont(new java.awt.Font("Calibri", 2, 13));
+    itemAsignarHonorarios.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
     itemAsignarHonorarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/addHonorarios.png"))); // NOI18N
     itemAsignarHonorarios.setText("Asignar Honorarios");
+    itemAsignarHonorarios.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        itemAsignarHonorariosActionPerformed(evt);
+      }
+    });
     subMenuModulo.add(itemAsignarHonorarios);
 
     itemBuscarModulo.setFont(new java.awt.Font("Calibri", 2, 13));
@@ -458,7 +463,7 @@ private void itemNuevoModuloActionPerformed(java.awt.event.ActionEvent evt) {//G
 private void itemBuscarModuloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemBuscarModuloActionPerformed
 // TODO add your handling code here:
   try {
-    GUIBuscarModulo guiBuscarModulo = new GUIBuscarModulo(servicioProfesoral, null, null);
+    GUIBuscarModulo guiBuscarModulo = new GUIBuscarModulo(servicioProfesoral, null, null, null);
     guiBuscarModulo.show();
   } catch (Exception e) {
     System.out.println(e.getMessage());
@@ -484,6 +489,16 @@ private void itemAsignarTiquetesActionPerformed(java.awt.event.ActionEvent evt) 
     System.out.println(e.getMessage());
   }
 }//GEN-LAST:event_itemAsignarTiquetesActionPerformed
+
+private void itemAsignarHonorariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemAsignarHonorariosActionPerformed
+// TODO add your handling code here:
+  try {
+    GUIAsignarHonorarios guiAsignarHonorarios = new GUIAsignarHonorarios(servicioProfesoral, null, null, null);
+    guiAsignarHonorarios.show();
+  } catch (Exception e) {
+    System.out.println(e.getMessage());
+  }
+}//GEN-LAST:event_itemAsignarHonorariosActionPerformed
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.JMenuItem itemAsignaViaticos;
   private javax.swing.JMenuItem itemAsignarHonorarios;

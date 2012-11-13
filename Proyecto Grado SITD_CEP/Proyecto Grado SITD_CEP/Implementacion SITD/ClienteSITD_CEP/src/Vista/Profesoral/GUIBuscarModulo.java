@@ -30,17 +30,19 @@ public class GUIBuscarModulo extends javax.swing.JFrame {
   private ControlModulo controlModulo;
   private GUIAsignarViaticos guiAsignarViaticos;
   private GUIAsignarTiquetes guiAsignarTiquetes;
+  private GUIAsignarHonorarios guiAsignarHonorarios;
   private ArrayList<Modulo> modulos = null;
 
   /** Creates new form GUIBuscarModulo */
   public GUIBuscarModulo(IServicioProfesoral servicioProfesoral, GUIAsignarViaticos guiAsignarViaticos,
-          GUIAsignarTiquetes guiAsignarTiquetes) {
+          GUIAsignarTiquetes guiAsignarTiquetes, GUIAsignarHonorarios guiAsignarHonorarios) {
     initComponents();
     this.setLocationRelativeTo(null);
     controlModulo = new ControlModulo(servicioProfesoral);
     this.servicioProfesoral = servicioProfesoral;
     this.guiAsignarViaticos = guiAsignarViaticos;
     this.guiAsignarTiquetes = guiAsignarTiquetes;
+    this.guiAsignarHonorarios = guiAsignarHonorarios;
   }
 
   /** This method is called from within the constructor to
@@ -65,6 +67,7 @@ public class GUIBuscarModulo extends javax.swing.JFrame {
     btnSalir = new javax.swing.JButton();
     btnAsignarViatico = new javax.swing.JButton();
     btnAsignarTiquete = new javax.swing.JButton();
+    btnAsignarHonorarios = new javax.swing.JButton();
     barraMenu = new javax.swing.JMenuBar();
     menuArchivo = new javax.swing.JMenu();
     menuAyuda = new javax.swing.JMenu();
@@ -178,6 +181,15 @@ public class GUIBuscarModulo extends javax.swing.JFrame {
       }
     });
 
+    btnAsignarHonorarios.setFont(new java.awt.Font("Calibri", 3, 13)); // NOI18N
+    btnAsignarHonorarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/addHonorarios.png"))); // NOI18N
+    btnAsignarHonorarios.setText("Asignar Honorarios");
+    btnAsignarHonorarios.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnAsignarHonorariosActionPerformed(evt);
+      }
+    });
+
     javax.swing.GroupLayout panelBuscarModuloLayout = new javax.swing.GroupLayout(panelBuscarModulo);
     panelBuscarModulo.setLayout(panelBuscarModuloLayout);
     panelBuscarModuloLayout.setHorizontalGroup(
@@ -192,6 +204,8 @@ public class GUIBuscarModulo extends javax.swing.JFrame {
             .addGap(10, 10, 10)
             .addComponent(lblIcono))
           .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBuscarModuloLayout.createSequentialGroup()
+            .addComponent(btnAsignarHonorarios)
+            .addGap(18, 18, 18)
             .addComponent(btnAsignarTiquete, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGap(18, 18, 18)
             .addComponent(btnAsignarViatico, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -217,7 +231,8 @@ public class GUIBuscarModulo extends javax.swing.JFrame {
         .addGroup(panelBuscarModuloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
           .addComponent(btnSalir)
           .addComponent(btnAsignarViatico)
-          .addComponent(btnAsignarTiquete))
+          .addComponent(btnAsignarTiquete)
+          .addComponent(btnAsignarHonorarios))
         .addContainerGap(12, Short.MAX_VALUE))
     );
 
@@ -330,8 +345,38 @@ private void btnAsignarTiqueteActionPerformed(java.awt.event.ActionEvent evt) {/
     }
   }
 }//GEN-LAST:event_btnAsignarTiqueteActionPerformed
+
+private void btnAsignarHonorariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsignarHonorariosActionPerformed
+// TODO add your handling code here:
+  if (modulos.isEmpty()) {
+    JOptionPane.showMessageDialog(rootPane, "Debe realizar una consulta por cohorte de Programa", "Debe Buscar Primero", 0);
+  } else {
+    int filaSeleccionada = tablaResultadosBusqueda.getSelectedRow();
+    if (filaSeleccionada != -1) {
+      if (guiAsignarHonorarios != null) {
+        try {
+          guiAsignarHonorarios.modulo = modulos.get(filaSeleccionada);
+          guiAsignarHonorarios.cargarModulo();
+          this.dispose();
+        } catch (RemoteException ex) {
+          System.out.println(ex.getMessage());
+        }
+      } else {
+        try {
+          GUIAsignarHonorarios guiAsignarHonorariosLocal = new GUIAsignarHonorarios(servicioProfesoral, null, modulos.get(filaSeleccionada), this);
+          guiAsignarHonorariosLocal.show();
+        } catch (Exception e) {
+          System.out.println(e.getMessage());
+        }
+      }
+    } else {
+      JOptionPane.showMessageDialog(rootPane, "Debe seleccionar un Modulo para realizar la asignación", "Seleccione Modulo del Listado", 0);
+    }
+  }
+}//GEN-LAST:event_btnAsignarHonorariosActionPerformed
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.JMenuBar barraMenu;
+  private javax.swing.JButton btnAsignarHonorarios;
   private javax.swing.JButton btnAsignarTiquete;
   private javax.swing.JButton btnAsignarViatico;
   private javax.swing.JButton btnBuscarPrograma;

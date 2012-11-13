@@ -121,4 +121,12 @@ public interface IServicioProfesoral extends Remote {
    * @throws RemoteException 
    */
   public boolean AgregarAsignacionTiquete(Asignacion_tiquete asignacionTiquete) throws RemoteException;
+
+  /**
+   * Adición de una nueva asignación de Honorarios
+   * @param asignacionHonorarios
+   * @return
+   * @throws RemoteException 
+   */
+  public boolean AgregarAsignacionHonorarios(Asignacion_honorarios asignacionHonorarios) throws RemoteException;
 }

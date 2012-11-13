@@ -11,6 +11,7 @@
 package Modelo;
 
 import ConexionBD.ConexionBD;
+import Estructural.Asignacion_honorarios;
 import Estructural.Asignacion_tiquete;
 import Estructural.Asignacion_viaticos;
 import Estructural.Conferencista;
@@ -292,6 +293,22 @@ public class ServicioProfesoral extends UnicastRemoteObject implements IServicio
             + "'" + asignacionTiquete.getFecha_regreso() + "', '" + asignacionTiquete.getCiudad_origen() + "',"
             + "'" + asignacionTiquete.getCiudad_destino() + "', '" + asignacionTiquete.getAerolinea() + "',"
             + "" + asignacionTiquete.getid_modulo() + ")";
+    try {
+      conexion.conectar();
+      controlAdicion = conexion.executeUpdateStatement(cadenaBD);
+      conexion.closeConecction();
+    } catch (Exception e) {
+      System.out.println(e.getMessage());
+    }
+    return controlAdicion;
+  }
+
+  @Override
+  public boolean AgregarAsignacionHonorarios(Asignacion_honorarios asignacionHonorarios) throws RemoteException {
+    boolean controlAdicion = false;
+    String cadenaBD = "INSERT INTO asignacion_honorarios VALUES(" + asignacionHonorarios.getId_honorarios() + ","
+            + "'" + asignacionHonorarios.getFecha_pago() + "', " + asignacionHonorarios.getMonto_honorarios() + ","
+            + "" + asignacionHonorarios.getid_modulo() + ")";
     try {
       conexion.conectar();
       controlAdicion = conexion.executeUpdateStatement(cadenaBD);

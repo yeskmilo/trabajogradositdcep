@@ -704,7 +704,7 @@ private void btnBuscarConferencistaActionPerformed(java.awt.event.ActionEvent ev
 private void btnBuscarModuloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarModuloActionPerformed
 // TODO add your handling code here:
   try {
-    GUIBuscarModulo guiBuscarModuloBtn = new GUIBuscarModulo(servicioProfesoral, null, this);
+    GUIBuscarModulo guiBuscarModuloBtn = new GUIBuscarModulo(servicioProfesoral, null, this, null);
     guiBuscarModuloBtn.show();
   } catch (Exception e) {
     System.out.println(e.getMessage());
