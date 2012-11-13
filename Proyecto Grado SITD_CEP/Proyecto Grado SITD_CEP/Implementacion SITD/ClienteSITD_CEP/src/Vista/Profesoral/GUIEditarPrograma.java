@@ -53,7 +53,6 @@ public class GUIEditarPrograma extends javax.swing.JFrame {
     lblCohorteBuscar = new javax.swing.JLabel();
     btnBuscarPrograma = new javax.swing.JButton();
     txtCohorteBuscar = new javax.swing.JTextField();
-    btnSeleccionarPrograma = new javax.swing.JButton();
     panelDatosPrograma = new javax.swing.JPanel();
     lblCohorte = new javax.swing.JLabel();
     lblNombrePrograma = new javax.swing.JLabel();
@@ -86,7 +85,7 @@ public class GUIEditarPrograma extends javax.swing.JFrame {
 
     panelEditarPrograma.setBackground(new java.awt.Color(255, 255, 255));
 
-    lblTitulo.setFont(new java.awt.Font("Calibri", 3, 24)); // NOI18N
+    lblTitulo.setFont(new java.awt.Font("Calibri", 3, 24));
     lblTitulo.setText("Edición de Programas");
 
     lblIcono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/editarGrande.png"))); // NOI18N
@@ -94,7 +93,7 @@ public class GUIEditarPrograma extends javax.swing.JFrame {
     panelDatosIniciales.setBackground(new java.awt.Color(255, 255, 255));
     panelDatosIniciales.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos Iniciales", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Calibri", 2, 13))); // NOI18N
 
-    lblCohorteBuscar.setFont(new java.awt.Font("Calibri", 2, 13));
+    lblCohorteBuscar.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
     lblCohorteBuscar.setText("Cohorte del Programa");
 
     btnBuscarPrograma.setFont(new java.awt.Font("Calibri", 3, 13)); // NOI18N
@@ -106,27 +105,21 @@ public class GUIEditarPrograma extends javax.swing.JFrame {
       }
     });
 
-    txtCohorteBuscar.setFont(new java.awt.Font("Calibri", 2, 13));
+    txtCohorteBuscar.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
     txtCohorteBuscar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-
-    btnSeleccionarPrograma.setFont(new java.awt.Font("Calibri", 3, 13));
-    btnSeleccionarPrograma.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/informe.png"))); // NOI18N
-    btnSeleccionarPrograma.setText("Seleccionar de un Listado");
 
     javax.swing.GroupLayout panelDatosInicialesLayout = new javax.swing.GroupLayout(panelDatosIniciales);
     panelDatosIniciales.setLayout(panelDatosInicialesLayout);
     panelDatosInicialesLayout.setHorizontalGroup(
       panelDatosInicialesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelDatosInicialesLayout.createSequentialGroup()
-        .addGap(22, 22, 22)
-        .addGroup(panelDatosInicialesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-          .addComponent(lblCohorteBuscar)
-          .addComponent(btnSeleccionarPrograma))
-        .addGap(18, 18, 18)
-        .addGroup(panelDatosInicialesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-          .addComponent(txtCohorteBuscar)
-          .addComponent(btnBuscarPrograma, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE))
-        .addGap(20, 20, 20))
+      .addGroup(panelDatosInicialesLayout.createSequentialGroup()
+        .addContainerGap()
+        .addComponent(lblCohorteBuscar)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+        .addGroup(panelDatosInicialesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+          .addComponent(btnBuscarPrograma, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addComponent(txtCohorteBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, 273, Short.MAX_VALUE))
+        .addContainerGap())
     );
     panelDatosInicialesLayout.setVerticalGroup(
       panelDatosInicialesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -135,11 +128,9 @@ public class GUIEditarPrograma extends javax.swing.JFrame {
         .addGroup(panelDatosInicialesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
           .addComponent(lblCohorteBuscar)
           .addComponent(txtCohorteBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        .addGap(18, 18, 18)
-        .addGroup(panelDatosInicialesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-          .addComponent(btnSeleccionarPrograma)
-          .addComponent(btnBuscarPrograma))
-        .addContainerGap(34, Short.MAX_VALUE))
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+        .addComponent(btnBuscarPrograma)
+        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
     );
 
     panelDatosPrograma.setBackground(new java.awt.Color(255, 255, 255));
@@ -164,7 +155,7 @@ public class GUIEditarPrograma extends javax.swing.JFrame {
     lblEstado.setText("Estado del Programa");
 
     txtCohorte.setEditable(false);
-    txtCohorte.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
+    txtCohorte.setFont(new java.awt.Font("Calibri", 2, 13));
     txtCohorte.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
     txtNombre.setFont(new java.awt.Font("Calibri", 2, 13));
@@ -283,7 +274,7 @@ public class GUIEditarPrograma extends javax.swing.JFrame {
     txtNumeroConvenio.setFont(new java.awt.Font("Calibri", 2, 13));
     txtNumeroConvenio.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
-    btnBuscarConvenio.setFont(new java.awt.Font("Calibri", 3, 13)); // NOI18N
+    btnBuscarConvenio.setFont(new java.awt.Font("Calibri", 3, 13));
     btnBuscarConvenio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/buscarConvenio.png"))); // NOI18N
     btnBuscarConvenio.setText("Buscar Convenio");
     btnBuscarConvenio.addActionListener(new java.awt.event.ActionListener() {
@@ -360,50 +351,49 @@ public class GUIEditarPrograma extends javax.swing.JFrame {
     panelEditarProgramaLayout.setHorizontalGroup(
       panelEditarProgramaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(panelEditarProgramaLayout.createSequentialGroup()
-        .addGroup(panelEditarProgramaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-          .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelEditarProgramaLayout.createSequentialGroup()
-            .addContainerGap()
-            .addComponent(panelDatosIniciales, javax.swing.GroupLayout.PREFERRED_SIZE, 432, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
-            .addComponent(lblIcono)
-            .addGap(18, 18, 18)
-            .addComponent(lblTitulo))
-          .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelEditarProgramaLayout.createSequentialGroup()
-            .addGap(7, 7, 7)
-            .addComponent(panelDatosPrograma, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+        .addContainerGap()
+        .addComponent(panelDatosIniciales, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+        .addComponent(lblIcono)
+        .addGap(18, 18, 18)
+        .addComponent(lblTitulo)
         .addContainerGap())
       .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelEditarProgramaLayout.createSequentialGroup()
+        .addContainerGap(477, Short.MAX_VALUE)
+        .addComponent(btnSalir)
+        .addGap(18, 18, 18)
+        .addComponent(btnEditarPrograma)
+        .addGap(24, 24, 24))
+      .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelEditarProgramaLayout.createSequentialGroup()
+        .addGap(7, 7, 7)
+        .addComponent(panelDatosPrograma, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        .addContainerGap())
+      .addGroup(panelEditarProgramaLayout.createSequentialGroup()
         .addContainerGap()
-        .addGroup(panelEditarProgramaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-          .addGroup(panelEditarProgramaLayout.createSequentialGroup()
-            .addComponent(btnSalir)
-            .addGap(31, 31, 31)
-            .addComponent(btnEditarPrograma))
-          .addComponent(panelDatosConvenio, javax.swing.GroupLayout.DEFAULT_SIZE, 731, Short.MAX_VALUE))
+        .addComponent(panelDatosConvenio, javax.swing.GroupLayout.DEFAULT_SIZE, 731, Short.MAX_VALUE)
         .addGap(14, 14, 14))
     );
     panelEditarProgramaLayout.setVerticalGroup(
       panelEditarProgramaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(panelEditarProgramaLayout.createSequentialGroup()
         .addGap(21, 21, 21)
-        .addGroup(panelEditarProgramaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-          .addGroup(panelEditarProgramaLayout.createSequentialGroup()
+        .addGroup(panelEditarProgramaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+          .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelEditarProgramaLayout.createSequentialGroup()
             .addGroup(panelEditarProgramaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
               .addGroup(panelEditarProgramaLayout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addComponent(lblTitulo))
               .addComponent(lblIcono))
-            .addGap(86, 86, 86))
-          .addGroup(panelEditarProgramaLayout.createSequentialGroup()
-            .addComponent(panelDatosIniciales, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+            .addGap(61, 61, 61))
+          .addComponent(panelDatosIniciales, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
         .addComponent(panelDatosPrograma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
         .addComponent(panelDatosConvenio, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addGap(18, 18, 18)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
         .addGroup(panelEditarProgramaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-          .addComponent(btnEditarPrograma)
-          .addComponent(btnSalir))
+          .addComponent(btnSalir)
+          .addComponent(btnEditarPrograma))
         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
     );
 
@@ -427,7 +417,7 @@ public class GUIEditarPrograma extends javax.swing.JFrame {
     );
     layout.setVerticalGroup(
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addComponent(panelEditarPrograma, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+      .addComponent(panelEditarPrograma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
     );
 
     pack();
@@ -573,7 +563,6 @@ private void btnEditarProgramaActionPerformed(java.awt.event.ActionEvent evt) {/
   private javax.swing.JButton btnBuscarPrograma;
   private javax.swing.JButton btnEditarPrograma;
   private javax.swing.JButton btnSalir;
-  private javax.swing.JButton btnSeleccionarPrograma;
   private javax.swing.JComboBox comboEstado;
   private datechooser.beans.DateChooserCombo comboFecha;
   private javax.swing.JLabel lblCohorte;
