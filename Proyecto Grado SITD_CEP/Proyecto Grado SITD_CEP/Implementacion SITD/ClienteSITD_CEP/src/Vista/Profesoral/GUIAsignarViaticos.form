@@ -275,6 +275,7 @@
                     <BevelBorder bevelType="1"/>
                   </Border>
                 </Property>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="txtApellidos">
@@ -287,6 +288,7 @@
                     <BevelBorder bevelType="1"/>
                   </Border>
                 </Property>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="lblApellidos">
@@ -312,6 +314,7 @@
                     <BevelBorder bevelType="1"/>
                   </Border>
                 </Property>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="lblCelular">
@@ -332,6 +335,7 @@
                     <BevelBorder bevelType="1"/>
                   </Border>
                 </Property>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
             </Component>
           </SubComponents>
@@ -431,6 +435,7 @@
                     <BevelBorder bevelType="1"/>
                   </Border>
                 </Property>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="lblDuracionModulo">
@@ -451,6 +456,7 @@
                     <BevelBorder bevelType="1"/>
                   </Border>
                 </Property>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="lblFechaInicio">
@@ -481,6 +487,7 @@
                     <BevelBorder bevelType="1"/>
                   </Border>
                 </Property>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="btnBuscarModulo">
@@ -628,6 +635,7 @@
                     <BevelBorder bevelType="1"/>
                   </Border>
                 </Property>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="lblNombrePrograma">
@@ -648,6 +656,7 @@
                     <BevelBorder bevelType="1"/>
                   </Border>
                 </Property>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="lblFecha">
@@ -678,6 +687,7 @@
                     <BevelBorder bevelType="1"/>
                   </Border>
                 </Property>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="lblParticipantes">
@@ -698,6 +708,7 @@
                     <BevelBorder bevelType="1"/>
                   </Border>
                 </Property>
+                <Property name="enabled" type="boolean" value="false"/>
                 <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
                   <Connection code="new java.awt.Dimension(31, 20)" type="code"/>
                 </Property>

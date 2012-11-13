@@ -17,8 +17,6 @@ import Estructural.Modulo;
 import Modelo.IServicioProfesoral;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -66,6 +64,7 @@ public class GUIBuscarModulo extends javax.swing.JFrame {
     tablaResultadosBusqueda = new javax.swing.JTable();
     btnSalir = new javax.swing.JButton();
     btnAsignarViatico = new javax.swing.JButton();
+    btnAsignarTiquete = new javax.swing.JButton();
     barraMenu = new javax.swing.JMenuBar();
     menuArchivo = new javax.swing.JMenu();
     menuAyuda = new javax.swing.JMenu();
@@ -75,7 +74,7 @@ public class GUIBuscarModulo extends javax.swing.JFrame {
 
     panelBuscarModulo.setBackground(new java.awt.Color(255, 255, 255));
 
-    lblTitulo.setFont(new java.awt.Font("Calibri", 3, 24)); // NOI18N
+    lblTitulo.setFont(new java.awt.Font("Calibri", 3, 24));
     lblTitulo.setText("Busqueda de Modulos por Programa");
 
     lblIcono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/buscarModuloGrande.png"))); // NOI18N
@@ -83,13 +82,13 @@ public class GUIBuscarModulo extends javax.swing.JFrame {
     panelDatosBusqueda.setBackground(new java.awt.Color(255, 255, 255));
     panelDatosBusqueda.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos de la Busqueda", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Calibri", 2, 13))); // NOI18N
 
-    lblCohorte.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
+    lblCohorte.setFont(new java.awt.Font("Calibri", 2, 13));
     lblCohorte.setText("Cohorte del Programa");
 
-    txtCohorte.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
+    txtCohorte.setFont(new java.awt.Font("Calibri", 2, 13));
     txtCohorte.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
-    btnBuscarPrograma.setFont(new java.awt.Font("Calibri", 3, 13)); // NOI18N
+    btnBuscarPrograma.setFont(new java.awt.Font("Calibri", 3, 13));
     btnBuscarPrograma.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/buscarModulo.png"))); // NOI18N
     btnBuscarPrograma.setText("Buscar");
     btnBuscarPrograma.addActionListener(new java.awt.event.ActionListener() {
@@ -152,7 +151,7 @@ public class GUIBuscarModulo extends javax.swing.JFrame {
         .addContainerGap())
     );
 
-    btnSalir.setFont(new java.awt.Font("Calibri", 3, 13)); // NOI18N
+    btnSalir.setFont(new java.awt.Font("Calibri", 3, 13));
     btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/salir.png"))); // NOI18N
     btnSalir.setText("Salir");
     btnSalir.addActionListener(new java.awt.event.ActionListener() {
@@ -170,6 +169,15 @@ public class GUIBuscarModulo extends javax.swing.JFrame {
       }
     });
 
+    btnAsignarTiquete.setFont(new java.awt.Font("Calibri", 3, 13)); // NOI18N
+    btnAsignarTiquete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/addTicket.png"))); // NOI18N
+    btnAsignarTiquete.setText("Asignar Tiquetes");
+    btnAsignarTiquete.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnAsignarTiqueteActionPerformed(evt);
+      }
+    });
+
     javax.swing.GroupLayout panelBuscarModuloLayout = new javax.swing.GroupLayout(panelBuscarModulo);
     panelBuscarModulo.setLayout(panelBuscarModuloLayout);
     panelBuscarModuloLayout.setHorizontalGroup(
@@ -184,6 +192,8 @@ public class GUIBuscarModulo extends javax.swing.JFrame {
             .addGap(10, 10, 10)
             .addComponent(lblIcono))
           .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBuscarModuloLayout.createSequentialGroup()
+            .addComponent(btnAsignarTiquete, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGap(18, 18, 18)
             .addComponent(btnAsignarViatico, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGap(35, 35, 35)
             .addComponent(btnSalir)))
@@ -206,18 +216,19 @@ public class GUIBuscarModulo extends javax.swing.JFrame {
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
         .addGroup(panelBuscarModuloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
           .addComponent(btnSalir)
-          .addComponent(btnAsignarViatico))
+          .addComponent(btnAsignarViatico)
+          .addComponent(btnAsignarTiquete))
         .addContainerGap(12, Short.MAX_VALUE))
     );
 
     menuArchivo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/menuArchivo.png"))); // NOI18N
     menuArchivo.setText("Archivo");
-    menuArchivo.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
+    menuArchivo.setFont(new java.awt.Font("Calibri", 2, 13));
     barraMenu.add(menuArchivo);
 
     menuAyuda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/menuAyuda.png"))); // NOI18N
     menuAyuda.setText("Ayuda");
-    menuAyuda.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
+    menuAyuda.setFont(new java.awt.Font("Calibri", 2, 13));
     barraMenu.add(menuAyuda);
 
     setJMenuBar(barraMenu);
@@ -290,8 +301,38 @@ private void btnAsignarViaticoActionPerformed(java.awt.event.ActionEvent evt) {/
     }
   }
 }//GEN-LAST:event_btnAsignarViaticoActionPerformed
+
+private void btnAsignarTiqueteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsignarTiqueteActionPerformed
+// TODO add your handling code here:
+  if (modulos.isEmpty()) {
+    JOptionPane.showMessageDialog(rootPane, "Debe realizar una consulta por cohorte de Programa", "Debe Buscar Primero", 0);
+  } else {
+    int filaSeleccionada = tablaResultadosBusqueda.getSelectedRow();
+    if (filaSeleccionada != -1) {
+      if (guiAsignarTiquetes != null) {
+        try {
+          guiAsignarTiquetes.modulo = modulos.get(filaSeleccionada);
+          guiAsignarTiquetes.cargarModulo();
+          this.dispose();
+        } catch (RemoteException ex) {
+          System.out.println(ex.getMessage());
+        }
+      } else {
+        try {
+          GUIAsignarTiquetes guiAsignarTiquetesLocal = new GUIAsignarTiquetes(servicioProfesoral, null, modulos.get(filaSeleccionada), this);
+          guiAsignarTiquetesLocal.show();
+        } catch (Exception e) {
+          System.out.println(e.getMessage());
+        }
+      }
+    } else {
+      JOptionPane.showMessageDialog(rootPane, "Debe seleccionar un Modulo para realizar la asignación", "Seleccione Modulo del Listado", 0);
+    }
+  }
+}//GEN-LAST:event_btnAsignarTiqueteActionPerformed
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.JMenuBar barraMenu;
+  private javax.swing.JButton btnAsignarTiquete;
   private javax.swing.JButton btnAsignarViatico;
   private javax.swing.JButton btnBuscarPrograma;
   private javax.swing.JButton btnSalir;

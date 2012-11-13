@@ -235,7 +235,7 @@ public class GUIMenuSuperAdmin extends javax.swing.JFrame {
     subMenuModulo.setText("Modulo");
     subMenuModulo.setFont(new java.awt.Font("Calibri", 2, 13));
 
-    itemNuevoModulo.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
+    itemNuevoModulo.setFont(new java.awt.Font("Calibri", 2, 13));
     itemNuevoModulo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/addModule.png"))); // NOI18N
     itemNuevoModulo.setText("Adición de nuevo Modulo");
     itemNuevoModulo.addActionListener(new java.awt.event.ActionListener() {
@@ -245,7 +245,7 @@ public class GUIMenuSuperAdmin extends javax.swing.JFrame {
     });
     subMenuModulo.add(itemNuevoModulo);
 
-    itemAsignaViaticos.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
+    itemAsignaViaticos.setFont(new java.awt.Font("Calibri", 2, 13));
     itemAsignaViaticos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/addViatico.png"))); // NOI18N
     itemAsignaViaticos.setText("Asignar Viaticos");
     itemAsignaViaticos.addActionListener(new java.awt.event.ActionListener() {
@@ -258,14 +258,19 @@ public class GUIMenuSuperAdmin extends javax.swing.JFrame {
     itemAsignarTiquetes.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
     itemAsignarTiquetes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/addTicket.png"))); // NOI18N
     itemAsignarTiquetes.setText("Asignar Tiquetes");
+    itemAsignarTiquetes.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        itemAsignarTiquetesActionPerformed(evt);
+      }
+    });
     subMenuModulo.add(itemAsignarTiquetes);
 
-    itemAsignarHonorarios.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
+    itemAsignarHonorarios.setFont(new java.awt.Font("Calibri", 2, 13));
     itemAsignarHonorarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/addHonorarios.png"))); // NOI18N
     itemAsignarHonorarios.setText("Asignar Honorarios");
     subMenuModulo.add(itemAsignarHonorarios);
 
-    itemBuscarModulo.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
+    itemBuscarModulo.setFont(new java.awt.Font("Calibri", 2, 13));
     itemBuscarModulo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/buscarModulo.png"))); // NOI18N
     itemBuscarModulo.setText("Busqueda de Modulo");
     itemBuscarModulo.addActionListener(new java.awt.event.ActionListener() {
@@ -469,6 +474,16 @@ private void itemAsignaViaticosActionPerformed(java.awt.event.ActionEvent evt) {
     System.out.println(e.getMessage());
   }
 }//GEN-LAST:event_itemAsignaViaticosActionPerformed
+
+private void itemAsignarTiquetesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemAsignarTiquetesActionPerformed
+// TODO add your handling code here:
+  try {
+    GUIAsignarTiquetes guiAsignarTiquetes = new GUIAsignarTiquetes(servicioProfesoral, null, null, null);
+    guiAsignarTiquetes.show();
+  } catch (Exception e) {
+    System.out.println(e.getMessage());
+  }
+}//GEN-LAST:event_itemAsignarTiquetesActionPerformed
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.JMenuItem itemAsignaViaticos;
   private javax.swing.JMenuItem itemAsignarHonorarios;

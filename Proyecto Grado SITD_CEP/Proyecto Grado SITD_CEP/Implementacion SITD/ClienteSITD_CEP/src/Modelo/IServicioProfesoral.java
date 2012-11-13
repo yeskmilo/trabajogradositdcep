@@ -113,4 +113,12 @@ public interface IServicioProfesoral extends Remote {
    * @throws RemoteException 
    */
   public boolean EditarPrograma(Programa programa) throws RemoteException;
+
+  /**
+   * Adición de una nueva asignación de Tiquetes
+   * @param asignacionTiquete
+   * @return
+   * @throws RemoteException 
+   */
+  public boolean AgregarAsignacionTiquete(Asignacion_tiquete asignacionTiquete) throws RemoteException;
 }

@@ -11,6 +11,7 @@
 package Modelo;
 
 import ConexionBD.ConexionBD;
+import Estructural.Asignacion_tiquete;
 import Estructural.Asignacion_viaticos;
 import Estructural.Conferencista;
 import Estructural.Convenio;
@@ -281,5 +282,23 @@ public class ServicioProfesoral extends UnicastRemoteObject implements IServicio
       System.out.println(e.getMessage());
     }
     return controlActualizacion;
+  }
+
+  @Override
+  public boolean AgregarAsignacionTiquete(Asignacion_tiquete asignacionTiquete) throws RemoteException {
+    boolean controlAdicion = false;
+    String cadenaBD = "INSERT INTO asignacion_tiquete VALUES(" + asignacionTiquete.getId_tiquete() + ","
+            + "'" + asignacionTiquete.getFecha_solicitud() + "', '" + asignacionTiquete.getFecha_salida() + "',"
+            + "'" + asignacionTiquete.getFecha_regreso() + "', '" + asignacionTiquete.getCiudad_origen() + "',"
+            + "'" + asignacionTiquete.getCiudad_destino() + "', '" + asignacionTiquete.getAerolinea() + "',"
+            + "" + asignacionTiquete.getid_modulo() + ")";
+    try {
+      conexion.conectar();
+      controlAdicion = conexion.executeUpdateStatement(cadenaBD);
+      conexion.closeConecction();
+    } catch (Exception e) {
+      System.out.println(e.getMessage());
+    }
+    return controlAdicion;
   }
 }

@@ -127,7 +127,7 @@ public class GUIAsignarViaticos extends javax.swing.JFrame {
 
     panelAsignarViaticos.setBackground(new java.awt.Color(255, 255, 255));
 
-    lblTitulo.setFont(new java.awt.Font("Calibri", 3, 24));
+    lblTitulo.setFont(new java.awt.Font("Calibri", 3, 24)); // NOI18N
     lblTitulo.setText("Asignación de Viaticos");
 
     lblIcono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/addViaticosGrande .png"))); // NOI18N
@@ -153,11 +153,13 @@ public class GUIAsignarViaticos extends javax.swing.JFrame {
     lblNombres.setFont(new java.awt.Font("Calibri", 2, 13));
     lblNombres.setText("Nombres");
 
-    txtNombres.setFont(new java.awt.Font("Calibri", 2, 13));
+    txtNombres.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
     txtNombres.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+    txtNombres.setEnabled(false);
 
     txtApellidos.setFont(new java.awt.Font("Calibri", 2, 13));
     txtApellidos.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+    txtApellidos.setEnabled(false);
 
     lblApellidos.setFont(new java.awt.Font("Calibri", 2, 13));
     lblApellidos.setText("Apellidos");
@@ -166,12 +168,14 @@ public class GUIAsignarViaticos extends javax.swing.JFrame {
     lblCorreo.setText("Correo Electrónico");
 
     txtCorreo.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+    txtCorreo.setEnabled(false);
 
     lblCelular.setFont(new java.awt.Font("Calibri", 2, 13));
     lblCelular.setText("Celular");
 
-    txtCelular.setFont(new java.awt.Font("Calibri", 2, 13));
+    txtCelular.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
     txtCelular.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+    txtCelular.setEnabled(false);
 
     javax.swing.GroupLayout panelDatosConferencistaLayout = new javax.swing.GroupLayout(panelDatosConferencista);
     panelDatosConferencista.setLayout(panelDatosConferencistaLayout);
@@ -237,14 +241,16 @@ public class GUIAsignarViaticos extends javax.swing.JFrame {
     lblNombreModulo.setFont(new java.awt.Font("Calibri", 2, 13));
     lblNombreModulo.setText("Nombre");
 
-    txtNombreModulo.setFont(new java.awt.Font("Calibri", 2, 13));
+    txtNombreModulo.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
     txtNombreModulo.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+    txtNombreModulo.setEnabled(false);
 
     lblDuracionModulo.setFont(new java.awt.Font("Calibri", 2, 13));
     lblDuracionModulo.setText("Duración en horas");
 
     spinDuracion.setFont(new java.awt.Font("Calibri", 2, 13));
     spinDuracion.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+    spinDuracion.setEnabled(false);
 
     lblFechaInicio.setFont(new java.awt.Font("Calibri", 2, 13));
     lblFechaInicio.setText("Fecha de Inicio");
@@ -254,8 +260,9 @@ public class GUIAsignarViaticos extends javax.swing.JFrame {
 
     txtValorHora.setFont(new java.awt.Font("Calibri", 2, 13));
     txtValorHora.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+    txtValorHora.setEnabled(false);
 
-    btnBuscarModulo.setFont(new java.awt.Font("Calibri", 3, 13)); // NOI18N
+    btnBuscarModulo.setFont(new java.awt.Font("Calibri", 3, 13));
     btnBuscarModulo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/buscarConvenio.png"))); // NOI18N
     btnBuscarModulo.setText("Buscar Modulo");
     btnBuscarModulo.addActionListener(new java.awt.event.ActionListener() {
@@ -321,12 +328,14 @@ public class GUIAsignarViaticos extends javax.swing.JFrame {
 
     txtCohorte.setFont(new java.awt.Font("Calibri", 2, 13));
     txtCohorte.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+    txtCohorte.setEnabled(false);
 
     lblNombrePrograma.setFont(new java.awt.Font("Calibri", 2, 13));
     lblNombrePrograma.setText("Nombre del Programa");
 
     txtNombre.setFont(new java.awt.Font("Calibri", 2, 13));
     txtNombre.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+    txtNombre.setEnabled(false);
 
     lblFecha.setFont(new java.awt.Font("Calibri", 2, 13));
     lblFecha.setText("Fecha Inicio");
@@ -336,12 +345,14 @@ public class GUIAsignarViaticos extends javax.swing.JFrame {
 
     txtValor.setFont(new java.awt.Font("Calibri", 2, 13));
     txtValor.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+    txtValor.setEnabled(false);
 
     lblParticipantes.setFont(new java.awt.Font("Calibri", 2, 13));
     lblParticipantes.setText("Número de Participantes");
 
-    spinParticipantes.setFont(new java.awt.Font("Calibri", 2, 13));
+    spinParticipantes.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
     spinParticipantes.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+    spinParticipantes.setEnabled(false);
     spinParticipantes.setMinimumSize(new java.awt.Dimension(31, 20));
 
     lblEstado.setFont(new java.awt.Font("Calibri", 2, 13));
@@ -437,7 +448,7 @@ public class GUIAsignarViaticos extends javax.swing.JFrame {
 
     txtMonto.setFont(new java.awt.Font("Calibri", 2, 13));
 
-    btnAsignar.setFont(new java.awt.Font("Calibri", 2, 13));
+    btnAsignar.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
     btnAsignar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/addViatico.png"))); // NOI18N
     btnAsignar.setText("Asignar");
     btnAsignar.addActionListener(new java.awt.event.ActionListener() {
@@ -602,7 +613,7 @@ private void btnAsignarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
       boolean controlAsignacion = controlAsignaciones.AgregarAsignacionViaticos(asignacionViaticos);
       if (controlAsignacion) {
         int opcion = JOptionPane.showConfirmDialog(rootPane, "Se han asignado los viaticos de manera correcta\n"
-                + "¿Desea generar el imprimible de los mismos?", "Asignación creada", 1);
+                + "¿Desea generar el imprimible de los mismos?", "Asignación creada", 0, 1);
         if (opcion == 0) {
           //Codigo para generar archivo y muestra notificacion
         } else {

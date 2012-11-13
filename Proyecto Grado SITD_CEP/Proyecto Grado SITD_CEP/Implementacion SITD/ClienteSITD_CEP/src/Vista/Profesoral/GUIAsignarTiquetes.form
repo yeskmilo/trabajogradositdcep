@@ -458,6 +458,7 @@
                     <BevelBorder bevelType="1"/>
                   </Border>
                 </Property>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="txtApellidos">
@@ -470,6 +471,7 @@
                     <BevelBorder bevelType="1"/>
                   </Border>
                 </Property>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="lblApellidos">
@@ -495,6 +497,7 @@
                     <BevelBorder bevelType="1"/>
                   </Border>
                 </Property>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="lblCelular">
@@ -515,6 +518,7 @@
                     <BevelBorder bevelType="1"/>
                   </Border>
                 </Property>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
             </Component>
           </SubComponents>
@@ -606,6 +610,7 @@
             </Component>
             <Component class="javax.swing.JTextField" name="txtNombreModulo">
               <Properties>
+                <Property name="editable" type="boolean" value="false"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Calibri" size="13" style="2"/>
                 </Property>
@@ -634,6 +639,7 @@
                     <BevelBorder bevelType="1"/>
                   </Border>
                 </Property>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="lblFechaInicio">
@@ -656,6 +662,7 @@
             </Component>
             <Component class="javax.swing.JTextField" name="txtValorHora">
               <Properties>
+                <Property name="editable" type="boolean" value="false"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Calibri" size="13" style="2"/>
                 </Property>
@@ -803,6 +810,7 @@
             </Component>
             <Component class="javax.swing.JTextField" name="txtCohorte">
               <Properties>
+                <Property name="editable" type="boolean" value="false"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Calibri" size="13" style="2"/>
                 </Property>
@@ -823,6 +831,7 @@
             </Component>
             <Component class="javax.swing.JTextField" name="txtNombre">
               <Properties>
+                <Property name="editable" type="boolean" value="false"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Calibri" size="13" style="2"/>
                 </Property>
@@ -853,6 +862,7 @@
             </Component>
             <Component class="javax.swing.JTextField" name="txtValor">
               <Properties>
+                <Property name="editable" type="boolean" value="false"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Calibri" size="13" style="2"/>
                 </Property>
@@ -881,6 +891,7 @@
                     <BevelBorder bevelType="1"/>
                   </Border>
                 </Property>
+                <Property name="enabled" type="boolean" value="false"/>
                 <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
                   <Connection code="new java.awt.Dimension(31, 20)" type="code"/>
                 </Property>

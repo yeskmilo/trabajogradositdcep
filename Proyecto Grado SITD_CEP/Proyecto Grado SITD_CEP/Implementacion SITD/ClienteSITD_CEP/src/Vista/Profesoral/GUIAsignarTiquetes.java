@@ -17,7 +17,6 @@ import Controlador.Profesoral.ControlConferencista;
 import Controlador.Profesoral.ControlModulo;
 import Controlador.Profesoral.ControlPrograma;
 import Estructural.Asignacion_tiquete;
-import Estructural.Asignacion_viaticos;
 import Estructural.Conferencista;
 import Estructural.Modulo;
 import Estructural.Programa;
@@ -256,9 +255,11 @@ public class GUIAsignarTiquetes extends javax.swing.JFrame {
 
     txtNombres.setFont(new java.awt.Font("Calibri", 2, 13));
     txtNombres.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+    txtNombres.setEnabled(false);
 
     txtApellidos.setFont(new java.awt.Font("Calibri", 2, 13));
     txtApellidos.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+    txtApellidos.setEnabled(false);
 
     lblApellidos.setFont(new java.awt.Font("Calibri", 2, 13));
     lblApellidos.setText("Apellidos");
@@ -267,12 +268,14 @@ public class GUIAsignarTiquetes extends javax.swing.JFrame {
     lblCorreo.setText("Correo Electrónico");
 
     txtCorreo.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+    txtCorreo.setEnabled(false);
 
     lblCelular.setFont(new java.awt.Font("Calibri", 2, 13));
     lblCelular.setText("Celular");
 
     txtCelular.setFont(new java.awt.Font("Calibri", 2, 13));
     txtCelular.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+    txtCelular.setEnabled(false);
 
     javax.swing.GroupLayout panelDatosConferencistaLayout = new javax.swing.GroupLayout(panelDatosConferencista);
     panelDatosConferencista.setLayout(panelDatosConferencistaLayout);
@@ -338,14 +341,16 @@ public class GUIAsignarTiquetes extends javax.swing.JFrame {
     lblNombreModulo.setFont(new java.awt.Font("Calibri", 2, 13));
     lblNombreModulo.setText("Nombre");
 
-    txtNombreModulo.setFont(new java.awt.Font("Calibri", 2, 13));
+    txtNombreModulo.setEditable(false);
+    txtNombreModulo.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
     txtNombreModulo.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
     lblDuracionModulo.setFont(new java.awt.Font("Calibri", 2, 13));
     lblDuracionModulo.setText("Duración en horas");
 
-    spinDuracion.setFont(new java.awt.Font("Calibri", 2, 13));
+    spinDuracion.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
     spinDuracion.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+    spinDuracion.setEnabled(false);
 
     lblFechaInicio.setFont(new java.awt.Font("Calibri", 2, 13));
     lblFechaInicio.setText("Fecha de Inicio");
@@ -353,10 +358,11 @@ public class GUIAsignarTiquetes extends javax.swing.JFrame {
     lblValor.setFont(new java.awt.Font("Calibri", 2, 13));
     lblValor.setText("Valor Hora");
 
-    txtValorHora.setFont(new java.awt.Font("Calibri", 2, 13));
+    txtValorHora.setEditable(false);
+    txtValorHora.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
     txtValorHora.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
-    btnBuscarModulo.setFont(new java.awt.Font("Calibri", 3, 13));
+    btnBuscarModulo.setFont(new java.awt.Font("Calibri", 3, 13)); // NOI18N
     btnBuscarModulo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/buscarConvenio.png"))); // NOI18N
     btnBuscarModulo.setText("Buscar Modulo");
     btnBuscarModulo.addActionListener(new java.awt.event.ActionListener() {
@@ -420,13 +426,15 @@ public class GUIAsignarTiquetes extends javax.swing.JFrame {
     lblCohorte.setFont(new java.awt.Font("Calibri", 2, 13));
     lblCohorte.setText("Cohorte del Programa");
 
+    txtCohorte.setEditable(false);
     txtCohorte.setFont(new java.awt.Font("Calibri", 2, 13));
     txtCohorte.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
     lblNombrePrograma.setFont(new java.awt.Font("Calibri", 2, 13));
     lblNombrePrograma.setText("Nombre del Programa");
 
-    txtNombre.setFont(new java.awt.Font("Calibri", 2, 13));
+    txtNombre.setEditable(false);
+    txtNombre.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
     txtNombre.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
     lblFecha.setFont(new java.awt.Font("Calibri", 2, 13));
@@ -435,14 +443,16 @@ public class GUIAsignarTiquetes extends javax.swing.JFrame {
     lblValor1.setFont(new java.awt.Font("Calibri", 2, 13));
     lblValor1.setText("Valor Programa");
 
+    txtValor.setEditable(false);
     txtValor.setFont(new java.awt.Font("Calibri", 2, 13));
     txtValor.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
     lblParticipantes.setFont(new java.awt.Font("Calibri", 2, 13));
     lblParticipantes.setText("Número de Participantes");
 
-    spinParticipantes.setFont(new java.awt.Font("Calibri", 2, 13));
+    spinParticipantes.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
     spinParticipantes.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+    spinParticipantes.setEnabled(false);
     spinParticipantes.setMinimumSize(new java.awt.Dimension(31, 20));
 
     lblEstado.setFont(new java.awt.Font("Calibri", 2, 13));
@@ -643,18 +653,18 @@ private void btnAsignarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
       fechaSolicitud = formatoFecha.parse(comboFechaSolicitud.getText());
       fechaSalida = formatoFecha.parse(comboFechaSalida.getText());
       fechaRegreso = formatoFecha.parse(comboFechaRegreso.getText());
-      Asignacion_tiquete asignacionTiquete = new Asignacion_tiquete(0, fechaSolicitud, fechaSalida,fechaRegreso, ciudadOrigen, ciudadDestino, aerolinea, modulo.getId_modulo());
-      boolean controlAsignacion = controlAsignaciones.AgregarAsignacionViaticos(asignacionViaticos);
+      Asignacion_tiquete asignacionTiquete = new Asignacion_tiquete(0, fechaSolicitud, fechaSalida, fechaRegreso, ciudadOrigen, ciudadDestino, aerolinea, modulo.getId_modulo());
+      boolean controlAsignacion = controlAsignaciones.AgregarAsignacionTiquete(asignacionTiquete);
       if (controlAsignacion) {
-        int opcion = JOptionPane.showConfirmDialog(rootPane, "Se han asignado los viaticos de manera correcta\n"
-                + "¿Desea generar el imprimible de los mismos?", "Asignación creada", 1);
+        int opcion = JOptionPane.showConfirmDialog(rootPane, "Se han asignado los Tiquetes de manera correcta\n"
+                + "¿Desea generar el imprimible de los mismos?", "Asignación creada", 0, 1);
         if (opcion == 0) {
           //Codigo para generar archivo y muestra notificacion
         } else {
           limpiarDatos();
         }
       } else {
-        JOptionPane.showMessageDialog(rootPane, "No se puede crear la asignación de viaticos", "Creación fallida", 0);
+        JOptionPane.showMessageDialog(rootPane, "No se puede crear la asignación de Tiquetes", "Creación fallida", 0);
       }
     } catch (Exception e) {
       System.out.println(e.getMessage());

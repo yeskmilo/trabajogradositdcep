@@ -6,6 +6,7 @@
  */
 package Controlador.Profesoral;
 
+import Estructural.Asignacion_tiquete;
 import Estructural.Asignacion_viaticos;
 import Modelo.IServicioProfesoral;
 import java.rmi.RemoteException;
@@ -34,5 +35,15 @@ public class ControlAsignaciones {
    */
   public boolean AgregarAsignacionViaticos(Asignacion_viaticos asignacionViaticos) throws RemoteException {
     return servicioProfesoral.AgregarAsignacionViaticos(asignacionViaticos);
+  }
+
+  /**
+   * Adición de una nueva asignación de Tiquetes
+   * @param asignacionTiquete
+   * @return
+   * @throws RemoteException 
+   */
+  public boolean AgregarAsignacionTiquete(Asignacion_tiquete asignacionTiquete) throws RemoteException {
+    return servicioProfesoral.AgregarAsignacionTiquete(asignacionTiquete);
   }
 }

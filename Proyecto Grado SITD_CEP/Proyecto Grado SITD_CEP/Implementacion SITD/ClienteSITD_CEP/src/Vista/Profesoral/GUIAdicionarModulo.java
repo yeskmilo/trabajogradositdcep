@@ -144,7 +144,7 @@ public class GUIAdicionarModulo extends javax.swing.JFrame {
     txtCedula.setFont(new java.awt.Font("Calibri", 2, 13));
     txtCedula.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
-    btnBuscarConferencista.setFont(new java.awt.Font("Calibri", 3, 13)); // NOI18N
+    btnBuscarConferencista.setFont(new java.awt.Font("Calibri", 3, 13));
     btnBuscarConferencista.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/buscarConvenio.png"))); // NOI18N
     btnBuscarConferencista.setText("Buscar");
     btnBuscarConferencista.addActionListener(new java.awt.event.ActionListener() {
@@ -347,7 +347,7 @@ public class GUIAdicionarModulo extends javax.swing.JFrame {
       }
     });
 
-    btnActualizarConferencista.setFont(new java.awt.Font("Calibri", 3, 13)); // NOI18N
+    btnActualizarConferencista.setFont(new java.awt.Font("Calibri", 3, 13));
     btnActualizarConferencista.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/addConferencista.png"))); // NOI18N
     btnActualizarConferencista.setText("Agregar Modulo");
     btnActualizarConferencista.addActionListener(new java.awt.event.ActionListener() {
@@ -356,7 +356,7 @@ public class GUIAdicionarModulo extends javax.swing.JFrame {
       }
     });
 
-    btnAsignarViaticos.setFont(new java.awt.Font("Calibri", 3, 13)); // NOI18N
+    btnAsignarViaticos.setFont(new java.awt.Font("Calibri", 3, 13));
     btnAsignarViaticos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/addViatico.png"))); // NOI18N
     btnAsignarViaticos.setText("Asignar Viaticos");
     btnAsignarViaticos.addActionListener(new java.awt.event.ActionListener() {
@@ -368,6 +368,11 @@ public class GUIAdicionarModulo extends javax.swing.JFrame {
     btnAsignarTiquetes.setFont(new java.awt.Font("Calibri", 3, 13)); // NOI18N
     btnAsignarTiquetes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/addTicket.png"))); // NOI18N
     btnAsignarTiquetes.setText("Asignar Tiquetes");
+    btnAsignarTiquetes.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnAsignarTiquetesActionPerformed(evt);
+      }
+    });
 
     btnAsignarHonorarios.setFont(new java.awt.Font("Calibri", 3, 13));
     btnAsignarHonorarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/addHonorarios.png"))); // NOI18N
@@ -625,6 +630,16 @@ private void btnAsignarViaticosActionPerformed(java.awt.event.ActionEvent evt) {
     System.out.println(e.getMessage());
   }
 }//GEN-LAST:event_btnAsignarViaticosActionPerformed
+
+private void btnAsignarTiquetesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsignarTiquetesActionPerformed
+// TODO add your handling code here:
+  try {
+    GUIAsignarTiquetes guiAsignarTiquetes = new GUIAsignarTiquetes(servicioProfesoral, conferencista, moduloGeneral, null);
+    guiAsignarTiquetes.show();
+  } catch (Exception e) {
+    System.out.println(e.getMessage());
+  }
+}//GEN-LAST:event_btnAsignarTiquetesActionPerformed
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.JMenuBar barraMenu;
   private javax.swing.JButton btnActualizarConferencista;
