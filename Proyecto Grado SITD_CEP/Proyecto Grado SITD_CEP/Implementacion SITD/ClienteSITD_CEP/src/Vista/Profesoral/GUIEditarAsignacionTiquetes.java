@@ -16,7 +16,7 @@ import Controlador.Profesoral.ControlAsignaciones;
 import Controlador.Profesoral.ControlConferencista;
 import Controlador.Profesoral.ControlModulo;
 import Controlador.Profesoral.ControlPrograma;
-import Estructural.Asignacion_viaticos;
+import Estructural.Asignacion_tiquete;
 import Estructural.Conferencista;
 import Estructural.Modulo;
 import Estructural.Programa;
@@ -33,7 +33,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Kmilo
  */
-public class GUIEditarAsignacionViaticos extends javax.swing.JFrame {
+public class GUIEditarAsignacionTiquetes extends javax.swing.JFrame {
 
   private IServicioProfesoral servicioProfesoral;
   private ControlModulo controlModulo;
@@ -45,11 +45,11 @@ public class GUIEditarAsignacionViaticos extends javax.swing.JFrame {
   public Modulo modulo;
   private DateFormat formatoFecha = new SimpleDateFormat("dd/MM/yy");
   private ArrayList<Modulo> modulos = null;
-  private ArrayList<Asignacion_viaticos> asignaciones = null;
-  private Asignacion_viaticos asignacion = null;
+  private ArrayList<Asignacion_tiquete> asignaciones = null;
+  private Asignacion_tiquete asignacion = null;
 
   /** Creates new form GUIEditarAsignacionViaticos */
-  public GUIEditarAsignacionViaticos(IServicioProfesoral servicioProfesoral) throws RemoteException {
+  public GUIEditarAsignacionTiquetes(IServicioProfesoral servicioProfesoral) throws RemoteException {
     initComponents();
     this.setLocationRelativeTo(null);
     this.servicioProfesoral = servicioProfesoral;
@@ -72,11 +72,19 @@ public class GUIEditarAsignacionViaticos extends javax.swing.JFrame {
     lblTitulo = new javax.swing.JLabel();
     lblIcono = new javax.swing.JLabel();
     panelDatosAsignacion = new javax.swing.JPanel();
-    lblFechaPago = new javax.swing.JLabel();
-    comboFechaPago = new datechooser.beans.DateChooserCombo();
-    lblMonto = new javax.swing.JLabel();
-    txtMonto = new javax.swing.JTextField();
-    btnAsignar = new javax.swing.JButton();
+    lblFechaSolicitud = new javax.swing.JLabel();
+    comboFechaSolicitud = new datechooser.beans.DateChooserCombo();
+    lblFechaSalida = new javax.swing.JLabel();
+    comboFechaSalida = new datechooser.beans.DateChooserCombo();
+    lblFechaRegreso = new javax.swing.JLabel();
+    comboFechaRegreso = new datechooser.beans.DateChooserCombo();
+    lblCiudadOrigen = new javax.swing.JLabel();
+    txtCiudadOrigen = new javax.swing.JTextField();
+    lblCiudadDestino = new javax.swing.JLabel();
+    txtCiudadDestino = new javax.swing.JTextField();
+    txtAerolinea = new javax.swing.JTextField();
+    lblAerolinea = new javax.swing.JLabel();
+    btnEditarAsignacion = new javax.swing.JButton();
     PanelListadoAsignacion = new javax.swing.JPanel();
     scrollListadoAsignacion = new javax.swing.JScrollPane();
     tableAsignaciones = new javax.swing.JTable();
@@ -97,27 +105,43 @@ public class GUIEditarAsignacionViaticos extends javax.swing.JFrame {
     panelAsignarViaticos.setBackground(new java.awt.Color(255, 255, 255));
 
     lblTitulo.setFont(new java.awt.Font("Calibri", 3, 24)); // NOI18N
-    lblTitulo.setText("Edición de Asignación de Viaticos");
+    lblTitulo.setText("Edición de Asignación de Tiquetes");
 
-    lblIcono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/addViaticosGrande .png"))); // NOI18N
+    lblIcono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/addTicketGrande.png"))); // NOI18N
 
     panelDatosAsignacion.setBackground(new java.awt.Color(255, 255, 255));
     panelDatosAsignacion.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos Asignación", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Calibri", 2, 13))); // NOI18N
 
-    lblFechaPago.setFont(new java.awt.Font("Calibri", 2, 13));
-    lblFechaPago.setText("Fecha de Pago");
+    lblFechaSolicitud.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
+    lblFechaSolicitud.setText("Fecha de Solicitud");
 
-    lblMonto.setFont(new java.awt.Font("Calibri", 2, 13));
-    lblMonto.setText("Monto de los Viaticos");
+    lblFechaSalida.setFont(new java.awt.Font("Calibri", 2, 13));
+    lblFechaSalida.setText("Fecha de Salida");
 
-    txtMonto.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
+    lblFechaRegreso.setFont(new java.awt.Font("Calibri", 2, 13));
+    lblFechaRegreso.setText("Fecha de Regreso");
 
-    btnAsignar.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
-    btnAsignar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/addViatico.png"))); // NOI18N
-    btnAsignar.setText("Editar Asignación");
-    btnAsignar.addActionListener(new java.awt.event.ActionListener() {
+    lblCiudadOrigen.setFont(new java.awt.Font("Calibri", 2, 13));
+    lblCiudadOrigen.setText("Ciudad de Origen");
+
+    txtCiudadOrigen.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
+
+    lblCiudadDestino.setFont(new java.awt.Font("Calibri", 2, 13));
+    lblCiudadDestino.setText("Ciudad de Destino");
+
+    txtCiudadDestino.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
+
+    txtAerolinea.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
+
+    lblAerolinea.setFont(new java.awt.Font("Calibri", 2, 13));
+    lblAerolinea.setText("Aerolinea");
+
+    btnEditarAsignacion.setFont(new java.awt.Font("Calibri", 3, 13)); // NOI18N
+    btnEditarAsignacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/addTicket.png"))); // NOI18N
+    btnEditarAsignacion.setText("Editar Asignacion");
+    btnEditarAsignacion.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(java.awt.event.ActionEvent evt) {
-        btnAsignarActionPerformed(evt);
+        btnEditarAsignacionActionPerformed(evt);
       }
     });
 
@@ -127,42 +151,79 @@ public class GUIEditarAsignacionViaticos extends javax.swing.JFrame {
       panelDatosAsignacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(panelDatosAsignacionLayout.createSequentialGroup()
         .addContainerGap()
-        .addComponent(lblFechaPago)
-        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-        .addComponent(comboFechaPago, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addGap(40, 40, 40)
-        .addComponent(lblMonto)
-        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-        .addComponent(txtMonto, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
-        .addComponent(btnAsignar)
+        .addGroup(panelDatosAsignacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+          .addGroup(panelDatosAsignacionLayout.createSequentialGroup()
+            .addGroup(panelDatosAsignacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+              .addGroup(panelDatosAsignacionLayout.createSequentialGroup()
+                .addComponent(lblFechaSolicitud)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(comboFechaSolicitud, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+              .addGroup(panelDatosAsignacionLayout.createSequentialGroup()
+                .addComponent(lblCiudadOrigen)
+                .addGap(10, 10, 10)
+                .addComponent(txtCiudadOrigen)))
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+            .addGroup(panelDatosAsignacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+              .addComponent(lblCiudadDestino)
+              .addComponent(lblFechaSalida))
+            .addGap(10, 10, 10)
+            .addGroup(panelDatosAsignacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+              .addComponent(txtCiudadDestino)
+              .addComponent(comboFechaSalida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGap(12, 12, 12)
+            .addGroup(panelDatosAsignacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+              .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelDatosAsignacionLayout.createSequentialGroup()
+                .addComponent(lblAerolinea)
+                .addGap(10, 10, 10)
+                .addComponent(txtAerolinea, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
+              .addGroup(panelDatosAsignacionLayout.createSequentialGroup()
+                .addComponent(lblFechaRegreso)
+                .addGap(10, 10, 10)
+                .addComponent(comboFechaRegreso, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE))))
+          .addComponent(btnEditarAsignacion, javax.swing.GroupLayout.Alignment.TRAILING))
         .addContainerGap())
     );
     panelDatosAsignacionLayout.setVerticalGroup(
       panelDatosAsignacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(panelDatosAsignacionLayout.createSequentialGroup()
+        .addContainerGap()
         .addGroup(panelDatosAsignacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-          .addGroup(panelDatosAsignacionLayout.createSequentialGroup()
-            .addContainerGap()
-            .addGroup(panelDatosAsignacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-              .addComponent(comboFechaPago, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-              .addComponent(lblFechaPago)))
-          .addGroup(panelDatosAsignacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-            .addComponent(lblMonto)
-            .addComponent(txtMonto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(btnAsignar)))
-        .addContainerGap(14, Short.MAX_VALUE))
+          .addComponent(lblFechaSolicitud)
+          .addGroup(panelDatosAsignacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(panelDatosAsignacionLayout.createSequentialGroup()
+              .addGroup(panelDatosAsignacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addComponent(lblFechaSalida)
+                .addComponent(comboFechaSalida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+              .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+              .addGroup(panelDatosAsignacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(txtCiudadDestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblCiudadDestino)))
+            .addGroup(panelDatosAsignacionLayout.createSequentialGroup()
+              .addGroup(panelDatosAsignacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(comboFechaSolicitud, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(panelDatosAsignacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                  .addComponent(lblFechaRegreso)
+                  .addComponent(comboFechaRegreso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+              .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+              .addGroup(panelDatosAsignacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(txtCiudadOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblCiudadOrigen)
+                .addComponent(txtAerolinea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblAerolinea)))))
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addComponent(btnEditarAsignacion)
+        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
     );
 
     PanelListadoAsignacion.setBackground(new java.awt.Color(255, 255, 255));
-    PanelListadoAsignacion.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Asignaciones de viaticos vinculadas al Modulo", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Calibri", 2, 13))); // NOI18N
+    PanelListadoAsignacion.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Asignaciones de tiquetes vinculadas al Modulo", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Calibri", 2, 13))); // NOI18N
 
     tableAsignaciones.setModel(new javax.swing.table.DefaultTableModel(
       new Object [][] {
 
       },
       new String [] {
-        "Fecha de Pago", "Monto de la Asignación"
+        "Fecha Solicitud", "Fecha Salida", "Fecha de Regreso", "Origen", "Destino", "Aerolinea"
       }
     ));
     tableAsignaciones.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -178,14 +239,14 @@ public class GUIEditarAsignacionViaticos extends javax.swing.JFrame {
       PanelListadoAsignacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(PanelListadoAsignacionLayout.createSequentialGroup()
         .addContainerGap()
-        .addComponent(scrollListadoAsignacion, javax.swing.GroupLayout.DEFAULT_SIZE, 744, Short.MAX_VALUE)
+        .addComponent(scrollListadoAsignacion, javax.swing.GroupLayout.DEFAULT_SIZE, 764, Short.MAX_VALUE)
         .addContainerGap())
     );
     PanelListadoAsignacionLayout.setVerticalGroup(
       PanelListadoAsignacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelListadoAsignacionLayout.createSequentialGroup()
         .addContainerGap()
-        .addComponent(scrollListadoAsignacion, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE)
+        .addComponent(scrollListadoAsignacion, javax.swing.GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE)
         .addContainerGap())
     );
 
@@ -195,7 +256,7 @@ public class GUIEditarAsignacionViaticos extends javax.swing.JFrame {
     lblCohorte.setFont(new java.awt.Font("Calibri", 2, 13));
     lblCohorte.setText("Cohorte del Programa");
 
-    txtCohorte.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
+    txtCohorte.setFont(new java.awt.Font("Calibri", 2, 13));
     txtCohorte.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
     btnBuscarPrograma.setFont(new java.awt.Font("Calibri", 3, 13));
@@ -218,7 +279,7 @@ public class GUIEditarAsignacionViaticos extends javax.swing.JFrame {
         .addComponent(txtCohorte, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addGap(18, 18, 18)
         .addComponent(btnBuscarPrograma)
-        .addContainerGap(228, Short.MAX_VALUE))
+        .addContainerGap(248, Short.MAX_VALUE))
     );
     panelDatosBusquedaProgramaLayout.setVerticalGroup(
       panelDatosBusquedaProgramaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -255,7 +316,7 @@ public class GUIEditarAsignacionViaticos extends javax.swing.JFrame {
       panelResultadosBusquedaModuloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(panelResultadosBusquedaModuloLayout.createSequentialGroup()
         .addContainerGap()
-        .addComponent(scrollResultados, javax.swing.GroupLayout.DEFAULT_SIZE, 744, Short.MAX_VALUE)
+        .addComponent(scrollResultados, javax.swing.GroupLayout.DEFAULT_SIZE, 764, Short.MAX_VALUE)
         .addContainerGap())
     );
     panelResultadosBusquedaModuloLayout.setVerticalGroup(
@@ -274,16 +335,17 @@ public class GUIEditarAsignacionViaticos extends javax.swing.JFrame {
         .addContainerGap()
         .addGroup(panelAsignarViaticosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
           .addGroup(panelAsignarViaticosLayout.createSequentialGroup()
+            .addComponent(panelDatosAsignacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addContainerGap())
+          .addGroup(panelAsignarViaticosLayout.createSequentialGroup()
             .addComponent(lblTitulo)
             .addGap(18, 18, 18)
             .addComponent(lblIcono))
-          .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelAsignarViaticosLayout.createSequentialGroup()
-            .addGroup(panelAsignarViaticosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-              .addComponent(PanelListadoAsignacion, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-              .addComponent(panelDatosAsignacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addContainerGap())
           .addGroup(panelAsignarViaticosLayout.createSequentialGroup()
             .addComponent(panelDatosBusquedaPrograma, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addContainerGap())
+          .addGroup(panelAsignarViaticosLayout.createSequentialGroup()
+            .addComponent(PanelListadoAsignacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addContainerGap())))
       .addGroup(panelAsignarViaticosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(panelAsignarViaticosLayout.createSequentialGroup()
@@ -303,7 +365,7 @@ public class GUIEditarAsignacionViaticos extends javax.swing.JFrame {
             .addComponent(lblIcono)))
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
         .addComponent(panelDatosBusquedaPrograma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 232, Short.MAX_VALUE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 225, Short.MAX_VALUE)
         .addComponent(PanelListadoAsignacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
         .addComponent(panelDatosAsignacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -312,7 +374,7 @@ public class GUIEditarAsignacionViaticos extends javax.swing.JFrame {
         .addGroup(panelAsignarViaticosLayout.createSequentialGroup()
           .addGap(162, 162, 162)
           .addComponent(panelResultadosBusquedaModulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-          .addContainerGap(243, Short.MAX_VALUE)))
+          .addContainerGap(302, Short.MAX_VALUE)))
     );
 
     menuArchivo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/menuArchivo.png"))); // NOI18N
@@ -340,45 +402,6 @@ public class GUIEditarAsignacionViaticos extends javax.swing.JFrame {
 
     pack();
   }// </editor-fold>//GEN-END:initComponents
-
-private void btnAsignarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsignarActionPerformed
-// TODO add your handling code here:
-  boolean controlDatos = true;
-  double monto = 0;
-  Date fechaPago = null;
-  if (modulo == null || asignacion == null) {
-    JOptionPane.showMessageDialog(rootPane, "Debe buscar modulos por programa, y realizar\nla seleccion del modulo y de la asignación", "Seleccion modulo y asignación", 2);
-    controlDatos = false;
-  }
-  if (txtMonto.getText().trim().equals("")) {
-    JOptionPane.showMessageDialog(rootPane, "Debe Digitar un valor para el Monto que solo contenga\n"
-            + "digitos entre 0 y 9, sin signos ni espacios Ej: 2000", "Error valor Monto Viaticos", 0);
-    controlDatos = false;
-  } else {
-    try {
-      monto = Double.parseDouble(txtMonto.getText().trim());
-    } catch (Exception e) {
-      JOptionPane.showMessageDialog(rootPane, "Debe Digitar un valor para el Monto que solo contenga\n"
-              + "digitos entre 0 y 9, sin signos ni espacios Ej: 2000", "Error valor Monto Viaticos", 0);
-      controlDatos = false;
-      System.out.println(e.getMessage());
-    }
-  }
-  if (controlDatos) {
-    try {
-      fechaPago = formatoFecha.parse(comboFechaPago.getText());
-      Asignacion_viaticos asignacionViaticos = new Asignacion_viaticos(asignacion.getId_viaticos(), fechaPago, monto, asignacion.getid_modulo());
-      boolean controlAsignacion = controlAsignaciones.EditarAsignacionViatico(asignacionViaticos);
-      if (controlAsignacion) {
-        int opcion = JOptionPane.showConfirmDialog(rootPane, "Se ha reaizado la actualizacion de \nlos datos de la Asignación");
-      } else {
-        JOptionPane.showMessageDialog(rootPane, "No se puede editar la asignación de viaticos", "Creación fallida", 0);
-      }
-    } catch (Exception e) {
-      System.out.println(e.getMessage());
-    }
-  }
-}//GEN-LAST:event_btnAsignarActionPerformed
 
 private void btnBuscarProgramaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarProgramaActionPerformed
 // TODO add your handling code here:
@@ -408,7 +431,7 @@ private void tablaResultadosBusquedaMouseClicked(java.awt.event.MouseEvent evt) 
     modulo = modulos.get(fila);
     try {
       limpiarAsignaciones();
-      asignaciones = controlAsignaciones.BuscarAsignacionViaticos(modulo.getId_modulo());
+      asignaciones = controlAsignaciones.BuscarAsignacionTiquetes(modulo.getId_modulo());
       cargarAsignaciones();
     } catch (Exception e) {
       System.out.println(e.getMessage());
@@ -424,16 +447,71 @@ private void tableAsignacionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN
     cargarAsignacion();
   }
 }//GEN-LAST:event_tableAsignacionesMouseClicked
+
+private void btnEditarAsignacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarAsignacionActionPerformed
+// TODO add your handling code here:
+  boolean controlDatos = true;
+  Date fechaSolicitud = null;
+  Date fechaSalida = null;
+  Date fechaRegreso = null;
+  String ciudadOrigen = "";
+  String ciudadDestino = "";
+  String aerolinea = "";
+  if (modulo == null || asignacion == null) {
+    JOptionPane.showMessageDialog(rootPane, "Debe buscar un modulo y seleccionar uno\npara poder actualizar alguna asignación", "Error", 2);
+    controlDatos = false;
+  }
+  if (txtCiudadOrigen.getText().trim().equals("")) {
+    JOptionPane.showMessageDialog(rootPane, "Debe Ingresar una Ciudad de Origen para la generación de Tiquetes", "Ciudad de Origen", 0);
+    controlDatos = false;
+  } else {
+    ciudadOrigen = txtCiudadOrigen.getText().trim();
+  }
+  if (txtCiudadDestino.getText().trim().equals("")) {
+    JOptionPane.showMessageDialog(rootPane, "Debe Ingresar una Ciudad de Destino para la generación de Tiquetes", "Ciudad de Destino", 0);
+    controlDatos = false;
+  } else {
+    ciudadDestino = txtCiudadDestino.getText().trim();
+  }
+  if (txtAerolinea.getText().trim().equals("")) {
+    JOptionPane.showMessageDialog(rootPane, "Debe Ingresar una Aerolinea para la generación de Tiquetes", "Aerolinea", 0);
+    controlDatos = false;
+  } else {
+    aerolinea = txtAerolinea.getText().trim();
+  }
+  if (controlDatos) {
+    try {
+      fechaSolicitud = formatoFecha.parse(comboFechaSolicitud.getText());
+      fechaSalida = formatoFecha.parse(comboFechaSalida.getText());
+      fechaRegreso = formatoFecha.parse(comboFechaRegreso.getText());
+      Asignacion_tiquete asignacionTiquete = new Asignacion_tiquete(asignacion.getId_tiquete(), fechaSolicitud, fechaSalida, fechaRegreso, ciudadOrigen, ciudadDestino, aerolinea, asignacion.getid_modulo());
+      boolean controlAsignacion = controlAsignaciones.EditarAsignacionTiquete(asignacionTiquete);
+      if (controlAsignacion) {
+        JOptionPane.showMessageDialog(rootPane, "Se ha editado la asignación de Tiquetes", "Edicion Exitosa", 1);
+      } else {
+        JOptionPane.showMessageDialog(rootPane, "No se puede editar la asignación de Tiquetes", "Edición fallida", 0);
+      }
+    } catch (Exception e) {
+      System.out.println(e.getMessage());
+    }
+  }
+}//GEN-LAST:event_btnEditarAsignacionActionPerformed
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.JPanel PanelListadoAsignacion;
   private javax.swing.JMenuBar barraMenu;
-  private javax.swing.JButton btnAsignar;
   private javax.swing.JButton btnBuscarPrograma;
-  private datechooser.beans.DateChooserCombo comboFechaPago;
+  private javax.swing.JButton btnEditarAsignacion;
+  private datechooser.beans.DateChooserCombo comboFechaRegreso;
+  private datechooser.beans.DateChooserCombo comboFechaSalida;
+  private datechooser.beans.DateChooserCombo comboFechaSolicitud;
+  private javax.swing.JLabel lblAerolinea;
+  private javax.swing.JLabel lblCiudadDestino;
+  private javax.swing.JLabel lblCiudadOrigen;
   private javax.swing.JLabel lblCohorte;
-  private javax.swing.JLabel lblFechaPago;
+  private javax.swing.JLabel lblFechaRegreso;
+  private javax.swing.JLabel lblFechaSalida;
+  private javax.swing.JLabel lblFechaSolicitud;
   private javax.swing.JLabel lblIcono;
-  private javax.swing.JLabel lblMonto;
   private javax.swing.JLabel lblTitulo;
   private javax.swing.JMenu menuArchivo;
   private javax.swing.JMenu menuAyuda;
@@ -445,8 +523,10 @@ private void tableAsignacionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN
   private javax.swing.JScrollPane scrollResultados;
   private javax.swing.JTable tablaResultadosBusqueda;
   private javax.swing.JTable tableAsignaciones;
+  private javax.swing.JTextField txtAerolinea;
+  private javax.swing.JTextField txtCiudadDestino;
+  private javax.swing.JTextField txtCiudadOrigen;
   private javax.swing.JTextField txtCohorte;
-  private javax.swing.JTextField txtMonto;
   // End of variables declaration//GEN-END:variables
 
   private void cargarModulos(ArrayList<Modulo> modulos) {
@@ -487,11 +567,15 @@ private void tableAsignacionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN
     for (int i = 0; i < asignaciones.size(); i++) {
       if (tableAsignaciones.getRowCount() == fila) {
         DefaultTableModel tablaTemp = (DefaultTableModel) tableAsignaciones.getModel();
-        Object nuevo[] = {null, null};
+        Object nuevo[] = {null, null, null, null, null, null};
         tablaTemp.addRow(nuevo);
       }
-      tableAsignaciones.setValueAt(asignaciones.get(i).getFecha_pago(), i, 0);
-      tableAsignaciones.setValueAt(asignaciones.get(i).getMonto_viaticos(), i, 1);
+      tableAsignaciones.setValueAt(asignaciones.get(i).getFecha_solicitud(), i, 0);
+      tableAsignaciones.setValueAt(asignaciones.get(i).getFecha_salida(), i, 1);
+      tableAsignaciones.setValueAt(asignaciones.get(i).getFecha_regreso(), i, 2);
+      tableAsignaciones.setValueAt(asignaciones.get(i).getCiudad_origen(), i, 3);
+      tableAsignaciones.setValueAt(asignaciones.get(i).getCiudad_destino(), i, 4);
+      tableAsignaciones.setValueAt(asignaciones.get(i).getAerolinea(), i, 5);
       fila++;
     }
     if (tableAsignaciones.getRowCount() > fila) {
@@ -501,15 +585,22 @@ private void tableAsignacionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN
   }
 
   private void limpiarAsignaciones() {
-    txtMonto.setText("");
     for (int i = 0; i < tableAsignaciones.getRowCount(); i++) {
       tableAsignaciones.setValueAt("", i, 0);
       tableAsignaciones.setValueAt("", i, 1);
+      tableAsignaciones.setValueAt("", i, 2);
+      tableAsignaciones.setValueAt("", i, 3);
+      tableAsignaciones.setValueAt("", i, 4);
+      tableAsignaciones.setValueAt("", i, 5);
     }
   }
 
   private void cargarAsignacion() {
-    comboFechaPago.setText(formatoFecha.format(asignacion.getFecha_pago()));
-    txtMonto.setText(String.valueOf(asignacion.getMonto_viaticos()));
+    comboFechaSolicitud.setText(formatoFecha.format(asignacion.getFecha_solicitud()));
+    comboFechaSalida.setText(formatoFecha.format(asignacion.getFecha_salida()));
+    comboFechaRegreso.setText(formatoFecha.format(asignacion.getFecha_regreso()));
+    txtCiudadOrigen.setText(asignacion.getCiudad_origen());
+    txtCiudadDestino.setText(asignacion.getCiudad_destino());
+    txtAerolinea.setText(asignacion.getAerolinea());
   }
 }

@@ -83,6 +83,8 @@ public class GUIMenuSuperAdmin extends javax.swing.JFrame {
     itemAsignarTiquetes = new javax.swing.JMenuItem();
     itemAsignarHonorarios = new javax.swing.JMenuItem();
     itemBuscarModulo = new javax.swing.JMenuItem();
+    menuEditarAsignacion = new javax.swing.JMenu();
+    itemEditAsignaViaticos = new javax.swing.JMenuItem();
     subMenuConferencista = new javax.swing.JMenu();
     itemNuevoConferencista = new javax.swing.JMenuItem();
     itemEditarConferencista = new javax.swing.JMenuItem();
@@ -265,7 +267,7 @@ public class GUIMenuSuperAdmin extends javax.swing.JFrame {
     });
     subMenuModulo.add(itemAsignarTiquetes);
 
-    itemAsignarHonorarios.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
+    itemAsignarHonorarios.setFont(new java.awt.Font("Calibri", 2, 13));
     itemAsignarHonorarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/addHonorarios.png"))); // NOI18N
     itemAsignarHonorarios.setText("Asignar Honorarios");
     itemAsignarHonorarios.addActionListener(new java.awt.event.ActionListener() {
@@ -284,6 +286,22 @@ public class GUIMenuSuperAdmin extends javax.swing.JFrame {
       }
     });
     subMenuModulo.add(itemBuscarModulo);
+
+    menuEditarAsignacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/editarEntidad.png"))); // NOI18N
+    menuEditarAsignacion.setText("Editar Asignaciones");
+    menuEditarAsignacion.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
+
+    itemEditAsignaViaticos.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
+    itemEditAsignaViaticos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/editar.png"))); // NOI18N
+    itemEditAsignaViaticos.setText("Editar Asignación de Viaticos");
+    itemEditAsignaViaticos.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        itemEditAsignaViaticosActionPerformed(evt);
+      }
+    });
+    menuEditarAsignacion.add(itemEditAsignaViaticos);
+
+    subMenuModulo.add(menuEditarAsignacion);
 
     menuProfesoral.add(subMenuModulo);
 
@@ -498,6 +516,16 @@ private void itemAsignarHonorariosActionPerformed(java.awt.event.ActionEvent evt
     System.out.println(e.getMessage());
   }
 }//GEN-LAST:event_itemAsignarHonorariosActionPerformed
+
+private void itemEditAsignaViaticosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemEditAsignaViaticosActionPerformed
+// TODO add your handling code here:
+  try {
+    GUIEditarAsignacionViaticos guiEditarAsignacionViaticos = new GUIEditarAsignacionViaticos(servicioProfesoral);
+    guiEditarAsignacionViaticos.show();
+  } catch (Exception e) {
+    System.out.println(e.getMessage());
+  }
+}//GEN-LAST:event_itemEditAsignaViaticosActionPerformed
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.JMenuItem itemAsignaViaticos;
   private javax.swing.JMenuItem itemAsignarHonorarios;
@@ -505,6 +533,7 @@ private void itemAsignarHonorariosActionPerformed(java.awt.event.ActionEvent evt
   private javax.swing.JMenuItem itemBuscarModulo;
   private javax.swing.JMenuItem itemConsultaConvNumero;
   private javax.swing.JMenu itemConsultaConvenio;
+  private javax.swing.JMenuItem itemEditAsignaViaticos;
   private javax.swing.JMenuItem itemEditarConferencista;
   private javax.swing.JMenuItem itemEditarEntidad;
   private javax.swing.JMenuItem itemEditarPrograma;
@@ -522,6 +551,7 @@ private void itemAsignarHonorariosActionPerformed(java.awt.event.ActionEvent evt
   private javax.swing.JMenu menuArchivo;
   private javax.swing.JMenu menuAyuda;
   private javax.swing.JMenu menuConvenios;
+  private javax.swing.JMenu menuEditarAsignacion;
   private javax.swing.JMenu menuEscalafon;
   private javax.swing.JMenu menuProfesoral;
   private javax.swing.JMenu subMenuConferencista;

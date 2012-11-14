@@ -11,6 +11,7 @@ import Estructural.Asignacion_tiquete;
 import Estructural.Asignacion_viaticos;
 import Modelo.IServicioProfesoral;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 /**
  *
@@ -56,5 +57,45 @@ public class ControlAsignaciones {
    */
   public boolean AgregarAsignacionHonorarios(Asignacion_honorarios asignacionHonorarios) throws RemoteException {
     return servicioProfesoral.AgregarAsignacionHonorarios(asignacionHonorarios);
+  }
+
+  /**
+   * Busqueda de asignaciones de viaticos, una vez recibido como parametro el id del modulo
+   * @param id_modulo
+   * @return
+   * @throws RemoteException 
+   */
+  public ArrayList<Asignacion_viaticos> BuscarAsignacionViaticos(int id_modulo) throws RemoteException {
+    return servicioProfesoral.BuscarAsignacionViaticos(id_modulo);
+  }
+
+  /**
+   * Edicion de una asignacion de viaticos
+   * @param asignacion
+   * @return
+   * @throws RemoteException 
+   */
+  public boolean EditarAsignacionViatico(Asignacion_viaticos asignacion) throws RemoteException {
+    return servicioProfesoral.EditarAsignacionViatico(asignacion);
+  }
+
+  /**
+   * Busqueda de Asignaciones de tiquetes, basado en el id del modulo
+   * @param id_modulo
+   * @return
+   * @throws RemoteException 
+   */
+  public ArrayList<Asignacion_tiquete> BuscarAsignacionTiquetes(int id_modulo) throws RemoteException {
+    return servicioProfesoral.BuscarAsignacionTiquetes(id_modulo);
+  }
+
+  /**
+   * Edicion de una asignacion de tiquetes
+   * @param asignacion
+   * @return
+   * @throws RemoteException 
+   */
+  public boolean EditarAsignacionTiquete(Asignacion_tiquete asignacion) throws RemoteException {
+    return servicioProfesoral.EditarAsignacionTiquete(asignacion);
   }
 }
