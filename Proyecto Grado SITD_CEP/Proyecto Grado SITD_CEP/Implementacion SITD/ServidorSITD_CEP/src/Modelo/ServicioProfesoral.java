@@ -420,4 +420,40 @@ public class ServicioProfesoral extends UnicastRemoteObject implements IServicio
     }
     return controlActualizacion;
   }
+
+  @Override
+  public ArrayList<Asignacion_honorarios> BuscarAsignacionHonorario(int id_modulo) throws RemoteException {
+    ArrayList<Asignacion_honorarios> asignaciones = new ArrayList<Asignacion_honorarios>();
+    Asignacion_honorarios asignacion = null;
+    ResultSet resultadoConsulta = null;
+    String cadenaBD = "SELECT * FROM asignacion_honorarios WHERE id_modulo=" + id_modulo;
+    try {
+      conexion.conectar();
+      resultadoConsulta = conexion.executeQueryStatement(cadenaBD);
+      while (resultadoConsulta.next()) {
+        asignacion = new Asignacion_honorarios(resultadoConsulta.getInt(1), resultadoConsulta.getDate(2),
+                resultadoConsulta.getDouble(3), resultadoConsulta.getInt(4));
+        asignaciones.add(asignacion);
+      }
+      conexion.closeConecction();
+    } catch (Exception e) {
+      System.out.println(e.getMessage());
+    }
+    return asignaciones;
+  }
+
+  @Override
+  public boolean EditarAsignacionHonorario(Asignacion_honorarios asignacion) throws RemoteException {
+    boolean controlActualizacion = false;
+    String cadenaBD = "UPDATE asignacion_honorarios SET fecha_pago='" + formatoFecha.format(asignacion.getFecha_pago()) + "', "
+            + "monto_honorarios=" + asignacion.getMonto_honorarios() + " WHERE id_modulo = " + asignacion.getid_modulo();
+    try {
+      conexion.conectar();
+      controlActualizacion = conexion.executeUpdateStatement(cadenaBD);
+      conexion.closeConecction();
+    } catch (Exception e) {
+      System.out.println(e.getMessage());
+    }
+    return controlActualizacion;
+  }
 }
