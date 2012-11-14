@@ -85,6 +85,7 @@ public class GUIMenuSuperAdmin extends javax.swing.JFrame {
     itemBuscarModulo = new javax.swing.JMenuItem();
     menuEditarAsignacion = new javax.swing.JMenu();
     itemEditAsignaViaticos = new javax.swing.JMenuItem();
+    itemEditAsignaTiquete = new javax.swing.JMenuItem();
     subMenuConferencista = new javax.swing.JMenu();
     itemNuevoConferencista = new javax.swing.JMenuItem();
     itemEditarConferencista = new javax.swing.JMenuItem();
@@ -300,6 +301,16 @@ public class GUIMenuSuperAdmin extends javax.swing.JFrame {
       }
     });
     menuEditarAsignacion.add(itemEditAsignaViaticos);
+
+    itemEditAsignaTiquete.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
+    itemEditAsignaTiquete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/editarConferencista.png"))); // NOI18N
+    itemEditAsignaTiquete.setText("Editar Asignación de Tiquetes");
+    itemEditAsignaTiquete.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        itemEditAsignaTiqueteActionPerformed(evt);
+      }
+    });
+    menuEditarAsignacion.add(itemEditAsignaTiquete);
 
     subMenuModulo.add(menuEditarAsignacion);
 
@@ -526,6 +537,16 @@ private void itemEditAsignaViaticosActionPerformed(java.awt.event.ActionEvent ev
     System.out.println(e.getMessage());
   }
 }//GEN-LAST:event_itemEditAsignaViaticosActionPerformed
+
+private void itemEditAsignaTiqueteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemEditAsignaTiqueteActionPerformed
+// TODO add your handling code here:
+  try {
+    GUIEditarAsignacionTiquetes guiEditarAsignacionTiquetes = new GUIEditarAsignacionTiquetes(servicioProfesoral);
+    guiEditarAsignacionTiquetes.show();
+  } catch (Exception e) {
+    System.out.println(e.getMessage());
+  }
+}//GEN-LAST:event_itemEditAsignaTiqueteActionPerformed
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.JMenuItem itemAsignaViaticos;
   private javax.swing.JMenuItem itemAsignarHonorarios;
@@ -533,6 +554,7 @@ private void itemEditAsignaViaticosActionPerformed(java.awt.event.ActionEvent ev
   private javax.swing.JMenuItem itemBuscarModulo;
   private javax.swing.JMenuItem itemConsultaConvNumero;
   private javax.swing.JMenu itemConsultaConvenio;
+  private javax.swing.JMenuItem itemEditAsignaTiquete;
   private javax.swing.JMenuItem itemEditAsignaViaticos;
   private javax.swing.JMenuItem itemEditarConferencista;
   private javax.swing.JMenuItem itemEditarEntidad;
