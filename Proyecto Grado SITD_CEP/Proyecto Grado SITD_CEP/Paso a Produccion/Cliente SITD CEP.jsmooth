@@ -10,7 +10,7 @@
 <embeddedJar>true</embeddedJar>
 <executableName>Cliente SITD CEP.exe</executableName>
 <initialMemoryHeap>-1</initialMemoryHeap>
-<jarLocation>..\Implementacion SITD\ClienteSITD_CEP\dist\ClienteSITD_CEP.jar</jarLocation>
+<jarLocation>Implementacion SITD\ClienteSITD_CEP\dist\ClienteSITD_CEP.jar</jarLocation>
 <mainClassName>clientesitd_cep.ClienteSITD_CEP</mainClassName>
 <maximumMemoryHeap>-1</maximumMemoryHeap>
 <maximumVersion></maximumVersion>

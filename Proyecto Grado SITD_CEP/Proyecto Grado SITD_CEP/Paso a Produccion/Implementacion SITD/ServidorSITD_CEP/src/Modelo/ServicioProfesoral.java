@@ -30,23 +30,23 @@ import java.util.ArrayList;
  * @author kmilo
  */
 public class ServicioProfesoral extends UnicastRemoteObject implements IServicioProfesoral, ICambioVista {
-  
+
   private ConexionBD conexion;
   private DateFormat formatoFecha = new SimpleDateFormat("yyyy/MM/dd");
   private ArrayList<ICambioVista> listaVistas;
-  
+
   public ServicioProfesoral() throws RemoteException {
     conexion = new ConexionBD();
     listaVistas = new ArrayList<ICambioVista>();
   }
-  
+
   @Override
   public void CambioVista() throws RemoteException {
     for (int i = 0; i < listaVistas.size(); i++) {
       listaVistas.get(i).CambioVista();
     }
   }
-  
+
   @Override
   public void AgregarVista(ICambioVista vista) throws RemoteException {
     listaVistas.add(vista);
@@ -109,7 +109,7 @@ public class ServicioProfesoral extends UnicastRemoteObject implements IServicio
     conexion.closeConecction();
     return convenio;
   }
-  
+
   @Override
   public boolean AdicionPrograma(Programa programa) throws RemoteException {
     boolean controlAdicion = false;
@@ -127,7 +127,7 @@ public class ServicioProfesoral extends UnicastRemoteObject implements IServicio
     CambioVista();
     return controlAdicion;
   }
-  
+
   @Override
   public Programa ConsultarPrograma(String cohorte) throws RemoteException {
     Programa programa = null;
@@ -203,7 +203,7 @@ public class ServicioProfesoral extends UnicastRemoteObject implements IServicio
     }
     return conferencista;
   }
-  
+
   @Override
   public int AgregarModuloPrograma(Modulo modulo) throws RemoteException {
     boolean controlAdicion = false;
@@ -228,12 +228,12 @@ public class ServicioProfesoral extends UnicastRemoteObject implements IServicio
     }
     return id_modulo;
   }
-  
+
   @Override
   public boolean AgregarAsignacionViaticos(Asignacion_viaticos asignacionViaticos) throws RemoteException {
     boolean controlAdicion = false;
     String cadenaBD = "INSERT INTO asignacion_viaticos VALUES(" + asignacionViaticos.getId_viaticos() + ", "
-            + "'" + asignacionViaticos.getFecha_pago() + "', " + asignacionViaticos.getMonto_viaticos() + ", "
+            + "'" + formatoFecha.format(asignacionViaticos.getFecha_pago()) + "', " + asignacionViaticos.getMonto_viaticos() + ", "
             + "" + asignacionViaticos.getid_modulo() + ")";
     try {
       conexion.conectar();
@@ -244,7 +244,7 @@ public class ServicioProfesoral extends UnicastRemoteObject implements IServicio
     }
     return controlAdicion;
   }
-  
+
   @Override
   public ArrayList<Modulo> BuscarModuloPrograma(String cohorte) throws RemoteException {
     ArrayList<Modulo> modulos = new ArrayList<Modulo>();
@@ -266,7 +266,7 @@ public class ServicioProfesoral extends UnicastRemoteObject implements IServicio
     }
     return modulos;
   }
-  
+
   @Override
   public boolean EditarPrograma(Programa programa) throws RemoteException {
     boolean controlActualizacion = false;
@@ -284,13 +284,15 @@ public class ServicioProfesoral extends UnicastRemoteObject implements IServicio
     }
     return controlActualizacion;
   }
-  
+
   @Override
   public boolean AgregarAsignacionTiquete(Asignacion_tiquete asignacionTiquete) throws RemoteException {
     boolean controlAdicion = false;
     String cadenaBD = "INSERT INTO asignacion_tiquete VALUES(" + asignacionTiquete.getId_tiquete() + ","
-            + "'" + asignacionTiquete.getFecha_solicitud() + "', '" + asignacionTiquete.getFecha_salida() + "',"
-            + "'" + asignacionTiquete.getFecha_regreso() + "', '" + asignacionTiquete.getCiudad_origen() + "',"
+            + "'" + formatoFecha.format(asignacionTiquete.getFecha_solicitud()) + "', "
+            + "'" + formatoFecha.format(asignacionTiquete.getFecha_salida()) + "',"
+            + "'" + formatoFecha.format(asignacionTiquete.getFecha_regreso()) + "', "
+            + "'" + asignacionTiquete.getCiudad_origen() + "',"
             + "'" + asignacionTiquete.getCiudad_destino() + "', '" + asignacionTiquete.getAerolinea() + "',"
             + "" + asignacionTiquete.getid_modulo() + ")";
     try {
@@ -302,12 +304,13 @@ public class ServicioProfesoral extends UnicastRemoteObject implements IServicio
     }
     return controlAdicion;
   }
-  
+
   @Override
   public boolean AgregarAsignacionHonorarios(Asignacion_honorarios asignacionHonorarios) throws RemoteException {
     boolean controlAdicion = false;
     String cadenaBD = "INSERT INTO asignacion_honorarios VALUES(" + asignacionHonorarios.getId_honorarios() + ","
-            + "'" + asignacionHonorarios.getFecha_pago() + "', " + asignacionHonorarios.getMonto_honorarios() + ","
+            + "'" + formatoFecha.format(asignacionHonorarios.getFecha_pago()) + "', "
+            + "" + asignacionHonorarios.getMonto_honorarios() + ","
             + "" + asignacionHonorarios.getid_modulo() + ")";
     try {
       conexion.conectar();
@@ -318,7 +321,7 @@ public class ServicioProfesoral extends UnicastRemoteObject implements IServicio
     }
     return controlAdicion;
   }
-  
+
   @Override
   public ArrayList<Programa> BuscarProgramas() throws RemoteException {
     ArrayList<Programa> programas = new ArrayList<Programa>();
@@ -340,5 +343,117 @@ public class ServicioProfesoral extends UnicastRemoteObject implements IServicio
       System.out.println(e.getMessage());
     }
     return programas;
+  }
+
+  @Override
+  public ArrayList<Asignacion_viaticos> BuscarAsignacionViaticos(int id_modulo) throws RemoteException {
+    ArrayList<Asignacion_viaticos> asignaciones = new ArrayList<Asignacion_viaticos>();
+    Asignacion_viaticos asignacion = null;
+    ResultSet resultadoConsulta = null;
+    String cadenaBD = "SELECT * FROM asignacion_viaticos WHERE id_modulo=" + id_modulo;
+    try {
+      conexion.conectar();
+      resultadoConsulta = conexion.executeQueryStatement(cadenaBD);
+      while (resultadoConsulta.next()) {
+        asignacion = new Asignacion_viaticos(resultadoConsulta.getInt(1), resultadoConsulta.getDate(2),
+                resultadoConsulta.getDouble(3), resultadoConsulta.getInt(4));
+        asignaciones.add(asignacion);
+      }
+      conexion.closeConecction();
+    } catch (Exception e) {
+      System.out.println(e.getMessage());
+    }
+    return asignaciones;
+  }
+
+  @Override
+  public boolean EditarAsignacionViatico(Asignacion_viaticos asignacion) throws RemoteException {
+    boolean controlActualizacion = false;
+    String cadenaBD = "UPDATE asignacion_viaticos SET fecha_pago='" + formatoFecha.format(asignacion.getFecha_pago()) + "', "
+            + "monto_viaticos=" + asignacion.getMonto_viaticos() + " WHERE id_modulo = " + asignacion.getid_modulo();
+    try {
+      conexion.conectar();
+      controlActualizacion = conexion.executeUpdateStatement(cadenaBD);
+      conexion.closeConecction();
+    } catch (Exception e) {
+      System.out.println(e.getMessage());
+    }
+    return controlActualizacion;
+  }
+
+  @Override
+  public ArrayList<Asignacion_tiquete> BuscarAsignacionTiquetes(int id_modulo) throws RemoteException {
+    ArrayList<Asignacion_tiquete> asignaciones = new ArrayList<Asignacion_tiquete>();
+    Asignacion_tiquete asignacion = null;
+    ResultSet resultadoConsulta = null;
+    String cadenaBD = "SELECT * FROM asignacion_tiquete WHERE id_modulo=" + id_modulo;
+    try {
+      conexion.conectar();
+      resultadoConsulta = conexion.executeQueryStatement(cadenaBD);
+      while (resultadoConsulta.next()) {
+        asignacion = new Asignacion_tiquete(resultadoConsulta.getInt(1), resultadoConsulta.getDate(2),
+                resultadoConsulta.getDate(3), resultadoConsulta.getDate(4), resultadoConsulta.getString(5),
+                resultadoConsulta.getString(6), resultadoConsulta.getString(7), resultadoConsulta.getInt(8));
+        asignaciones.add(asignacion);
+      }
+      conexion.closeConecction();
+    } catch (Exception e) {
+      System.out.println(e.getMessage());
+    }
+    return asignaciones;
+  }
+
+  @Override
+  public boolean EditarAsignacionTiquete(Asignacion_tiquete asignacion) throws RemoteException {
+    boolean controlActualizacion = false;
+    String cadenaBD = "UPDATE asignacion_tiquete SET fecha_solicitud='" + formatoFecha.format(asignacion.getFecha_solicitud()) + "', "
+            + "fecha_salida='" + formatoFecha.format(asignacion.getFecha_salida()) + "', "
+            + "fecha_regreso='" + formatoFecha.format(asignacion.getFecha_regreso()) + "', "
+            + "ciudad_origen='" + asignacion.getCiudad_origen() + "', ciudad_destino='" + asignacion.getCiudad_destino() + "', "
+            + "aerolinea='" + asignacion.getAerolinea() + "' WHERE id_modulo = " + asignacion.getid_modulo();
+    try {
+      conexion.conectar();
+      controlActualizacion = conexion.executeUpdateStatement(cadenaBD);
+      conexion.closeConecction();
+    } catch (Exception e) {
+      System.out.println(e.getMessage());
+    }
+    return controlActualizacion;
+  }
+
+  @Override
+  public ArrayList<Asignacion_honorarios> BuscarAsignacionHonorario(int id_modulo) throws RemoteException {
+    ArrayList<Asignacion_honorarios> asignaciones = new ArrayList<Asignacion_honorarios>();
+    Asignacion_honorarios asignacion = null;
+    ResultSet resultadoConsulta = null;
+    String cadenaBD = "SELECT * FROM asignacion_honorarios WHERE id_modulo=" + id_modulo;
+    try {
+      conexion.conectar();
+      resultadoConsulta = conexion.executeQueryStatement(cadenaBD);
+      while (resultadoConsulta.next()) {
+        asignacion = new Asignacion_honorarios(resultadoConsulta.getInt(1), resultadoConsulta.getDate(2),
+                resultadoConsulta.getDouble(3), resultadoConsulta.getInt(4));
+        asignaciones.add(asignacion);
+      }
+      conexion.closeConecction();
+    } catch (Exception e) {
+      System.out.println(e.getMessage());
+    }
+    return asignaciones;
+  }
+
+  @Override
+  public boolean EditarAsignacionHonorario(Asignacion_honorarios asignacion) throws RemoteException {
+    boolean controlActualizacion = false;
+    String cadenaBD = "UPDATE asignacion_honorarios SET fecha_pago='" + formatoFecha.format(asignacion.getFecha_pago()) + "', "
+            + "monto_honorarios=" + asignacion.getMonto_honorarios() + " WHERE id_modulo = " + asignacion.getid_modulo();
+    try {
+      conexion.conectar();
+      controlActualizacion = conexion.executeUpdateStatement(cadenaBD);
+      conexion.closeConecction();
+    } catch (Exception e) {
+      System.out.println(e.getMessage());
+    }
+    return controlActualizacion;
   }
 }

@@ -136,4 +136,52 @@ public interface IServicioProfesoral extends Remote {
    * @throws RemoteException 
    */
   public ArrayList<Programa> BuscarProgramas() throws RemoteException;
+
+  /**
+   * Busqueda de asignaciones de viaticos, una vez recibido como parametro el id del modulo
+   * @param id_modulo
+   * @return
+   * @throws RemoteException 
+   */
+  public ArrayList<Asignacion_viaticos> BuscarAsignacionViaticos(int id_modulo) throws RemoteException;
+
+  /**
+   * Edicion de una asignacion de viaticos
+   * @param asignacion
+   * @return
+   * @throws RemoteException 
+   */
+  public boolean EditarAsignacionViatico(Asignacion_viaticos asignacion) throws RemoteException;
+
+  /**
+   * Busqueda de Asignaciones de tiquetes, basado en el id del modulo
+   * @param id_modulo
+   * @return
+   * @throws RemoteException 
+   */
+  public ArrayList<Asignacion_tiquete> BuscarAsignacionTiquetes(int id_modulo) throws RemoteException;
+
+  /**
+   * Edicion de una asignacion de tiquetes
+   * @param asignacion
+   * @return
+   * @throws RemoteException 
+   */
+  public boolean EditarAsignacionTiquete(Asignacion_tiquete asignacion) throws RemoteException;
+
+  /**
+   * Busqueda de asignación de honorarios, dado el id del modulo
+   * @param id_modulo
+   * @return
+   * @throws RemoteException 
+   */
+  public ArrayList<Asignacion_honorarios> BuscarAsignacionHonorario(int id_modulo) throws RemoteException;
+
+  /**
+   * Edicion de una asignacion de Honorarios
+   * @param asignacion
+   * @return
+   * @throws RemoteException 
+   */
+  public boolean EditarAsignacionHonorario(Asignacion_honorarios asignacion) throws RemoteException;
 }

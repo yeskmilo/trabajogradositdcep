@@ -25,12 +25,12 @@ public class ConexionBD {
         ipAdress = ipadd;
         user = us;
         password = pass;
-        nombreBD = "CEP";
+        nombreBD = "BDSITD_CEP";
         portNumber = port;
     }
 
     public ConexionBD() {
-        this("127.0.0.1", "cep", "cep2012", "3306");
+        this("127.0.0.1", "root", "123", "3306");
     }
 
     //Metodo pra conectarce a una base de datos Access

@@ -24,15 +24,17 @@ import Modelo.IServicioProfesoral;
 import java.rmi.RemoteException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Kmilo
  */
 public class GUIEditarAsignacionViaticos extends javax.swing.JFrame {
-  
+
   private IServicioProfesoral servicioProfesoral;
   private ControlModulo controlModulo;
   private ControlConferencista controlConferencista;
@@ -42,11 +44,12 @@ public class GUIEditarAsignacionViaticos extends javax.swing.JFrame {
   private Conferencista conferencista = null;
   public Modulo modulo;
   private DateFormat formatoFecha = new SimpleDateFormat("dd/MM/yy");
-  private GUIBuscarModulo guiBuscarModulo = null;
+  private ArrayList<Modulo> modulos = null;
+  private ArrayList<Asignacion_viaticos> asignaciones = null;
+  private Asignacion_viaticos asignacion = null;
 
   /** Creates new form GUIEditarAsignacionViaticos */
-  public GUIEditarAsignacionViaticos(IServicioProfesoral servicioProfesoral, Conferencista conferencista,
-          Modulo modulo, GUIBuscarModulo guiBuscarModulo) throws RemoteException {
+  public GUIEditarAsignacionViaticos(IServicioProfesoral servicioProfesoral) throws RemoteException {
     initComponents();
     this.setLocationRelativeTo(null);
     this.servicioProfesoral = servicioProfesoral;
@@ -54,14 +57,6 @@ public class GUIEditarAsignacionViaticos extends javax.swing.JFrame {
     controlPrograma = new ControlPrograma(servicioProfesoral);
     controlAsignaciones = new ControlAsignaciones(servicioProfesoral);
     controlModulo = new ControlModulo(servicioProfesoral);
-    this.conferencista = conferencista;
-    this.modulo = modulo;
-    //deshabilitarCampos();
-    cargarModulo();
-    this.guiBuscarModulo = guiBuscarModulo;
-    if (this.guiBuscarModulo != null) {
-      this.guiBuscarModulo.dispose();
-    }
   }
 
   /** This method is called from within the constructor to
@@ -76,16 +71,6 @@ public class GUIEditarAsignacionViaticos extends javax.swing.JFrame {
     panelAsignarViaticos = new javax.swing.JPanel();
     lblTitulo = new javax.swing.JLabel();
     lblIcono = new javax.swing.JLabel();
-    panelDatosModulo = new javax.swing.JPanel();
-    lblNombreModulo = new javax.swing.JLabel();
-    txtNombreModulo = new javax.swing.JTextField();
-    lblDuracionModulo = new javax.swing.JLabel();
-    spinDuracion = new javax.swing.JSpinner();
-    lblFechaInicio = new javax.swing.JLabel();
-    comboFechaInicio = new datechooser.beans.DateChooserCombo();
-    lblValor = new javax.swing.JLabel();
-    txtValorHora = new javax.swing.JTextField();
-    btnBuscarModulo = new javax.swing.JButton();
     panelDatosAsignacion = new javax.swing.JPanel();
     lblFechaPago = new javax.swing.JLabel();
     comboFechaPago = new datechooser.beans.DateChooserCombo();
@@ -95,6 +80,13 @@ public class GUIEditarAsignacionViaticos extends javax.swing.JFrame {
     PanelListadoAsignacion = new javax.swing.JPanel();
     scrollListadoAsignacion = new javax.swing.JScrollPane();
     tableAsignaciones = new javax.swing.JTable();
+    panelDatosBusquedaPrograma = new javax.swing.JPanel();
+    lblCohorte = new javax.swing.JLabel();
+    txtCohorte = new javax.swing.JTextField();
+    btnBuscarPrograma = new javax.swing.JButton();
+    panelResultadosBusquedaModulo = new javax.swing.JPanel();
+    scrollResultados = new javax.swing.JScrollPane();
+    tablaResultadosBusqueda = new javax.swing.JTable();
     barraMenu = new javax.swing.JMenuBar();
     menuArchivo = new javax.swing.JMenu();
     menuAyuda = new javax.swing.JMenu();
@@ -104,95 +96,10 @@ public class GUIEditarAsignacionViaticos extends javax.swing.JFrame {
 
     panelAsignarViaticos.setBackground(new java.awt.Color(255, 255, 255));
 
-    lblTitulo.setFont(new java.awt.Font("Calibri", 3, 24));
-    lblTitulo.setText("Asignación de Viaticos");
+    lblTitulo.setFont(new java.awt.Font("Calibri", 3, 24)); // NOI18N
+    lblTitulo.setText("Edición de Asignación de Viaticos");
 
     lblIcono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/addViaticosGrande .png"))); // NOI18N
-
-    panelDatosModulo.setBackground(new java.awt.Color(255, 255, 255));
-    panelDatosModulo.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos del Modulo", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Calibri", 2, 13))); // NOI18N
-
-    lblNombreModulo.setFont(new java.awt.Font("Calibri", 2, 13));
-    lblNombreModulo.setText("Nombre");
-
-    txtNombreModulo.setFont(new java.awt.Font("Calibri", 2, 13));
-    txtNombreModulo.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-    txtNombreModulo.setEnabled(false);
-
-    lblDuracionModulo.setFont(new java.awt.Font("Calibri", 2, 13));
-    lblDuracionModulo.setText("Duración en horas");
-
-    spinDuracion.setFont(new java.awt.Font("Calibri", 2, 13));
-    spinDuracion.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-    spinDuracion.setEnabled(false);
-
-    lblFechaInicio.setFont(new java.awt.Font("Calibri", 2, 13));
-    lblFechaInicio.setText("Fecha de Inicio");
-
-    lblValor.setFont(new java.awt.Font("Calibri", 2, 13));
-    lblValor.setText("Valor Hora");
-
-    txtValorHora.setFont(new java.awt.Font("Calibri", 2, 13));
-    txtValorHora.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-    txtValorHora.setEnabled(false);
-
-    btnBuscarModulo.setFont(new java.awt.Font("Calibri", 3, 13));
-    btnBuscarModulo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/buscarConvenio.png"))); // NOI18N
-    btnBuscarModulo.setText("Buscar Modulo");
-    btnBuscarModulo.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(java.awt.event.ActionEvent evt) {
-        btnBuscarModuloActionPerformed(evt);
-      }
-    });
-
-    javax.swing.GroupLayout panelDatosModuloLayout = new javax.swing.GroupLayout(panelDatosModulo);
-    panelDatosModulo.setLayout(panelDatosModuloLayout);
-    panelDatosModuloLayout.setHorizontalGroup(
-      panelDatosModuloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGroup(panelDatosModuloLayout.createSequentialGroup()
-        .addGroup(panelDatosModuloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-          .addGroup(panelDatosModuloLayout.createSequentialGroup()
-            .addContainerGap()
-            .addGroup(panelDatosModuloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-              .addComponent(lblNombreModulo)
-              .addComponent(lblFechaInicio))
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-            .addGroup(panelDatosModuloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-              .addGroup(panelDatosModuloLayout.createSequentialGroup()
-                .addComponent(comboFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(lblValor)
-                .addGap(18, 18, 18)
-                .addComponent(txtValorHora, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
-              .addGroup(panelDatosModuloLayout.createSequentialGroup()
-                .addComponent(txtNombreModulo, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(lblDuracionModulo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(spinDuracion, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))))
-          .addGroup(panelDatosModuloLayout.createSequentialGroup()
-            .addGap(297, 297, 297)
-            .addComponent(btnBuscarModulo)))
-        .addContainerGap(106, Short.MAX_VALUE))
-    );
-    panelDatosModuloLayout.setVerticalGroup(
-      panelDatosModuloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelDatosModuloLayout.createSequentialGroup()
-        .addComponent(btnBuscarModulo)
-        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
-        .addGroup(panelDatosModuloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-          .addComponent(lblNombreModulo)
-          .addComponent(txtNombreModulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-          .addComponent(lblDuracionModulo)
-          .addComponent(spinDuracion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        .addGap(18, 18, 18)
-        .addGroup(panelDatosModuloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-          .addComponent(lblFechaInicio)
-          .addGroup(panelDatosModuloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-            .addComponent(lblValor)
-            .addComponent(txtValorHora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-          .addComponent(comboFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-    );
 
     panelDatosAsignacion.setBackground(new java.awt.Color(255, 255, 255));
     panelDatosAsignacion.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos Asignación", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Calibri", 2, 13))); // NOI18N
@@ -200,10 +107,10 @@ public class GUIEditarAsignacionViaticos extends javax.swing.JFrame {
     lblFechaPago.setFont(new java.awt.Font("Calibri", 2, 13));
     lblFechaPago.setText("Fecha de Pago");
 
-    lblMonto.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
+    lblMonto.setFont(new java.awt.Font("Calibri", 2, 13));
     lblMonto.setText("Monto de los Viaticos");
 
-    txtMonto.setFont(new java.awt.Font("Calibri", 2, 13));
+    txtMonto.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
 
     btnAsignar.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
     btnAsignar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/addViatico.png"))); // NOI18N
@@ -248,7 +155,7 @@ public class GUIEditarAsignacionViaticos extends javax.swing.JFrame {
     );
 
     PanelListadoAsignacion.setBackground(new java.awt.Color(255, 255, 255));
-    PanelListadoAsignacion.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Asignaciones vinculadas al Modulo", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Calibri", 2, 13))); // NOI18N
+    PanelListadoAsignacion.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Asignaciones de viaticos vinculadas al Modulo", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Calibri", 2, 13))); // NOI18N
 
     tableAsignaciones.setModel(new javax.swing.table.DefaultTableModel(
       new Object [][] {
@@ -258,6 +165,11 @@ public class GUIEditarAsignacionViaticos extends javax.swing.JFrame {
         "Fecha de Pago", "Monto de la Asignación"
       }
     ));
+    tableAsignaciones.addMouseListener(new java.awt.event.MouseAdapter() {
+      public void mouseClicked(java.awt.event.MouseEvent evt) {
+        tableAsignacionesMouseClicked(evt);
+      }
+    });
     scrollListadoAsignacion.setViewportView(tableAsignaciones);
 
     javax.swing.GroupLayout PanelListadoAsignacionLayout = new javax.swing.GroupLayout(PanelListadoAsignacion);
@@ -273,7 +185,84 @@ public class GUIEditarAsignacionViaticos extends javax.swing.JFrame {
       PanelListadoAsignacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelListadoAsignacionLayout.createSequentialGroup()
         .addContainerGap()
-        .addComponent(scrollListadoAsignacion, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
+        .addComponent(scrollListadoAsignacion, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE)
+        .addContainerGap())
+    );
+
+    panelDatosBusquedaPrograma.setBackground(new java.awt.Color(255, 255, 255));
+    panelDatosBusquedaPrograma.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Busqueda Inicial de Programa", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Calibri", 2, 13))); // NOI18N
+
+    lblCohorte.setFont(new java.awt.Font("Calibri", 2, 13));
+    lblCohorte.setText("Cohorte del Programa");
+
+    txtCohorte.setFont(new java.awt.Font("Calibri", 2, 13)); // NOI18N
+    txtCohorte.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+
+    btnBuscarPrograma.setFont(new java.awt.Font("Calibri", 3, 13));
+    btnBuscarPrograma.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/buscarModulo.png"))); // NOI18N
+    btnBuscarPrograma.setText("Buscar");
+    btnBuscarPrograma.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnBuscarProgramaActionPerformed(evt);
+      }
+    });
+
+    javax.swing.GroupLayout panelDatosBusquedaProgramaLayout = new javax.swing.GroupLayout(panelDatosBusquedaPrograma);
+    panelDatosBusquedaPrograma.setLayout(panelDatosBusquedaProgramaLayout);
+    panelDatosBusquedaProgramaLayout.setHorizontalGroup(
+      panelDatosBusquedaProgramaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(panelDatosBusquedaProgramaLayout.createSequentialGroup()
+        .addGap(113, 113, 113)
+        .addComponent(lblCohorte)
+        .addGap(21, 21, 21)
+        .addComponent(txtCohorte, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addGap(18, 18, 18)
+        .addComponent(btnBuscarPrograma)
+        .addContainerGap(228, Short.MAX_VALUE))
+    );
+    panelDatosBusquedaProgramaLayout.setVerticalGroup(
+      panelDatosBusquedaProgramaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(panelDatosBusquedaProgramaLayout.createSequentialGroup()
+        .addContainerGap()
+        .addGroup(panelDatosBusquedaProgramaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+          .addComponent(lblCohorte)
+          .addComponent(btnBuscarPrograma)
+          .addComponent(txtCohorte, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+    );
+
+    panelResultadosBusquedaModulo.setBackground(new java.awt.Color(255, 255, 255));
+    panelResultadosBusquedaModulo.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Modulos Vinculados al Programa", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Calibri", 2, 13))); // NOI18N
+
+    tablaResultadosBusqueda.setModel(new javax.swing.table.DefaultTableModel(
+      new Object [][] {
+
+      },
+      new String [] {
+        "Nombre Modulo", "Duración Modulo (Horas)", "Fecha de Inicio", "Valor Hora", "Cohorte Programa", "Cedula Conferencista"
+      }
+    ));
+    tablaResultadosBusqueda.addMouseListener(new java.awt.event.MouseAdapter() {
+      public void mouseClicked(java.awt.event.MouseEvent evt) {
+        tablaResultadosBusquedaMouseClicked(evt);
+      }
+    });
+    scrollResultados.setViewportView(tablaResultadosBusqueda);
+
+    javax.swing.GroupLayout panelResultadosBusquedaModuloLayout = new javax.swing.GroupLayout(panelResultadosBusquedaModulo);
+    panelResultadosBusquedaModulo.setLayout(panelResultadosBusquedaModuloLayout);
+    panelResultadosBusquedaModuloLayout.setHorizontalGroup(
+      panelResultadosBusquedaModuloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(panelResultadosBusquedaModuloLayout.createSequentialGroup()
+        .addContainerGap()
+        .addComponent(scrollResultados, javax.swing.GroupLayout.DEFAULT_SIZE, 744, Short.MAX_VALUE)
+        .addContainerGap())
+    );
+    panelResultadosBusquedaModuloLayout.setVerticalGroup(
+      panelResultadosBusquedaModuloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+      .addGroup(panelResultadosBusquedaModuloLayout.createSequentialGroup()
+        .addContainerGap()
+        .addComponent(scrollResultados, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
         .addContainerGap())
     );
 
@@ -288,14 +277,19 @@ public class GUIEditarAsignacionViaticos extends javax.swing.JFrame {
             .addComponent(lblTitulo)
             .addGap(18, 18, 18)
             .addComponent(lblIcono))
-          .addGroup(panelAsignarViaticosLayout.createSequentialGroup()
-            .addComponent(panelDatosModulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addContainerGap())
           .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelAsignarViaticosLayout.createSequentialGroup()
             .addGroup(panelAsignarViaticosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
               .addComponent(PanelListadoAsignacion, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
               .addComponent(panelDatosAsignacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addContainerGap())
+          .addGroup(panelAsignarViaticosLayout.createSequentialGroup()
+            .addComponent(panelDatosBusquedaPrograma, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addContainerGap())))
+      .addGroup(panelAsignarViaticosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(panelAsignarViaticosLayout.createSequentialGroup()
+          .addContainerGap()
+          .addComponent(panelResultadosBusquedaModulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+          .addContainerGap()))
     );
     panelAsignarViaticosLayout.setVerticalGroup(
       panelAsignarViaticosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -308,12 +302,17 @@ public class GUIEditarAsignacionViaticos extends javax.swing.JFrame {
             .addContainerGap()
             .addComponent(lblIcono)))
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-        .addComponent(panelDatosModulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-        .addComponent(PanelListadoAsignacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        .addComponent(panelDatosBusquedaPrograma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 232, Short.MAX_VALUE)
+        .addComponent(PanelListadoAsignacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
         .addComponent(panelDatosAsignacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addContainerGap())
+      .addGroup(panelAsignarViaticosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(panelAsignarViaticosLayout.createSequentialGroup()
+          .addGap(162, 162, 162)
+          .addComponent(panelResultadosBusquedaModulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+          .addContainerGap(243, Short.MAX_VALUE)))
     );
 
     menuArchivo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/menuArchivo.png"))); // NOI18N
@@ -336,29 +335,19 @@ public class GUIEditarAsignacionViaticos extends javax.swing.JFrame {
     );
     layout.setVerticalGroup(
       layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addComponent(panelAsignarViaticos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+      .addComponent(panelAsignarViaticos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
     );
 
     pack();
   }// </editor-fold>//GEN-END:initComponents
 
-private void btnBuscarModuloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarModuloActionPerformed
-// TODO add your handling code here:
-  try {
-    GUIBuscarModulo guiBuscarModuloBtn = new GUIBuscarModulo(servicioProfesoral, null, null, null);
-    guiBuscarModuloBtn.show();
-  } catch (Exception e) {
-    System.out.println(e.getMessage());
-  }
-}//GEN-LAST:event_btnBuscarModuloActionPerformed
-  
 private void btnAsignarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsignarActionPerformed
 // TODO add your handling code here:
   boolean controlDatos = true;
   double monto = 0;
   Date fechaPago = null;
-  if (conferencista == null || modulo == null || programa == null) {
-    JOptionPane.showMessageDialog(rootPane, "Debe buscar un conferencista y un modulo\npara Crear la asignación", "Error", 2);
+  if (modulo == null || asignacion == null) {
+    JOptionPane.showMessageDialog(rootPane, "Debe buscar modulos por programa, y realizar\nla seleccion del modulo y de la asignación", "Seleccion modulo y asignación", 2);
     controlDatos = false;
   }
   if (txtMonto.getText().trim().equals("")) {
@@ -378,65 +367,149 @@ private void btnAsignarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
   if (controlDatos) {
     try {
       fechaPago = formatoFecha.parse(comboFechaPago.getText());
-      Asignacion_viaticos asignacionViaticos = new Asignacion_viaticos(0, fechaPago, monto, modulo.getId_modulo());
-      boolean controlAsignacion = controlAsignaciones.AgregarAsignacionViaticos(asignacionViaticos);
+      Asignacion_viaticos asignacionViaticos = new Asignacion_viaticos(asignacion.getId_viaticos(), fechaPago, monto, asignacion.getid_modulo());
+      boolean controlAsignacion = controlAsignaciones.EditarAsignacionViatico(asignacionViaticos);
       if (controlAsignacion) {
-        int opcion = JOptionPane.showConfirmDialog(rootPane, "Se han asignado los viaticos de manera correcta\n"
-                + "¿Desea generar el imprimible de los mismos?", "Asignación creada", 0, 1);
-        if (opcion == 0) {
-          //Codigo para generar archivo y muestra notificacion
-        } else {
-          limpiarDatos();
-        }
+        int opcion = JOptionPane.showConfirmDialog(rootPane, "Se ha reaizado la actualizacion de \nlos datos de la Asignación");
       } else {
-        JOptionPane.showMessageDialog(rootPane, "No se puede crear la asignación de viaticos", "Creación fallida", 0);
+        JOptionPane.showMessageDialog(rootPane, "No se puede editar la asignación de viaticos", "Creación fallida", 0);
       }
     } catch (Exception e) {
       System.out.println(e.getMessage());
     }
   }
 }//GEN-LAST:event_btnAsignarActionPerformed
+
+private void btnBuscarProgramaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarProgramaActionPerformed
+// TODO add your handling code here:
+  String cohorte = "";
+  if (txtCohorte.getText().trim().equals("")) {
+    JOptionPane.showMessageDialog(rootPane, "Debe digitar una cohorte de Programa para buscar", "Digite cohorte del programa", 0);
+  } else {
+    cohorte = txtCohorte.getText().trim();
+    try {
+      modulos = controlModulo.BuscarModuloPrograma(cohorte);
+      if (modulos.isEmpty()) {
+        JOptionPane.showMessageDialog(rootPane, "No se encontraton modulos vinculados al programa", "No hay resultados que mostrar", 0);
+        limpiarTablaResultados();
+      } else {
+        cargarModulos(modulos);
+      }
+    } catch (Exception e) {
+      System.out.println(e.getMessage());
+    }
+  }
+}//GEN-LAST:event_btnBuscarProgramaActionPerformed
+
+private void tablaResultadosBusquedaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaResultadosBusquedaMouseClicked
+// TODO add your handling code here:
+  int fila = tablaResultadosBusqueda.getSelectedRow();
+  if (fila != -1) {
+    modulo = modulos.get(fila);
+    try {
+      limpiarAsignaciones();
+      asignaciones = controlAsignaciones.BuscarAsignacionViaticos(modulo.getId_modulo());
+      cargarAsignaciones();
+    } catch (Exception e) {
+      System.out.println(e.getMessage());
+    }
+  }
+}//GEN-LAST:event_tablaResultadosBusquedaMouseClicked
+
+private void tableAsignacionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableAsignacionesMouseClicked
+// TODO add your handling code here:
+  int fila = tableAsignaciones.getSelectedRow();
+  if (fila != -1) {
+    asignacion = asignaciones.get(fila);
+    cargarAsignacion();
+  }
+}//GEN-LAST:event_tableAsignacionesMouseClicked
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.JPanel PanelListadoAsignacion;
   private javax.swing.JMenuBar barraMenu;
   private javax.swing.JButton btnAsignar;
-  private javax.swing.JButton btnBuscarModulo;
-  private datechooser.beans.DateChooserCombo comboFechaInicio;
+  private javax.swing.JButton btnBuscarPrograma;
   private datechooser.beans.DateChooserCombo comboFechaPago;
-  private javax.swing.JLabel lblDuracionModulo;
-  private javax.swing.JLabel lblFechaInicio;
+  private javax.swing.JLabel lblCohorte;
   private javax.swing.JLabel lblFechaPago;
   private javax.swing.JLabel lblIcono;
   private javax.swing.JLabel lblMonto;
-  private javax.swing.JLabel lblNombreModulo;
   private javax.swing.JLabel lblTitulo;
-  private javax.swing.JLabel lblValor;
   private javax.swing.JMenu menuArchivo;
   private javax.swing.JMenu menuAyuda;
   private javax.swing.JPanel panelAsignarViaticos;
   private javax.swing.JPanel panelDatosAsignacion;
-  private javax.swing.JPanel panelDatosModulo;
+  private javax.swing.JPanel panelDatosBusquedaPrograma;
+  private javax.swing.JPanel panelResultadosBusquedaModulo;
   private javax.swing.JScrollPane scrollListadoAsignacion;
-  private javax.swing.JSpinner spinDuracion;
+  private javax.swing.JScrollPane scrollResultados;
+  private javax.swing.JTable tablaResultadosBusqueda;
   private javax.swing.JTable tableAsignaciones;
+  private javax.swing.JTextField txtCohorte;
   private javax.swing.JTextField txtMonto;
-  private javax.swing.JTextField txtNombreModulo;
-  private javax.swing.JTextField txtValorHora;
   // End of variables declaration//GEN-END:variables
 
-  private void cargarModulo() {
-    if (modulo != null) {
-      txtNombreModulo.setText(modulo.getNombre_modulo());
-      spinDuracion.setValue(modulo.getDuracion_modulo_horas());
-      comboFechaInicio.setText(formatoFecha.format(modulo.getFecha_inicio_modulo()));
-      txtValorHora.setText(String.valueOf(modulo.getValor_hora()));
-      btnBuscarModulo.setEnabled(false);
+  private void cargarModulos(ArrayList<Modulo> modulos) {
+    int fila = 0;
+    for (int i = 0; i < modulos.size(); i++) {
+      if (tablaResultadosBusqueda.getRowCount() == fila) {
+        DefaultTableModel tablaTemp = (DefaultTableModel) tablaResultadosBusqueda.getModel();
+        Object nuevo[] = {null, null, null, null, null, null};
+        tablaTemp.addRow(nuevo);
+      }
+      tablaResultadosBusqueda.setValueAt(modulos.get(i).getNombre_modulo(), i, 0);
+      tablaResultadosBusqueda.setValueAt(modulos.get(i).getDuracion_modulo_horas(), i, 1);
+      tablaResultadosBusqueda.setValueAt(modulos.get(i).getFecha_inicio_modulo(), i, 2);
+      tablaResultadosBusqueda.setValueAt(modulos.get(i).getValor_hora(), i, 3);
+      tablaResultadosBusqueda.setValueAt(modulos.get(i).getCohorte_programa(), i, 4);
+      tablaResultadosBusqueda.setValueAt(modulos.get(i).getCedula_conferencista(), i, 5);
+      fila++;
+    }
+    if (tablaResultadosBusqueda.getRowCount() > fila) {
+      DefaultTableModel tablaTemp = (DefaultTableModel) tablaResultadosBusqueda.getModel();
+      tablaTemp.removeRow(fila);
     }
   }
-  
-  private void limpiarDatos() {
-    txtNombreModulo.setText("");
-    txtValorHora.setText("");
-    spinDuracion.setValue("");
+
+  private void limpiarTablaResultados() {
+    for (int i = 0; i < tablaResultadosBusqueda.getRowCount(); i++) {
+      tablaResultadosBusqueda.setValueAt("", i, 0);
+      tablaResultadosBusqueda.setValueAt("", i, 1);
+      tablaResultadosBusqueda.setValueAt("", i, 2);
+      tablaResultadosBusqueda.setValueAt("", i, 3);
+      tablaResultadosBusqueda.setValueAt("", i, 4);
+      tablaResultadosBusqueda.setValueAt("", i, 5);
+    }
+  }
+
+  private void cargarAsignaciones() {
+    int fila = 0;
+    for (int i = 0; i < asignaciones.size(); i++) {
+      if (tableAsignaciones.getRowCount() == fila) {
+        DefaultTableModel tablaTemp = (DefaultTableModel) tableAsignaciones.getModel();
+        Object nuevo[] = {null, null};
+        tablaTemp.addRow(nuevo);
+      }
+      tableAsignaciones.setValueAt(asignaciones.get(i).getFecha_pago(), i, 0);
+      tableAsignaciones.setValueAt(asignaciones.get(i).getMonto_viaticos(), i, 1);
+      fila++;
+    }
+    if (tableAsignaciones.getRowCount() > fila) {
+      DefaultTableModel tablaTemp = (DefaultTableModel) tableAsignaciones.getModel();
+      tablaTemp.removeRow(fila);
+    }
+  }
+
+  private void limpiarAsignaciones() {
+    txtMonto.setText("");
+    for (int i = 0; i < tableAsignaciones.getRowCount(); i++) {
+      tableAsignaciones.setValueAt("", i, 0);
+      tableAsignaciones.setValueAt("", i, 1);
+    }
+  }
+
+  private void cargarAsignacion() {
+    comboFechaPago.setText(formatoFecha.format(asignacion.getFecha_pago()));
+    txtMonto.setText(String.valueOf(asignacion.getMonto_viaticos()));
   }
 }
