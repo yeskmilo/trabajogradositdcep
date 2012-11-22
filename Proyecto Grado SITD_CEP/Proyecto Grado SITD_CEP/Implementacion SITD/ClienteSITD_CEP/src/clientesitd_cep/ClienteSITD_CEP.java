@@ -21,7 +21,7 @@ public class ClienteSITD_CEP {
      */
     public static void main(String[] args) {
         try {
-            IServicioGeneralSITD ser = (IServicioGeneralSITD) Naming.lookup("//127.0.0.1/ServicioGeneralSITD");
+            IServicioGeneralSITD ser = (IServicioGeneralSITD) Naming.lookup("//192.168.0.122/ServicioGeneralSITD");
             if (ser == null) {
                 System.out.println("Error... Cliente");
                 return;

@@ -25,7 +25,7 @@ public class ServidorSITD_CEP {
         try {
             LocateRegistry.createRegistry(1099);
             IServicioGeneralSITD servicioGeneralSITD = new ServicioGeneralSITD();
-            Naming.rebind("//127.0.0.1/ServicioGeneralSITD", servicioGeneralSITD);            
+            Naming.rebind("//192.168.0.122/ServicioGeneralSITD", servicioGeneralSITD);            
             System.out.println("Servidor Arriba\n");
         } catch (Exception e) {
             System.out.println(e.getMessage());
